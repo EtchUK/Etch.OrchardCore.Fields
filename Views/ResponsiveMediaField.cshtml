@@ -1,0 +1,18 @@
+﻿@using Moov2.OrchardCore.Fields.ResponsiveMedia.Settings
+
+@model Moov2.OrchardCore.Fields.ResponsiveMedia.ViewModels.DisplayResponsiveMediaFieldViewModel
+
+@{ 
+    var settings = Model.PartFieldDefinition.Settings.ToObject<ResponsiveMediaFieldSettings>();
+    var media = Model.Media[0];
+    var breakpoints = settings.GetBreakpoints();
+}
+
+<picture>
+    @foreach (var sourceSet in media.GetSourceSets(breakpoints))
+    {
+        <source srcset="@sourceSet.Path" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
+    }
+
+    <img src="@media.GetSmallestImage(breakpoints)" />
+</picture>

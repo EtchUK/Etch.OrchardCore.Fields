@@ -8,8 +8,8 @@ using OrchardCore.Modules.Manifest;
 )]
 
 [assembly: Feature(
-    Id = "Moov2.OrchardCore.Fields",
-    Name = "Useful Fields",
-    Description = "Provides a collection of useful fields.",
+    Id = "Moov2.OrchardCore.Fields.ResponsiveMedia",
+    Name = "Responsive Media Field",
+    Description = "Provides content field for managing responsive media content.",
     Category = "Content"
 )]
