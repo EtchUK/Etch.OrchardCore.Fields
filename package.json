@@ -1,0 +1,24 @@
+{
+    "name": "moov2.orchardcore.fields",
+    "version": "1.0.0",
+    "description": "Module for Orchard Core that provides useful content fields.",
+    "scripts": {
+        "build": "webpack"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/moov2/Moov2.OrchardCore.Fields.git"
+    },
+    "author": "Moov2 Ltd.",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/moov2/Moov2.OrchardCore.Fields/issues"
+    },
+    "homepage": "https://github.com/moov2/Moov2.OrchardCore.Fields#readme",
+    "devDependencies": {
+        "ts-loader": "^5.3.3",
+        "typescript": "^3.3.3333",
+        "webpack": "^4.29.6",
+        "webpack-cli": "^3.2.3"
+    }
+}
