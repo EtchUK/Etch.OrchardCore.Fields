@@ -13,3 +13,10 @@ using OrchardCore.Modules.Manifest;
     Description = "Provides content field for managing responsive media content.",
     Category = "Content"
 )]
+
+[assembly: Feature(
+    Id = "Moov2.OrchardCore.Fields.Dictionary",
+    Name = "Dictionary Field",
+    Description = "Provides content field for managing an arbitrary amount of names and associated values.",
+    Category = "Content"
+)]
