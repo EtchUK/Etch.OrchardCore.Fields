@@ -3,12 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.1-beta</Version>
+    <Version>0.0.1</Version>
     <PackageId>Moov2.OrchardCore.Fields</PackageId>
     <Title>Moov2 OrchardCore Fields</Title>
     <Authors>Moov2</Authors>
     <Description>Module providing useful content fields for Orchard Core</Description>
-    <PackageTags>orchardcore;moov2</PackageTags>
+    <PackageTags>orchardcore;moov2;fields</PackageTags>
     <RepositoryUrl>https://github.com/moov2/Moov2.OrchardCore.Fields</RepositoryUrl>
     <PackageProjectUrl>https://github.com/moov2/Moov2.OrchardCore.Fields</PackageProjectUrl>
   </PropertyGroup>
