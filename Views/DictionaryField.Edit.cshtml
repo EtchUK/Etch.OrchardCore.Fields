@@ -1,0 +1,20 @@
+﻿@model Moov2.OrchardCore.Fields.Dictionary.ViewModels.EditDictionaryFieldViewModel
+
+@using OrchardCore.ContentManagement.Metadata.Models
+@using Moov2.OrchardCore.Fields.Dictionary.Settings
+
+@{
+    var settings = Model.PartFieldDefinition.Settings.ToObject<DictionaryFieldSettings>();
+}
+
+<fieldset class="form-group">
+    <label asp-for="Data">@Model.PartFieldDefinition.DisplayName()</label>
+    @if (!String.IsNullOrEmpty(settings.Hint))
+    {
+        <span class="hint">@settings.Hint</span>
+    }
+
+    <textarea asp-for="Data" rows="3" class="form-control content-preview-text">
+        @Model.Data
+    </textarea>
+</fieldset>
