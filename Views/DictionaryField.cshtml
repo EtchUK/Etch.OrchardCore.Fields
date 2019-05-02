@@ -1,0 +1,13 @@
+@model Moov2.OrchardCore.Fields.Dictionary.ViewModels.DisplayDictionaryFieldViewModel
+@using OrchardCore.Mvc.Utilities;
+
+@{
+    var name = (Model.PartFieldDefinition.PartDefinition.Name + "-" + Model.PartFieldDefinition.Name).HtmlClassify();
+}
+
+<ul class="field field-type-dictionary field-name-@name">
+    @foreach (var dictionaryItem in Model.Data)
+    {
+        <li><em>@dictionaryItem.Name</em>: @dictionaryItem.Value</li>
+    }
+</ul>

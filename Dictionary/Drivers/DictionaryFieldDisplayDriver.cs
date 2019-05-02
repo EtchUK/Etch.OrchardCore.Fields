@@ -15,6 +15,23 @@ namespace Moov2.OrchardCore.Fields.Dictionary.Drivers
     {
         #region ContentFieldDisplayDriver<DictionaryField>
 
+        #region Display
+
+        public override IDisplayResult Display(DictionaryField field, BuildFieldDisplayContext context)
+        {
+            return Initialize<DisplayDictionaryFieldViewModel>(GetDisplayShapeType(context), model =>
+            {
+                model.Field = field;
+                model.Part = context.ContentPart;
+                model.PartFieldDefinition = context.PartFieldDefinition;
+                model.Data = field.Data;
+            })
+            .Location("Content")
+            .Location("SummaryAdmin", "");
+        }
+
+        #endregion Display
+
         #region Edit
 
         public override IDisplayResult Edit(DictionaryField field, BuildFieldEditorContext context)
