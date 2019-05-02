@@ -6,8 +6,19 @@
 @{
     var settings = Model.PartFieldDefinition.Settings.ToObject<DictionaryFieldSettings>();
 }
+<script asp-src="https://vuejs.org/js/vue.min.js" debug-src="https://vuejs.org/js/vue.js" asp-name="vuejs"
+        at="Foot"></script>
+<script asp-src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.min.js"
+        debug-src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.js" asp-name="sortable" at="Foot"></script>
+<script asp-src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.min.js"
+        debug-src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.js" asp-name="vuedraggable"
+        depends-on="vuejs, sortable" at="Foot"></script>
 
-<script asp-src="~/Moov2.OrchardCore.Fields/Scripts/dictionary/admin.js" asp-name="dictionary" depends-on="jquery" at="Foot"></script>
+<script asp-src="~/Moov2.OrchardCore.Fields/Scripts/dictionary/admin.js" asp-name="dictionary" depends-on="jquery"
+        at="Foot"></script>
+<script at="Foot">
+        initializeDictionaryEditor(document.getElementById('@Html.IdFor(m => m)'));
+</script>
 
 <fieldset class="form-group">
     <label asp-for="Data">@Model.PartFieldDefinition.DisplayName()</label>
@@ -16,7 +27,24 @@
         <span class="hint">@settings.Hint</span>
     }
 
-    <textarea asp-for="Data" rows="3" class="form-control content-preview-text">
-        @Model.Data
-    </textarea>
+    <div class="js-dictionary-field-editor" id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.Data)">
+        <input type="hidden" asp-for="Data" :value="value" data-init="@Model.Data">
+
+        <draggable tag="ul" class="list-group" v-model="dictionaryItems" handle=".handle">
+            <li v-for="(item, index) in dictionaryItems" class="row mb-3">
+                <button type="button" class="btn btn-light handle"><i class="fa fa-align-justify"></i></button>
+                <div class="col">
+                    <input class="form-control" placeholder="Name" type="text" v-model="item.name">
+                </div>
+                <div class="col">
+                    <input class="form-control" placeholder="Value" type="text" v-model="item.value">
+                </div>
+                <button v-on:click="remove(index)" class="btn btn-danger" type="button">
+                    <i class="fa fa-trash-alt">&nbsp;</i>
+                </button>
+            </li>
+        </draggable>
+
+        <button v-on:click="add" class="btn btn-primary" type="button"><i class="fa fa-plus">&nbsp;</i> Add</button>
+    </div>
 </fieldset>

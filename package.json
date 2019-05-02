@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "description": "Module for Orchard Core that provides useful content fields.",
     "scripts": {
-        "build": "webpack"
+        "build": "webpack",
+        "develop": "webpack --watch"
     },
     "repository": {
         "type": "git",

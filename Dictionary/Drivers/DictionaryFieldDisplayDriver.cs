@@ -1,4 +1,5 @@
 ﻿using Moov2.OrchardCore.Fields.Dictionary.Fields;
+using Moov2.OrchardCore.Fields.Dictionary.Models;
 using Moov2.OrchardCore.Fields.Dictionary.ViewModels;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
@@ -34,7 +35,7 @@ namespace Moov2.OrchardCore.Fields.Dictionary.Drivers
 
             if (await updater.TryUpdateModelAsync(model, Prefix, m => m.Data))
             {
-                field.Data = JsonConvert.DeserializeObject<Dictionary<string, string>>(model.Data);
+                field.Data = JsonConvert.DeserializeObject<List<DictionaryItem>>(model.Data);
             }
 
             return Edit(field, context);

@@ -10,6 +10,7 @@
     }
 
     dictionaryEditor(
-        $(rawDataInputElement).data('init')
+        $(rawDataInputElement).data('init'),
+        el
     );
 };

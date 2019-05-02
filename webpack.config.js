@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        dictionary: './ResponsiveMedia/Assets/js/index.ts',
+        dictionary: './Dictionary/Assets/js/index.ts',
         reponsiveMedia: './ResponsiveMedia/Assets/js/index.ts'
     },
     mode: 'development',
@@ -17,6 +17,9 @@ module.exports = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+        alias: {
+            vue$: 'vue/dist/vue.esm.js',
+        },
     },
     externals: {
         bootstrap: 'bootstrap',

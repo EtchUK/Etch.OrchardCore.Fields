@@ -1,14 +1,17 @@
 {
     "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
         "outDir": "./dist/",
         "sourceMap": true,
         "strict": true,
         "noUnusedLocals": true,
-        "module": "commonjs",
+        "module": "es2015",
+        "moduleResolution": "node",
         "target": "es6",
         "jsx": "react",
         "noImplicitAny": true,
+        "noImplicitThis": true,
         "typeRoots": ["types", "node_modules/@types"]
     },
-    "include": ["./ResponsiveMedia/Assets/js/**/*"]
+    "include": ["./ResponsiveMedia/Assets/js/**/*", "./Dictionary/Assets/js/**/*"]
 }

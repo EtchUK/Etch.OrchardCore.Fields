@@ -1,10 +1,11 @@
-﻿using OrchardCore.ContentManagement;
+﻿using Moov2.OrchardCore.Fields.Dictionary.Models;
+using OrchardCore.ContentManagement;
 using System.Collections.Generic;
 
 namespace Moov2.OrchardCore.Fields.Dictionary.Fields
 {
     public class DictionaryField : ContentField
     {
-        public Dictionary<string, string> Data { get; set; } = new Dictionary<string, string>();
+        public IList<DictionaryItem> Data { get; set; } = new List<DictionaryItem>();
     }
 }
