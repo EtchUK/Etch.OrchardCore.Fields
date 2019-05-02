@@ -3,7 +3,9 @@ import DictionaryItem from './models/dictionaryItem';
 
 export default (
     initialData: any,
-    element: HTMLElement
+    element: HTMLElement,
+    max?: number,
+    min?: number
 ) => {
     const parsedData: DictionaryItem[] = initialData ?
         initialData.map(
@@ -19,12 +21,20 @@ export default (
         el: element,
 
         data: {
-            dictionaryItems: [] as DictionaryItem[]
+            dictionaryItems: [] as DictionaryItem[],
+            maxEntries: max,
+            minEntries: min
         },
 
         computed: {
             hasEntries(): boolean {
                 return this.dictionaryItems.length > 0;
+            },
+            hasMinEntries(): boolean {
+                return this.minEntries == null || this.minEntries < 1 || this.dictionaryItems.length >= this.minEntries;
+            },
+            isMaxEntries(): boolean {
+                return this.maxEntries != null && this.maxEntries > 0 && this.dictionaryItems.length >= this.maxEntries;
             },
             value(): string {
                 return JSON.stringify(this.dictionaryItems);
@@ -37,6 +47,9 @@ export default (
 
         methods: {
             add: function () {
+                if (this.maxEntries && this.dictionaryItems.length >= this.maxEntries) {
+                    return;
+                }
                 this.dictionaryItems.push({ name: '', value: '' });
             },
             remove: function (index: number) {

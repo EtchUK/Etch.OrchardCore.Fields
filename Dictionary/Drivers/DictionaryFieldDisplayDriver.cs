@@ -53,6 +53,7 @@ namespace Moov2.OrchardCore.Fields.Dictionary.Drivers
 
         public override IDisplayResult Edit(DictionaryField field, BuildFieldEditorContext context)
         {
+            var settings = GetSettings(context);
             var isNew = field.ContentItem.Id == 0;
             return Initialize<EditDictionaryFieldViewModel>(GetEditorShapeType(context), model =>
             {
@@ -61,6 +62,9 @@ namespace Moov2.OrchardCore.Fields.Dictionary.Drivers
                 model.PartFieldDefinition = context.PartFieldDefinition;
 
                 model.Data = JsonConvert.SerializeObject(isNew ? GetDefaults(context) : field.Data);
+
+                model.MaxEntries = settings?.MaxEntries;
+                model.MinEntries = settings?.MinEntries;
             });
         }
 

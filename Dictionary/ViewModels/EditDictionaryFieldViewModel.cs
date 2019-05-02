@@ -11,5 +11,8 @@ namespace Moov2.OrchardCore.Fields.Dictionary.ViewModels
         public ContentPartFieldDefinition PartFieldDefinition { get; set; }
 
         public string Data { get; set; }
+
+        public int? MaxEntries { get; set; }
+        public int? MinEntries { get; set; }
     }
 }

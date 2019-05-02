@@ -27,8 +27,10 @@
         <span class="hint">@settings.Hint</span>
     }
 
-    <div id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.Data)" asp-validation-class-for="Data">
+    <div id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.Data)" data-min="@Html.IdFor(m => m.MinEntries)" data-max="@Html.IdFor(m => m.MaxEntries)" asp-validation-class-for="Data">
         <input type="hidden" asp-for="Data" :value="value" data-init="@Model.Data">
+        <input type="hidden" id="@Html.IdFor(m=>m.MaxEntries)" value="@Model.MaxEntries" />
+        <input type="hidden" id="@Html.IdFor(m=>m.MinEntries)" value="@Model.MinEntries" />
 
         <draggable tag="ul" class="list-group" v-model="dictionaryItems" handle=".handle">
             <li v-for="(item, index) in dictionaryItems" class="row mb-3">
@@ -46,7 +48,9 @@
         </draggable>
 
         <p v-if="!hasEntries" class="hint">@T["No entries yet, add one below"]</p>
+        <p v-if="!hasMinEntries" class="alert alert-warning">@T["You need at least {0} entries", Model.MinEntries]</p>
+        <p v-if="isMaxEntries" class="alert alert-warning">@T["Max number of {0} entries reacted", Model.MaxEntries]</p>
 
-        <button v-on:click="add" class="btn btn-primary" type="button"><i class="fa fa-plus">&nbsp;</i> @T["Add"]</button>
+        <button v-on:click="add" class="btn btn-primary" type="button" :disabled="isMaxEntries === true"><i class="fa fa-plus">&nbsp;</i> @T["Add"]</button>
     </div>
 </fieldset>
