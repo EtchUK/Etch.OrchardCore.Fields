@@ -1,7 +1,10 @@
 ﻿using Moov2.OrchardCore.Fields.Dictionary.Fields;
+using Moov2.OrchardCore.Fields.Dictionary.Models;
+using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.ContentTypes.Editors;
 using OrchardCore.DisplayManagement.Views;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Moov2.OrchardCore.Fields.Dictionary.Settings
@@ -14,23 +17,22 @@ namespace Moov2.OrchardCore.Fields.Dictionary.Settings
 
         public override IDisplayResult Edit(ContentPartFieldDefinition partFieldDefinition)
         {
-            return Initialize<DictionaryFieldSettings>("DictionaryFieldSettings_Edit", model =>
-                partFieldDefinition.Settings.Populate(model))
+            return Initialize<UpdateDictionaryFieldSettingsViewModel>("DictionaryFieldSettings_Edit", model =>
+                {
+                    partFieldDefinition.Settings.Populate(model);
+                })
                 .Location("Content");
         }
 
         public override async Task<IDisplayResult> UpdateAsync(ContentPartFieldDefinition partFieldDefinition, UpdatePartFieldEditorContext context)
         {
-            var model = new UpdateDictionaryFieldSettingsViewModel();
+            var settings = new DictionaryFieldSettings();
 
-            await context.Updater.TryUpdateModelAsync(model, Prefix);
-
-            var settings = new DictionaryFieldSettings
+            if (await context.Updater.TryUpdateModelAsync(settings, Prefix))
             {
-                Hint = model.Hint
-            };
-
-            context.Builder.MergeSettings(settings);
+                settings.DefaultData = JsonConvert.SerializeObject(JsonConvert.DeserializeObject<IList<DictionaryItem>>(settings.DefaultData));
+                context.Builder.MergeSettings(settings);
+            }
 
             return Edit(partFieldDefinition);
         }

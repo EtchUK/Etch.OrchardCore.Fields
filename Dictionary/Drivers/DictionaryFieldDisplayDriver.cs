@@ -1,9 +1,11 @@
 ﻿using Moov2.OrchardCore.Fields.Dictionary.Fields;
 using Moov2.OrchardCore.Fields.Dictionary.Models;
+using Moov2.OrchardCore.Fields.Dictionary.Settings;
 using Moov2.OrchardCore.Fields.Dictionary.ViewModels;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
+using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
 using System.Collections.Generic;
@@ -36,13 +38,14 @@ namespace Moov2.OrchardCore.Fields.Dictionary.Drivers
 
         public override IDisplayResult Edit(DictionaryField field, BuildFieldEditorContext context)
         {
+            var isNew = field.ContentItem.Id == 0;
             return Initialize<EditDictionaryFieldViewModel>(GetEditorShapeType(context), model =>
             {
                 model.Field = field;
                 model.Part = context.ContentPart;
                 model.PartFieldDefinition = context.PartFieldDefinition;
 
-                model.Data = JsonConvert.SerializeObject(field.Data);
+                model.Data = JsonConvert.SerializeObject(isNew ? GetDefaults(context.PartFieldDefinition) : field.Data);
             });
         }
 
@@ -61,5 +64,19 @@ namespace Moov2.OrchardCore.Fields.Dictionary.Drivers
         #endregion Edit
 
         #endregion ContentFieldDisplayDriver<DictionaryField>
+
+        #region Helpers
+
+        private IList<DictionaryItem> GetDefaults(ContentPartFieldDefinition partFieldDefinition)
+        {
+            var settingsValue = partFieldDefinition?.Settings?.ToObject<DictionaryFieldSettings>()?.DefaultData;
+            if (settingsValue != null)
+            {
+                return JsonConvert.DeserializeObject<IList<DictionaryItem>>(settingsValue);
+            }
+            return null;
+        }
+
+        #endregion Helpers
     }
 }
