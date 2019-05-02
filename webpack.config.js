@@ -1,7 +1,10 @@
 const path = require('path');
 
 module.exports = {
-    entry: './ResponsiveMedia/Assets/js/index.ts',
+    entry: {
+        dictionary: './ResponsiveMedia/Assets/js/index.ts',
+        reponsiveMedia: './ResponsiveMedia/Assets/js/index.ts'
+    },
     mode: 'development',
     module: {
         rules: [
@@ -15,8 +18,13 @@ module.exports = {
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
     },
+    externals: {
+        bootstrap: 'bootstrap',
+        jquery: 'jQuery',
+        vue: 'Vue',
+    },
     output: {
-        filename: 'admin.js',
-        path: path.resolve(__dirname, './wwwroot/Scripts/responsiveMedia'),
+        filename: '[name]/admin.js',
+        path: path.resolve(__dirname, './wwwroot/Scripts/'),
     },
 };

@@ -7,6 +7,8 @@
     var settings = Model.PartFieldDefinition.Settings.ToObject<DictionaryFieldSettings>();
 }
 
+<script asp-src="~/Moov2.OrchardCore.Fields/Scripts/dictionary/admin.js" asp-name="dictionary" depends-on="jquery" at="Foot"></script>
+
 <fieldset class="form-group">
     <label asp-for="Data">@Model.PartFieldDefinition.DisplayName()</label>
     @if (!String.IsNullOrEmpty(settings.Hint))

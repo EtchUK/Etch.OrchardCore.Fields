@@ -20,4 +20,9 @@
     <PackageReference Include="OrchardCore.Module.Targets" Version="1.0.0-beta3-*" />
   </ItemGroup>
 
+  <Target Name="BuildStaticAssetsForRelease" AfterTargets="PreBuildEvent" Condition="'$(Configuration)' == 'Release'">
+    <Exec Command="npm install" />
+    <Exec Command="npm run build" />
+  </Target>
+
 </Project>
