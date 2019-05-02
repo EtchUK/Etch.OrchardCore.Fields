@@ -17,7 +17,7 @@ namespace Moov2.OrchardCore.Fields.Dictionary.Settings
 
         public override IDisplayResult Edit(ContentPartFieldDefinition partFieldDefinition)
         {
-            return Initialize<UpdateDictionaryFieldSettingsViewModel>("DictionaryFieldSettings_Edit", model =>
+            return Initialize<DictionaryFieldSettings>("DictionaryFieldSettings_Edit", model =>
                 {
                     partFieldDefinition.Settings.Populate(model);
                 })
@@ -30,6 +30,8 @@ namespace Moov2.OrchardCore.Fields.Dictionary.Settings
 
             if (await context.Updater.TryUpdateModelAsync(settings, Prefix))
             {
+                // This makes sure the JSON is correctly formatted as it comes from the front end
+                // with incorrect casing
                 settings.DefaultData = JsonConvert.SerializeObject(JsonConvert.DeserializeObject<IList<DictionaryItem>>(settings.DefaultData));
                 context.Builder.MergeSettings(settings);
             }

@@ -1,4 +1,4 @@
-﻿@model Moov2.OrchardCore.Fields.Dictionary.Settings.UpdateDictionaryFieldSettingsViewModel
+﻿@model Moov2.OrchardCore.Fields.Dictionary.Settings.DictionaryFieldSettings
 
 <script asp-src="https://vuejs.org/js/vue.min.js" debug-src="https://vuejs.org/js/vue.js" asp-name="vuejs"
         at="Foot"></script>
@@ -37,6 +37,21 @@
         </draggable>
 
         <button v-on:click="add" class="btn btn-primary" type="button"><i class="fa fa-plus">&nbsp;</i> Add</button>
+    </div>
+</fieldset>
+
+<fieldset class="form-group">
+    <div class="row col-sm-6">
+        <label asp-for="MinEntries">@T["Minimum Entries"]</label>
+        <input type="number" asp-for="MinEntries" class="form-control" value="@Model.MinEntries" />
+        <span class="hint">@T["Minimum number of name/values that must be specified."]</span>
+    </div>
+</fieldset>
+<fieldset class="form-group">
+    <div class="row col-sm-6">
+        <label asp-for="MaxEntries">@T["Maximum Entries"]</label>
+        <input type="number" asp-for="MaxEntries" class="form-control" value="@Model.MaxEntries" />
+        <span class="hint">@T["Maximum number of name/values that can be specified."]</span>
     </div>
 </fieldset>
 

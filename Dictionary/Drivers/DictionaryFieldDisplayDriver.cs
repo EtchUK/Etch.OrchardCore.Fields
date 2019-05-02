@@ -1,11 +1,11 @@
-﻿using Moov2.OrchardCore.Fields.Dictionary.Fields;
+﻿using Microsoft.Extensions.Localization;
+using Moov2.OrchardCore.Fields.Dictionary.Fields;
 using Moov2.OrchardCore.Fields.Dictionary.Models;
 using Moov2.OrchardCore.Fields.Dictionary.Settings;
 using Moov2.OrchardCore.Fields.Dictionary.ViewModels;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
-using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
 using System.Collections.Generic;
@@ -15,6 +15,21 @@ namespace Moov2.OrchardCore.Fields.Dictionary.Drivers
 {
     public class DictionaryFieldDisplayDriver : ContentFieldDisplayDriver<DictionaryField>
     {
+        #region PublicVariables
+
+        public IStringLocalizer T { get; set; }
+
+        #endregion PublicVariables
+
+        #region Constructor
+
+        public DictionaryFieldDisplayDriver(IStringLocalizer<DictionaryFieldDisplayDriver> localizer)
+        {
+            T = localizer;
+        }
+
+        #endregion Constructor
+
         #region ContentFieldDisplayDriver<DictionaryField>
 
         #region Display
@@ -45,7 +60,7 @@ namespace Moov2.OrchardCore.Fields.Dictionary.Drivers
                 model.Part = context.ContentPart;
                 model.PartFieldDefinition = context.PartFieldDefinition;
 
-                model.Data = JsonConvert.SerializeObject(isNew ? GetDefaults(context.PartFieldDefinition) : field.Data);
+                model.Data = JsonConvert.SerializeObject(isNew ? GetDefaults(context) : field.Data);
             });
         }
 
@@ -53,9 +68,20 @@ namespace Moov2.OrchardCore.Fields.Dictionary.Drivers
         {
             var model = new EditDictionaryFieldViewModel();
 
-            if (await updater.TryUpdateModelAsync(model, Prefix, m => m.Data))
+            await updater.TryUpdateModelAsync(model, Prefix, m => m.Data);
+
+            var settings = GetSettings(context);
+
+            field.Data = JsonConvert.DeserializeObject<List<DictionaryItem>>(model.Data);
+
+            if (settings?.MinEntries > 0 && (field.Data == null || field.Data.Count < settings.MinEntries))
             {
-                field.Data = JsonConvert.DeserializeObject<List<DictionaryItem>>(model.Data);
+                updater.ModelState.AddModelError($"{Prefix}.{nameof(model.Data)}", T["You must specify at least {0} items.", settings.MinEntries]);
+            }
+
+            if (settings?.MaxEntries > 0 && field.Data?.Count > settings.MaxEntries)
+            {
+                updater.ModelState.AddModelError($"{Prefix}.{nameof(model.Data)}", T["You can specify at most {0} items.", settings.MaxEntries]);
             }
 
             return Edit(field, context);
@@ -67,9 +93,14 @@ namespace Moov2.OrchardCore.Fields.Dictionary.Drivers
 
         #region Helpers
 
-        private IList<DictionaryItem> GetDefaults(ContentPartFieldDefinition partFieldDefinition)
+        private DictionaryFieldSettings GetSettings(BuildFieldEditorContext context)
         {
-            var settingsValue = partFieldDefinition?.Settings?.ToObject<DictionaryFieldSettings>()?.DefaultData;
+            return context?.PartFieldDefinition?.Settings?.ToObject<DictionaryFieldSettings>();
+        }
+
+        private IList<DictionaryItem> GetDefaults(BuildFieldEditorContext context)
+        {
+            var settingsValue = GetSettings(context)?.DefaultData;
             if (settingsValue != null)
             {
                 return JsonConvert.DeserializeObject<IList<DictionaryItem>>(settingsValue);
