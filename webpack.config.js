@@ -2,8 +2,8 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        dictionary: './Dictionary/Assets/js/index.ts',
-        reponsiveMedia: './ResponsiveMedia/Assets/js/index.ts'
+        dictionary: './Assets/Dictionary/js/index.ts',
+        reponsiveMedia: './Assets/ResponsiveMedia/js/index.ts'
     },
     mode: 'development',
     module: {

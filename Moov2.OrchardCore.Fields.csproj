@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -20,7 +20,7 @@
     <PackageReference Include="OrchardCore.Module.Targets" Version="1.0.0-beta3-*" />
   </ItemGroup>
 
-  <Target Name="BuildStaticAssetsForRelease" AfterTargets="PreBuildEvent" Condition="'$(Configuration)' == 'Release'">
+  <Target Name="BuildStaticAssetsForRelease" BeforeTargets="BeforeBuild" Condition="'$(Configuration)' == 'Release'">
     <Exec Command="npm install" />
     <Exec Command="npm run build" />
   </Target>

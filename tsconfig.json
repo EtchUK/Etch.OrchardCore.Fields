@@ -13,5 +13,5 @@
         "noImplicitThis": true,
         "typeRoots": ["types", "node_modules/@types"]
     },
-    "include": ["./ResponsiveMedia/Assets/js/**/*", "./Dictionary/Assets/js/**/*"]
+    "include": ["./Assets/**/js/**/*"]
 }
