@@ -38,7 +38,7 @@
         <div class="form-inline mb-3">
             <div class="form-group mr-3 w-100" style="max-width: 300px;">
                 <label for="@Html.IdFor(m => m.Data)_NewValue" class="sr-only">@T["New Value"]</label>
-                <input type="text" class="form-control w-100" id="@Html.IdFor(m => m.Data)_NewValue" v-model="newValue" placeholder="@(T[newItemPlaceholder])">
+                <input type="text" class="form-control w-100" id="@Html.IdFor(m => m.Data)_NewValue" placeholder="@(T[newItemPlaceholder])" v-model="newValue" v-on:keydown.enter.prevent="add">
             </div>
             <button type="button" class="btn btn-primary btn-sm" v-on:click="add">@T["Add"]</button>
         </div>
