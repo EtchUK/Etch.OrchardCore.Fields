@@ -1,0 +1,48 @@
+@model Etch.OrchardCore.Fields.Values.ViewModels.EditValuesFieldViewModel
+
+@using OrchardCore.ContentManagement.Metadata.Models
+
+<script asp-src="https://vuejs.org/js/vue.min.js" debug-src="https://vuejs.org/js/vue.js" asp-name="vuejs"
+        at="Foot"></script>
+<script asp-src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.min.js"
+        debug-src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.js" asp-name="sortable" at="Foot"></script>
+<script asp-src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.min.js"
+        debug-src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.js" asp-name="vuedraggable"
+        depends-on="vuejs, sortable" at="Foot"></script>
+
+<script asp-src="~/Etch.OrchardCore.Fields/Scripts/values/admin.js" asp-name="values" depends-on="jquery"
+        at="Foot"></script>
+<script at="Foot">
+        initializeValuesEditor(document.getElementById('@Html.IdFor(m => m)'));
+</script>
+
+<fieldset class="form-group">
+    <label asp-for="Data">@Model.PartFieldDefinition.DisplayName()</label>
+
+    <div id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.Data)" asp-validation-class-for="Data">
+        <input type="hidden" asp-for="Data" :value="value" data-init="@Model.Data">
+
+        <div class="form-inline mb-3">
+            <div class="form-group mr-3 w-100" style="max-width: 300px;">
+                <label for="@Html.IdFor(m => m.Data)_NewValue" class="sr-only">@T["New Value"]</label>
+                <input type="text" class="form-control w-100" id="@Html.IdFor(m => m.Data)_NewValue" v-model="newValue" placeholder="@(T["Enter item to add to values"])">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" v-on:click="add">@T["Add"]</button>
+        </div>
+
+        <draggable tag="ul" class="list-group" v-model="items" handle=".handle">
+            <li v-for="(item, index) in items" class="list-group-item">
+                <div class="d-flex">
+                    <div class="w-100 text-left align-self-center">
+                        {{item}}
+                    </div>
+                    <div class="flex-shrink-1 text-right align-self-center">
+                        <button v-on:click="remove(index)" class="btn btn-danger btn-sm" type="button">
+                            <i class="fa fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </draggable>
+    </div>
+</fieldset>

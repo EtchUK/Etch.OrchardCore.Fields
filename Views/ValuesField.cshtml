@@ -1,0 +1,14 @@
+@model Etch.OrchardCore.Fields.Values.ViewModels.DisplayValuesFieldViewModel
+
+@using OrchardCore.Mvc.Utilities;
+
+@{
+    var modifier = Model.PartFieldDefinition.Name.HtmlClassify();
+}
+
+<ul class="list list--@modifier">
+@foreach (var item in Model.Data)
+{
+    <li class="list__item">@item</li>
+}
+</ul>

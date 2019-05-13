@@ -20,3 +20,10 @@ using OrchardCore.Modules.Manifest;
     Description = "Provides content field for managing an arbitrary amount of names and associated values.",
     Category = "Content"
 )]
+
+[assembly: Feature(
+    Id = "Etch.OrchardCore.Fields.Values",
+    Name = "Values Field",
+    Description = "Provides content field for managing an arbitrary list of values.",
+    Category = "Content"
+)]
