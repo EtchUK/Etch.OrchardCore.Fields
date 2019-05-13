@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Localization;
-using Moov2.OrchardCore.Fields.Dictionary.Fields;
-using Moov2.OrchardCore.Fields.Dictionary.Models;
-using Moov2.OrchardCore.Fields.Dictionary.Settings;
-using Moov2.OrchardCore.Fields.Dictionary.ViewModels;
+using Etch.OrchardCore.Fields.Dictionary.Fields;
+using Etch.OrchardCore.Fields.Dictionary.Models;
+using Etch.OrchardCore.Fields.Dictionary.Settings;
+using Etch.OrchardCore.Fields.Dictionary.ViewModels;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
@@ -11,7 +11,7 @@ using OrchardCore.DisplayManagement.Views;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Moov2.OrchardCore.Fields.Dictionary.Drivers
+namespace Etch.OrchardCore.Fields.Dictionary.Drivers
 {
     public class DictionaryFieldDisplayDriver : ContentFieldDisplayDriver<DictionaryField>
     {

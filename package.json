@@ -1,5 +1,5 @@
 {
-    "name": "moov2.orchardcore.fields",
+    "name": "etch.orchardcore.fields",
     "version": "1.0.0",
     "description": "Module for Orchard Core that provides useful content fields.",
     "scripts": {
@@ -8,14 +8,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/moov2/Moov2.OrchardCore.Fields.git"
+        "url": "git+https://github.com/etchuk/Etch.OrchardCore.Fields.git"
     },
-    "author": "Moov2 Ltd.",
+    "author": "Etch Ltd.",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/moov2/Moov2.OrchardCore.Fields/issues"
+        "url": "https://github.com/etchuk/Etch.OrchardCore.Fields/issues"
     },
-    "homepage": "https://github.com/moov2/Moov2.OrchardCore.Fields#readme",
+    "homepage": "https://github.com/etchuk/Etch.OrchardCore.Fields#readme",
     "devDependencies": {
         "@types/bootstrap": "^4.3.0",
         "@types/jquery": "^3.3.29",

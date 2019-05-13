@@ -1,8 +1,8 @@
-﻿using Moov2.OrchardCore.Fields.Dictionary.Fields;
+﻿using Etch.OrchardCore.Fields.Dictionary.Fields;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Metadata.Models;
 
-namespace Moov2.OrchardCore.Fields.Dictionary.ViewModels
+namespace Etch.OrchardCore.Fields.Dictionary.ViewModels
 {
     public class EditDictionaryFieldViewModel
     {

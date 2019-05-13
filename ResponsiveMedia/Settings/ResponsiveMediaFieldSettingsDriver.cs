@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Localization;
-using Moov2.OrchardCore.Fields.ResponsiveMedia.Fields;
+using Etch.OrchardCore.Fields.ResponsiveMedia.Fields;
 using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.ContentTypes.Editors;
 using OrchardCore.DisplayManagement.Views;
 using System.Threading.Tasks;
 
-namespace Moov2.OrchardCore.Fields.ResponsiveMedia.Settings
+namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
 {
     public class ResponsiveMediaFieldSettingsDriver : ContentPartFieldDefinitionDisplayDriver<ResponsiveMediaField>
     {

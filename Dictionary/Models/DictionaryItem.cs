@@ -1,4 +1,4 @@
-﻿namespace Moov2.OrchardCore.Fields.Dictionary.Models
+﻿namespace Etch.OrchardCore.Fields.Dictionary.Models
 {
     public class DictionaryItem
     {

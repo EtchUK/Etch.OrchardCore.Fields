@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Moov2.OrchardCore.Fields.ResponsiveMedia.Models
+namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
 {
     public class ResponsiveMediaItem
     {

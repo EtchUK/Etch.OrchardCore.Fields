@@ -1,5 +1,5 @@
-﻿using Moov2.OrchardCore.Fields.Dictionary.Fields;
-using Moov2.OrchardCore.Fields.Dictionary.Models;
+﻿using Etch.OrchardCore.Fields.Dictionary.Fields;
+using Etch.OrchardCore.Fields.Dictionary.Models;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.ContentTypes.Editors;
@@ -7,7 +7,7 @@ using OrchardCore.DisplayManagement.Views;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Moov2.OrchardCore.Fields.Dictionary.Settings
+namespace Etch.OrchardCore.Fields.Dictionary.Settings
 {
     public class DictionaryFieldSettingsDriver : ContentPartFieldDefinitionDisplayDriver<DictionaryField>
     {

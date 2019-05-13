@@ -1,10 +1,10 @@
-﻿using Moov2.OrchardCore.Fields.Dictionary.Fields;
-using Moov2.OrchardCore.Fields.Dictionary.Models;
+﻿using Etch.OrchardCore.Fields.Dictionary.Fields;
+using Etch.OrchardCore.Fields.Dictionary.Models;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Metadata.Models;
 using System.Collections.Generic;
 
-namespace Moov2.OrchardCore.Fields.Dictionary.ViewModels
+namespace Etch.OrchardCore.Fields.Dictionary.ViewModels
 {
     public class DisplayDictionaryFieldViewModel
     {
