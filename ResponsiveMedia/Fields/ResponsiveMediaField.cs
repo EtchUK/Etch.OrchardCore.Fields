@@ -1,6 +1,6 @@
 ﻿using OrchardCore.ContentManagement;
 
-namespace Moov2.OrchardCore.Fields.ResponsiveMedia.Fields
+namespace Etch.OrchardCore.Fields.ResponsiveMedia.Fields
 {
     public class ResponsiveMediaField : ContentField
     {

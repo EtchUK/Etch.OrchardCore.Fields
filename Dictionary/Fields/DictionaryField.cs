@@ -1,8 +1,8 @@
-﻿using Moov2.OrchardCore.Fields.Dictionary.Models;
+﻿using Etch.OrchardCore.Fields.Dictionary.Models;
 using OrchardCore.ContentManagement;
 using System.Collections.Generic;
 
-namespace Moov2.OrchardCore.Fields.Dictionary.Fields
+namespace Etch.OrchardCore.Fields.Dictionary.Fields
 {
     public class DictionaryField : ContentField
     {

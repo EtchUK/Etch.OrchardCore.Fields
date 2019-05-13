@@ -1,10 +1,10 @@
-﻿using Moov2.OrchardCore.Fields.ResponsiveMedia.Fields;
-using Moov2.OrchardCore.Fields.ResponsiveMedia.Models;
+﻿using Etch.OrchardCore.Fields.ResponsiveMedia.Fields;
+using Etch.OrchardCore.Fields.ResponsiveMedia.Models;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Metadata.Models;
 using System.Collections.Generic;
 
-namespace Moov2.OrchardCore.Fields.ResponsiveMedia.ViewModels
+namespace Etch.OrchardCore.Fields.ResponsiveMedia.ViewModels
 {
     public class DisplayResponsiveMediaFieldViewModel
     {

@@ -1,6 +1,6 @@
-﻿using Moov2.OrchardCore.Fields.ResponsiveMedia.Fields;
-using Moov2.OrchardCore.Fields.ResponsiveMedia.Models;
-using Moov2.OrchardCore.Fields.ResponsiveMedia.ViewModels;
+﻿using Etch.OrchardCore.Fields.ResponsiveMedia.Fields;
+using Etch.OrchardCore.Fields.ResponsiveMedia.Models;
+using Etch.OrchardCore.Fields.ResponsiveMedia.ViewModels;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
@@ -9,7 +9,7 @@ using OrchardCore.DisplayManagement.Views;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Moov2.OrchardCore.Fields.ResponsiveMedia.Drivers
+namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
 {
     public class ResponsiveMediaFieldDisplayDriver : ContentFieldDisplayDriver<ResponsiveMediaField>
     {

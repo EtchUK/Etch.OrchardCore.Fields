@@ -1,4 +1,4 @@
-﻿namespace Moov2.OrchardCore.Fields.Dictionary.Settings
+﻿namespace Etch.OrchardCore.Fields.Dictionary.Settings
 {
     public class DictionaryFieldSettings
     {

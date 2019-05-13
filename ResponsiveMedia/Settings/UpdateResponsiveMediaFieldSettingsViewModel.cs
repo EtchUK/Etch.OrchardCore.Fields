@@ -1,4 +1,4 @@
-﻿namespace Moov2.OrchardCore.Fields.ResponsiveMedia.Settings
+﻿namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
 {
     public class UpdateResponsiveMediaFieldSettingsViewModel
     {
