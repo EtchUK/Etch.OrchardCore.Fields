@@ -6,6 +6,7 @@ using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentTypes.Editors;
 using OrchardCore.Modules;
+using Etch.OrchardCore.Fields.Values.Settings;
 
 namespace Etch.OrchardCore.Fields.Values
 {
@@ -22,6 +23,7 @@ namespace Etch.OrchardCore.Fields.Values
             services.AddSingleton<ContentField, ValuesField>();
 
             services.AddScoped<IContentFieldDisplayDriver, ValuesFieldDisplayDriver>();
+            services.AddScoped<IContentPartFieldDefinitionDisplayDriver, ValuesFieldSettingsDriver>();
         }
     }
 }

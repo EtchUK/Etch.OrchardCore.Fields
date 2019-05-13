@@ -1,6 +1,14 @@
 @model Etch.OrchardCore.Fields.Values.ViewModels.EditValuesFieldViewModel
 
 @using OrchardCore.ContentManagement.Metadata.Models
+@using Etch.OrchardCore.Fields.Values.Settings
+
+@{
+    var settings = Model.PartFieldDefinition.Settings.ToObject<ValuesFieldSettings>();
+
+    var newItemPlaceholder = string.IsNullOrWhiteSpace(settings.NewItemPlaceholder) ? DefaultValueFieldSettings.NewItemPlaceholder : settings.NewItemPlaceholder;
+    var emptyMessage = string.IsNullOrWhiteSpace(settings.EmptyMessage) ? DefaultValueFieldSettings.EmptyMessage : settings.EmptyMessage;
+}
 
 <script asp-src="https://vuejs.org/js/vue.min.js" debug-src="https://vuejs.org/js/vue.js" asp-name="vuejs"
         at="Foot"></script>
@@ -19,13 +27,18 @@
 <fieldset class="form-group">
     <label asp-for="Data">@Model.PartFieldDefinition.DisplayName()</label>
 
+    @if (!String.IsNullOrWhiteSpace(settings.Hint))
+    {
+        <p class="hint">@settings.Hint</p>
+    }
+
     <div id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.Data)" asp-validation-class-for="Data">
         <input type="hidden" asp-for="Data" :value="value" data-init="@Model.Data">
 
         <div class="form-inline mb-3">
             <div class="form-group mr-3 w-100" style="max-width: 300px;">
                 <label for="@Html.IdFor(m => m.Data)_NewValue" class="sr-only">@T["New Value"]</label>
-                <input type="text" class="form-control w-100" id="@Html.IdFor(m => m.Data)_NewValue" v-model="newValue" placeholder="@(T["Enter item to add to values"])">
+                <input type="text" class="form-control w-100" id="@Html.IdFor(m => m.Data)_NewValue" v-model="newValue" placeholder="@(T[newItemPlaceholder])">
             </div>
             <button type="button" class="btn btn-primary btn-sm" v-on:click="add">@T["Add"]</button>
         </div>
@@ -44,5 +57,7 @@
                 </div>
             </li>
         </draggable>
+
+        <p v-if="!hasValues" class="hint">@T[emptyMessage]</p>
     </div>
 </fieldset>
