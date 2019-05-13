@@ -1,14 +1,24 @@
 @model Etch.OrchardCore.Fields.Values.ViewModels.DisplayValuesFieldViewModel
 
 @using OrchardCore.Mvc.Utilities;
+@using Etch.OrchardCore.Fields.Values.Settings
 
 @{
     var modifier = Model.PartFieldDefinition.Name.HtmlClassify();
+    var settings = Model.PartFieldDefinition.Settings.ToObject<ValuesFieldSettings>();
 }
 
-<ul class="list list--@modifier">
-@foreach (var item in Model.Data)
+@if (Model.Data.Any())
 {
-    <li class="list__item">@item</li>
+    <ul class="list list--@modifier">
+    @foreach (var item in Model.Data)
+    {
+        <li class="list__item">@item</li>
+    }
+    </ul>
 }
-</ul>
+
+@if (!Model.Data.Any() && string.IsNullOrWhiteSpace(settings.EmptyMessage))
+{
+    <p>@settings.EmptyMessage</p>
+}
