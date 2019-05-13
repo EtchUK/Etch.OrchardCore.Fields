@@ -24,6 +24,10 @@ export default (initialData: string[], element: HTMLElement) => {
 
         methods: {
             add: function() {
+                if (!this.newValue) {
+                    return;
+                }
+
                 this.items.push(this.newValue);
                 this.newValue = '';
             },
