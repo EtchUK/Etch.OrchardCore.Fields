@@ -16,6 +16,19 @@ export default (
         ) :
         [];
 
+    const focusField = (ref: Vue | Element | Vue[] | Element[], index: number) => {
+        const elements = ref as Element[];
+        if (index >= elements.length) {
+            return;
+        }
+        const input = elements[index] as HTMLInputElement;
+        if (input == null) {
+            return;
+        }
+        input.focus();
+        input.setSelectionRange(input.value.length, input.value.length);
+    };
+
     return new Vue({
         el: element,
 
@@ -50,6 +63,40 @@ export default (
                     return;
                 }
                 this.dictionaryItems.push({ name: '', value: '' });
+                this.$nextTick(() => {
+                    const index = this.dictionaryItems.length - 1;
+                    focusField(this.$refs.name, index);
+                });
+            },
+            handleBackspace: function (ref: string, index: number, event: KeyboardEvent) {
+                const value = (this.dictionaryItems[index] as any)[ref] as string;
+                if (value.length > 0) {
+                    return;
+                }
+                event.preventDefault();
+                if (ref === 'name') {
+                    if(this.dictionaryItems[index].value.length === 0){
+                        this.remove(index);
+                    }
+                    focusField(this.$refs.value, index - 1);
+                } else {
+                    focusField(this.$refs.name, index);
+                }
+            },
+            handleDown: function (ref: string, index: number) {
+                focusField(this.$refs[ref], index + 1);
+            },
+            handleUp: function (ref: string, index: number) {
+                focusField(this.$refs[ref], index - 1);
+            },
+            nextField: function (ref: string, index: number) {
+                let selectIndex = ref === 'value' ? index + 1 : index;
+                const selectRef = ref === 'value' ? 'name' : 'value';
+                if (ref === 'value' && selectIndex >= this.dictionaryItems.length) {
+                    this.add();
+                    return;
+                }
+                focusField(this.$refs[selectRef], selectIndex);
             },
             remove: function (index: number) {
                 this.dictionaryItems.splice(index, 1);

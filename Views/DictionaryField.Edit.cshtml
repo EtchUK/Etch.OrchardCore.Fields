@@ -36,10 +36,10 @@
             <li v-for="(item, index) in dictionaryItems" class="row mb-3">
                 <button type="button" class="btn btn-light handle"><i class="fa fa-align-justify"></i></button>
                 <div class="col">
-                    <input class="form-control content-preview-text" asp-validation-class-for="Data" placeholder="Name" type="text" v-model="item.name" />
+                    <input class="form-control content-preview-text" asp-validation-class-for="Data" placeholder="Name" type="text" :ref="'name'" v-model="item.name" v-on:keydown.enter.prevent="nextField('name', index)" v-on:keydown.backspace="handleBackspace('name', index, $event)" v-on:keydown.up.prevent="handleUp('name', index)" v-on:keydown.down.prevent="handleDown('name', index)" />
                 </div>
                 <div class="col">
-                    <input class="form-control content-preview-text" asp-validation-class-for="Data" placeholder="Value" type="text" v-model="item.value" />
+                    <input class="form-control content-preview-text" asp-validation-class-for="Data" placeholder="Value" type="text" :ref="'value'" v-model="item.value" v-on:keydown.enter.prevent="nextField('value', index)" v-on:keydown.backspace="handleBackspace('value', index, $event)" v-on:keydown.up.prevent="handleUp('value', index)" v-on:keydown.down.prevent="handleDown('value', index)" />
                 </div>
                 <button v-on:click="remove(index)" class="btn btn-danger" type="button">
                     <i class="fa fa-trash-alt">&nbsp;</i>
