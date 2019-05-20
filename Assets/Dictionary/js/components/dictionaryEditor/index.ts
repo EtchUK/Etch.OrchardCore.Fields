@@ -16,7 +16,6 @@ export default (
         ) :
         [];
 
-
     return new Vue({
         el: element,
 
@@ -54,6 +53,17 @@ export default (
             },
             remove: function (index: number) {
                 this.dictionaryItems.splice(index, 1);
+            },
+            updatePreview: function () {
+                this.$nextTick(() => {
+                    $(document).trigger('contentpreview:render');
+                });
+            }
+        },
+
+        watch: {
+            dictionaryItems: function () {
+                this.updatePreview();
             }
         }
     });

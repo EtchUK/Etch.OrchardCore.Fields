@@ -32,14 +32,14 @@
         <input type="hidden" id="@Html.IdFor(m=>m.MaxEntries)" value="@Model.MaxEntries" />
         <input type="hidden" id="@Html.IdFor(m=>m.MinEntries)" value="@Model.MinEntries" />
 
-        <draggable tag="ul" class="list-group" v-model="dictionaryItems" handle=".handle">
+        <draggable tag="ul" class="list-group" v-model="dictionaryItems" handle=".handle" @@change="updatePreview">
             <li v-for="(item, index) in dictionaryItems" class="row mb-3">
                 <button type="button" class="btn btn-light handle"><i class="fa fa-align-justify"></i></button>
                 <div class="col">
-                    <input class="form-control" asp-validation-class-for="Data" placeholder="Name" type="text" v-model="item.name" />
+                    <input class="form-control content-preview-text" asp-validation-class-for="Data" placeholder="Name" type="text" v-model="item.name" />
                 </div>
                 <div class="col">
-                    <input class="form-control" asp-validation-class-for="Data" placeholder="Value" type="text" v-model="item.value" />
+                    <input class="form-control content-preview-text" asp-validation-class-for="Data" placeholder="Value" type="text" v-model="item.value" />
                 </div>
                 <button v-on:click="remove(index)" class="btn btn-danger" type="button">
                     <i class="fa fa-trash-alt">&nbsp;</i>
