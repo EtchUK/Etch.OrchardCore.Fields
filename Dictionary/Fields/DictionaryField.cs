@@ -6,6 +6,6 @@ namespace Etch.OrchardCore.Fields.Dictionary.Fields
 {
     public class DictionaryField : ContentField
     {
-        public IList<DictionaryItem> Data { get; set; } = new List<DictionaryItem>();
+        public IList<DictionaryItem> Data { get; set; }
     }
 }
