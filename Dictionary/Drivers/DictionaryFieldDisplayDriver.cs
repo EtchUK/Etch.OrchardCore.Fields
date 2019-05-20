@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.Localization;
-using Etch.OrchardCore.Fields.Dictionary.Fields;
+﻿using Etch.OrchardCore.Fields.Dictionary.Fields;
 using Etch.OrchardCore.Fields.Dictionary.Models;
 using Etch.OrchardCore.Fields.Dictionary.Settings;
 using Etch.OrchardCore.Fields.Dictionary.ViewModels;
+using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
@@ -54,14 +54,13 @@ namespace Etch.OrchardCore.Fields.Dictionary.Drivers
         public override IDisplayResult Edit(DictionaryField field, BuildFieldEditorContext context)
         {
             var settings = GetSettings(context);
-            var isNew = field.ContentItem.Id == 0;
             return Initialize<EditDictionaryFieldViewModel>(GetEditorShapeType(context), model =>
             {
                 model.Field = field;
                 model.Part = context.ContentPart;
                 model.PartFieldDefinition = context.PartFieldDefinition;
 
-                model.Data = JsonConvert.SerializeObject(isNew ? GetDefaults(context) : field.Data);
+                model.Data = JsonConvert.SerializeObject(field.Data == null ? GetDefaults(context) : field.Data);
 
                 model.MaxEntries = settings?.MaxEntries;
                 model.MinEntries = settings?.MinEntries;
@@ -109,7 +108,7 @@ namespace Etch.OrchardCore.Fields.Dictionary.Drivers
             {
                 return JsonConvert.DeserializeObject<IList<DictionaryItem>>(settingsValue);
             }
-            return null;
+            return new List<DictionaryItem>();
         }
 
         #endregion Helpers
