@@ -7,6 +7,8 @@ using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentTypes.Editors;
 using OrchardCore.Modules;
+using Etch.OrchardCore.Fields.ResponsiveMedia.Models;
+using Etch.OrchardCore.Fields.ResponsiveMedia.ViewModels;
 
 namespace Etch.OrchardCore.Fields.ResponsiveMedia
 {
@@ -15,7 +17,9 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia
     {
         static Startup()
         {
-            TemplateContext.GlobalMemberAccessStrategy.Register<ResponsiveMediaField>();
+            TemplateContext.GlobalMemberAccessStrategy.Register<DisplayResponsiveMediaFieldViewModel>();
+            TemplateContext.GlobalMemberAccessStrategy.Register<ResponsiveMediaItem>();
+            TemplateContext.GlobalMemberAccessStrategy.Register<ResponsiveMediaSource>();
         }
 
         public override void ConfigureServices(IServiceCollection services)
