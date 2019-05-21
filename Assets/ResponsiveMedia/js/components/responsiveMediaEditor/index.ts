@@ -5,6 +5,7 @@ import MediaSource from './models/mediaSource';
 import MediaItem from './models/mediaItem';
 import ResponsiveMediaItem from './components/responsiveMediaItem';
 import createMediaItem from './utils/createMediaItem';
+import parseFieldValue from './utils/parseFieldValue';
 
 const selectors = {
     el: '.responsive-media-field-editor',
@@ -23,34 +24,10 @@ export default (
     modalBodyElement: HTMLElement,
     breakpoints: number[]
 ) => {
-    const largestBreakpoint: number = Math.max(...breakpoints);
-    let parsedData: MediaItem[] = [];
-
-    if (initialData) {
-        parsedData = initialData
-            ? initialData.map(
-                  (i: any) =>
-                      new MediaItem(
-                          i.sources.map(
-                              (x: any) =>
-                                  new MediaSource(
-                                      x.breakpoint,
-                                      x.name,
-                                      x.path,
-                                      x.url
-                                  )
-                          )
-                      )
-              )
-            : [];
-    }
-
     return new Vue({
         el: selectors.el,
 
         data: {
-            activeBreakpoint: largestBreakpoint,
-            activeBreakpointPath: '',
             breakpoints,
             mediaItems: [] as MediaItem[],
         },
@@ -80,7 +57,7 @@ export default (
         },
 
         mounted: function() {
-            this.mediaItems = parsedData;
+            this.mediaItems = parseFieldValue(initialData);
         },
 
         methods: {
