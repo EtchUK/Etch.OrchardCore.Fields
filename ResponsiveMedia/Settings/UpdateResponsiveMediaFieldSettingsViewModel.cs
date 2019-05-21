@@ -4,5 +4,6 @@
     {
         public string Breakpoints { get; set; }
         public string Hint { get; set; }
+        public bool Required { get; set; }
     }
 }

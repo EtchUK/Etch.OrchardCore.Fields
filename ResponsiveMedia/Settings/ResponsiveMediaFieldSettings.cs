@@ -9,6 +9,8 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
 
         public string Hint { get; set; }
 
+        public bool Required { get; set; }
+
         public int[] GetBreakpoints()
         {
             if (string.IsNullOrWhiteSpace(Breakpoints))

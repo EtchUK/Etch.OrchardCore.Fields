@@ -8,6 +8,16 @@
     </div>
 </fieldset>
 
+<div class="row">
+    <fieldset class="form-group col-md-6">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" asp-for="Required" checked="@Model.Required">
+            <label class="custom-control-label" asp-for="Required">@T["Required"]</label>
+            <span class="hint">@T["Whether a media is required."]</span>
+        </div>
+    </fieldset>
+</div>
+
 <fieldset class="form-group">
     <div class="row col-sm-6">
         <label asp-for="Hint">@T["Hint"]</label>
