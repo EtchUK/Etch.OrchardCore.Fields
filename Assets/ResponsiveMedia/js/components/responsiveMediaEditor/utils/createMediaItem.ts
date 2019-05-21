@@ -1,5 +1,4 @@
 import MediaItem from '../models/mediaItem';
-import MediaSource from '../models/mediaSource';
 import { sortNumbers } from './sortUtils';
 
 export default async function createMediaItem(
