@@ -55,6 +55,10 @@ export default Vue.extend({
     },
 
     methods: {
+        hasNoSource(breakpoint: number): boolean {
+            return !((this as any).media as MediaItem).hasSource(breakpoint);
+        },
+
         remove(): void {
             this.$emit('remove', {
                 media: (this as any).media,
@@ -85,7 +89,7 @@ export default Vue.extend({
             <p class="small">{{ activeName }}</p>
 
             <div class="d-flex flex-row flex-wrap mb-1">
-                <button v-for="breakpoint in orderedBreakpoints" type="button" class="btn btn-secondary btn-sm mb-1 mr-1" v-on:click="selectedBreakpoint = breakpoint" v-bind:class="{ active: activeBreakpoint == breakpoint }">{{ breakpoint }}</button>
+                <button v-for="breakpoint in orderedBreakpoints" type="button" class="btn btn-secondary btn-sm mb-1 mr-1" v-on:click="selectedBreakpoint = breakpoint" v-bind:class="{ active: activeBreakpoint == breakpoint, 'btn-warning': hasNoSource(breakpoint) }">{{ breakpoint }}</button>
             </div>
 
             <div class="d-flex flex-row flex-wrap mb-2">
