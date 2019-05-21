@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     entry: {
         dictionary: './Assets/Dictionary/js/index.ts',
-        reponsiveMedia: './Assets/ResponsiveMedia/js/index.ts',
+        responsiveMedia: './Assets/ResponsiveMedia/js/index.ts',
         values: './Assets/Values/js/index.ts',
     },
     mode: 'development',

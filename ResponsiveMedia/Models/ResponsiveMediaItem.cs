@@ -1,18 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
 {
     public class ResponsiveMediaItem
     {
-        public IList<ResponsiveMediaSource> Media { get; set; }
+        [JsonProperty("sources")]
+        public IList<ResponsiveMediaSource> Sources { get; set; }
 
         /// <summary>
         /// Returns image for largest breakpoint.
         /// </summary>
         public ResponsiveMediaSource GetDefaultImage()
         {
-            return Media.OrderByDescending(x => x.Breakpoint).FirstOrDefault();
+            return Sources.OrderByDescending(x => x.Breakpoint).FirstOrDefault();
         }
 
         /// <summary>
@@ -23,14 +25,14 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
         public string GetSmallestImage(int[] breakpoints)
         {
             var smallestBreakpoint = breakpoints.OrderBy(b => b).FirstOrDefault();
-            var media = Media.Where(x => x.Breakpoint == smallestBreakpoint).FirstOrDefault();
+            var media = Sources.Where(x => x.Breakpoint == smallestBreakpoint).FirstOrDefault();
 
             if (media != null)
             {
-                return media.Path;
+                return media.Url;
             }
 
-            return $"{GetDefaultImage().Path}?width={smallestBreakpoint}";
+            return $"{GetDefaultImage().Url}?width={smallestBreakpoint}";
         }
 
         /// <summary>
@@ -45,15 +47,15 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
 
             for (var i = 0; i < orderedBreakpoints.Count - 1; i++)
             {
-                var media = Media.Where(x => x.Breakpoint == orderedBreakpoints[i]).FirstOrDefault();
+                var media = Sources.Where(x => x.Breakpoint == orderedBreakpoints[i]).FirstOrDefault();
 
                 if (media != null)
                 {
-                    sourceSets.Add(new ResponsiveMediaSource { Breakpoint = orderedBreakpoints[i + 1] + 1, Path = media.Path });
+                    sourceSets.Add(new ResponsiveMediaSource { Breakpoint = orderedBreakpoints[i + 1] + 1, Url = media.Url });
                     continue;
                 }
 
-                sourceSets.Add(new ResponsiveMediaSource { Breakpoint = orderedBreakpoints[i + 1] + 1, Path = $"{defaultMedia.Path}?width={orderedBreakpoints[i]}" });
+                sourceSets.Add(new ResponsiveMediaSource { Breakpoint = orderedBreakpoints[i + 1] + 1, Url = $"{defaultMedia.Url}?width={orderedBreakpoints[i]}" });
                 continue;
             }
 

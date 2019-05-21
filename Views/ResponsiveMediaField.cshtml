@@ -11,7 +11,7 @@
 <picture>
     @foreach (var sourceSet in media.GetSourceSets(breakpoints))
     {
-        <source srcset="@sourceSet.Path" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
+        <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
     }
 
     <img src="@media.GetSmallestImage(breakpoints)" />

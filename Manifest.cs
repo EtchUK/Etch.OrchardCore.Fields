@@ -10,6 +10,7 @@ using OrchardCore.Modules.Manifest;
 [assembly: Feature(
     Id = "Etch.OrchardCore.Fields.ResponsiveMedia",
     Name = "Responsive Media Field",
+    Dependencies = new[] { "OrchardCore.Media" },
     Description = "Provides content field for managing responsive media content.",
     Category = "Content"
 )]

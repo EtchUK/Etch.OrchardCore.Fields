@@ -4,7 +4,8 @@
     "description": "Module for Orchard Core that provides useful content fields.",
     "scripts": {
         "build": "webpack",
-        "develop": "webpack --watch"
+        "develop": "webpack --watch",
+        "start": "npm install && npm run develop"
     },
     "repository": {
         "type": "git",

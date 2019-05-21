@@ -9,11 +9,6 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
 
         public string Hint { get; set; }
 
-        public ResponsiveMediaFieldSettings()
-        {
-            
-        }
-
         public int[] GetBreakpoints()
         {
             if (string.IsNullOrWhiteSpace(Breakpoints))
@@ -21,7 +16,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
                 return new int[] { };
             }
 
-            return Breakpoints.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(x => int.Parse(x)).ToArray();
+            return Breakpoints.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(x => int.Parse(x)).OrderBy(x => x).ToArray();
         }
     }
 }
