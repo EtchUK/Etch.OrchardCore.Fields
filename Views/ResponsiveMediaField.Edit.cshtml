@@ -33,7 +33,7 @@
 
             <nav class="responsive-media-field-toolbar mb-3">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-secondary btn-sm" v-on:click="add"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="btn btn-secondary btn-sm" v-on:click="add" :disabled="!!hasMedia"><i class="fa fa-plus"></i></button>
                 </div>
             </nav>
 
