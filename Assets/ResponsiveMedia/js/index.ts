@@ -20,6 +20,7 @@ window.mediaApp = window.mediaApp || {};
     }
 
     responsiveMediaEditor(
+        el,
         $(rawDataInputElement).data('init'),
         modalBodyElement,
         breakpoints

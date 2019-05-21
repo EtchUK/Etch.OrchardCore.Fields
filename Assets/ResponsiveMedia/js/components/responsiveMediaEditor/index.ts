@@ -8,7 +8,6 @@ import createMediaItem from './utils/createMediaItem';
 import parseFieldValue from './utils/parseFieldValue';
 
 const selectors = {
-    el: '.responsive-media-field-editor',
     mediaApp: '#mediaApp',
     mediaFieldSelectButton: '.mediaFieldSelectButton',
     modalBody: '.modal-body',
@@ -20,12 +19,13 @@ interface IMediaItemEventArgs {
 }
 
 export default (
+    el: HTMLElement,
     initialData: any,
     modalBodyElement: HTMLElement,
     breakpoints: number[]
 ) => {
     return new Vue({
-        el: selectors.el,
+        el,
 
         data: {
             breakpoints,
