@@ -77,17 +77,12 @@ export default (
                     .off('click')
                     .on('click', async function() {
                         if (window.mediaApp.selectedMedias.length) {
-                            const selectedMedias =
-                                window.mediaApp.selectedMedias;
-
-                            for (var i = 0; i < selectedMedias.length; i++) {
-                                self.mediaItems.push(
-                                    await createMediaItem(
-                                        self.breakpoints,
-                                        selectedMedias[i]
-                                    )
-                                );
-                            }
+                            self.mediaItems.push(
+                                await createMediaItem(
+                                    self.breakpoints,
+                                    window.mediaApp.selectedMedias
+                                )
+                            );
                         }
 
                         window.mediaApp.selectedMedias = [];

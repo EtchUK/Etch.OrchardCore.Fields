@@ -119,6 +119,13 @@ export default class MediaItem {
         return matchingSource.url;
     }
 
+    /**
+     * Returns whether there is a source for the provided breakpoint.
+     */
+    hasSource(breakpoint: number): boolean {
+        return this.getSourceAt(breakpoint) !== null;
+    }
+
     removeBreakpoint(breakpoint: number): boolean {
         let matchingSource = this.getSourceAt(breakpoint);
 
