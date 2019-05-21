@@ -10,29 +10,15 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
         public IList<ResponsiveMediaSource> Sources { get; set; }
 
         /// <summary>
-        /// Returns image for largest breakpoint.
-        /// </summary>
-        public ResponsiveMediaSource GetDefaultImage()
-        {
-            return Sources.OrderByDescending(x => x.Breakpoint).FirstOrDefault();
-        }
-
-        /// <summary>
         /// Returns image for smallest breakpoint. If an image hasn't been specified
         /// for the breakpoint, a path for a resized version of the largest image is 
         /// returned.
         /// </summary>
-        public string GetSmallestImage(int[] breakpoints)
+        public string SmallestImageUrl
         {
-            var smallestBreakpoint = breakpoints.OrderBy(b => b).FirstOrDefault();
-            var media = Sources.Where(x => x.Breakpoint == smallestBreakpoint).FirstOrDefault();
-
-            if (media != null)
-            {
-                return media.Url;
+            get {
+                return Sources.OrderBy(x => x.Breakpoint).First().Url;
             }
-
-            return $"{GetDefaultImage().Url}?width={smallestBreakpoint}";
         }
 
         /// <summary>
@@ -41,7 +27,6 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
         /// </summary>
         public IList<ResponsiveMediaSource> GetSourceSets(int[] breakpoints)
         {
-            var defaultMedia = GetDefaultImage();
             var sourceSets = new List<ResponsiveMediaSource>();
             var orderedBreakpoints = breakpoints.OrderByDescending(x => x).ToList();
 
@@ -55,7 +40,13 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
                     continue;
                 }
 
-                sourceSets.Add(new ResponsiveMediaSource { Breakpoint = orderedBreakpoints[i + 1] + 1, Url = $"{defaultMedia.Url}?width={orderedBreakpoints[i]}" });
+                if (!sourceSets.Any())
+                {
+                    continue;
+                }
+
+                var sourceSetToResize = sourceSets.Last();
+                sourceSets.Add(new ResponsiveMediaSource { Breakpoint = orderedBreakpoints[i + 1] + 1, Url = $"{sourceSetToResize.Url}?width={orderedBreakpoints[i]}" });
                 continue;
             }
 

@@ -1,5 +1,6 @@
 ﻿using Etch.OrchardCore.Fields.ResponsiveMedia.Fields;
 using Etch.OrchardCore.Fields.ResponsiveMedia.Models;
+using Etch.OrchardCore.Fields.ResponsiveMedia.Settings;
 using Etch.OrchardCore.Fields.ResponsiveMedia.ViewModels;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
@@ -37,7 +38,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
                 model.Field = field;
                 model.Part = context.ContentPart;
                 model.PartFieldDefinition = context.PartFieldDefinition;
-                model.Media = ParseMedia(field.Data);
+                model.Media = ParseMedia(field.Data, context.PartFieldDefinition.Settings.ToObject<ResponsiveMediaFieldSettings>().GetBreakpoints());
             })
             .Location("Content")
             .Location("SummaryAdmin", "");
@@ -77,6 +78,18 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
                     source.Name = Path.GetFileName(source.Path);
                     source.Url = _mediaFileStore.MapPathToPublicUrl(source.Path);
                 }
+            }
+
+            return media;
+        }
+
+        public IList<ResponsiveMediaItem> ParseMedia(string data, int[] breakpoints)
+        {
+            var media = ParseMedia(data);
+
+            foreach (var mediaItem in media)
+            {
+                mediaItem.Sources = mediaItem.GetSourceSets(breakpoints);
             }
 
             return media;

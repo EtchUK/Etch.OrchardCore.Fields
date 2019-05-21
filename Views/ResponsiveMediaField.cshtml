@@ -1,18 +1,16 @@
-﻿@using Etch.OrchardCore.Fields.ResponsiveMedia.Settings
+﻿@model Etch.OrchardCore.Fields.ResponsiveMedia.ViewModels.DisplayResponsiveMediaFieldViewModel
 
-@model Etch.OrchardCore.Fields.ResponsiveMedia.ViewModels.DisplayResponsiveMediaFieldViewModel
-
-@{ 
-    var settings = Model.PartFieldDefinition.Settings.ToObject<ResponsiveMediaFieldSettings>();
-    var media = Model.Media[0];
-    var breakpoints = settings.GetBreakpoints();
-}
-
-<picture>
-    @foreach (var sourceSet in media.GetSourceSets(breakpoints))
+@if (Model.HasMedia)
+{
+    foreach (var media in Model.Media)
     {
-        <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
-    }
+        <picture>
+            @foreach (var sourceSet in media.Sources)
+            {
+                <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
+            }
 
-    <img src="@media.GetSmallestImage(breakpoints)" />
-</picture>
+            <img src="@media.SmallestImageUrl" />
+        </picture>
+    }
+}
