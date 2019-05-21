@@ -13,6 +13,11 @@ const selectors = {
     modalBody: '.modal-body',
 };
 
+interface IMediaItemEventArgs {
+    breakpoint: number;
+    media: MediaItem;
+}
+
 export default (
     initialData: any,
     modalBodyElement: HTMLElement,
@@ -115,24 +120,11 @@ export default (
                     });
             },
 
-            deleteActiveBreakpoint: function(): void {
-                if (
-                    this.mediaItems[0].removeBreakpoint(this.activeBreakpoint)
-                ) {
-                    this.mediaItems = [];
-                }
-
-                //this.setActiveBreakpoint(this.activeBreakpoint);
+            remove: function(args: IMediaItemEventArgs): void {
+                this.mediaItems.splice(this.mediaItems.indexOf(args.media), 1);
             },
 
-            deleteItem: function(): void {
-                this.mediaItems = [];
-            },
-
-            update: function(args: any): void {
-                let mediaItem: MediaItem = args.media as MediaItem;
-                const breakpoint: number = args.breakpoint as number;
-
+            update: function(args: IMediaItemEventArgs): void {
                 $(selectors.mediaApp)
                     .detach()
                     .appendTo($(modalBodyElement).find(selectors.modalBody));
@@ -146,8 +138,8 @@ export default (
                     .off('click')
                     .on('click', async function() {
                         if (window.mediaApp.selectedMedias.length) {
-                            mediaItem.addSource(
-                                breakpoint,
+                            args.media.addSource(
+                                args.breakpoint,
                                 window.mediaApp.selectedMedias[0]
                             );
                         }

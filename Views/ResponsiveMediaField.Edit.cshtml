@@ -39,7 +39,7 @@
 
             <div class="row" v-if="hasMedia">
                 <div class="col-sm-3" v-for="(item, index) in mediaItems">
-                    <responsive-media-item v-bind:media="item" v-bind:breakpoints="breakpoints" v-on:update="update" />
+                    <responsive-media-item v-bind:media="item" v-bind:breakpoints="breakpoints" v-on:remove="remove" v-on:update="update" />
                 </div>
             </div>
         </fieldset>
