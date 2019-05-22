@@ -14,12 +14,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
         /// for the breakpoint, a path for a resized version of the largest image is 
         /// returned.
         /// </summary>
-        public string SmallestImageUrl
-        {
-            get {
-                return Sources.OrderBy(x => x.Breakpoint).First().Url;
-            }
-        }
+        public string SmallestImageUrl { get; set; }
 
         /// <summary>
         /// Returns a collection of source sets that can be used to construct
@@ -29,14 +24,15 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
         {
             var sourceSets = new List<ResponsiveMediaSource>();
             var orderedBreakpoints = breakpoints.OrderByDescending(x => x).ToList();
-
-            for (var i = 0; i < orderedBreakpoints.Count - 1; i++)
+            ResponsiveMediaSource lastMedia = null;
+            for (var i = 0; i < orderedBreakpoints.Count; i++)
             {
                 var media = Sources.Where(x => x.Breakpoint == orderedBreakpoints[i]).FirstOrDefault();
 
                 if (media != null)
                 {
-                    sourceSets.Add(new ResponsiveMediaSource { Breakpoint = orderedBreakpoints[i + 1] + 1, Url = media.Url });
+                    lastMedia = new ResponsiveMediaSource { Breakpoint = orderedBreakpoints[i] + 1, Url = media.Url };
+                    sourceSets.Add(lastMedia);
                     continue;
                 }
 
@@ -46,9 +42,17 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
                 }
 
                 var sourceSetToResize = sourceSets.Last();
-                sourceSets.Add(new ResponsiveMediaSource { Breakpoint = orderedBreakpoints[i + 1] + 1, Url = $"{sourceSetToResize.Url}?width={orderedBreakpoints[i]}" });
+                sourceSets.Add(new ResponsiveMediaSource { Breakpoint = orderedBreakpoints[i] + 1, Url = $"{lastMedia.Url}?width={orderedBreakpoints[i]}" });
                 continue;
             }
+
+            if (!sourceSets.Any())
+            {
+                return sourceSets;
+            }
+
+            SmallestImageUrl = sourceSets.Last().Url;
+            sourceSets.Remove(sourceSets.Last());
 
             return sourceSets;
         }
