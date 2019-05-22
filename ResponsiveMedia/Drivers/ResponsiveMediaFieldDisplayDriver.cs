@@ -79,7 +79,11 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
 
         public IList<ResponsiveMediaItem> ParseMedia(string data)
         {
-            var media = string.IsNullOrWhiteSpace(data) ? new List<ResponsiveMediaItem>() : JsonConvert.DeserializeObject<IList<ResponsiveMediaItem>>(data);
+            var media = new List<ResponsiveMediaItem>();
+
+            if (!string.IsNullOrWhiteSpace(data)) {
+                media = data.StartsWith("[") ? JsonConvert.DeserializeObject<List<ResponsiveMediaItem>>(data) : new List<ResponsiveMediaItem> { JsonConvert.DeserializeObject<ResponsiveMediaItem>(data) };
+            }
             
             foreach (var mediaItem in media)
             {
