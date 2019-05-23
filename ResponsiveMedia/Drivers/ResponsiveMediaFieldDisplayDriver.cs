@@ -47,7 +47,8 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
                 model.Media = ParseMedia(field.Data, context.PartFieldDefinition.Settings.ToObject<ResponsiveMediaFieldSettings>().GetBreakpoints());
             })
             .Location("Content")
-            .Location("SummaryAdmin", "");
+            .Location("SummaryAdmin", "")
+            .Location("DetailAdmin", ""); 
         }
 
         public override IDisplayResult Edit(ResponsiveMediaField field, BuildFieldEditorContext context)
