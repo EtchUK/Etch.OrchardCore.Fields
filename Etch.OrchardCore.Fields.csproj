@@ -25,6 +25,7 @@
     <PackageReference Include="OrchardCore.Liquid.Abstractions" Version="1.0.0-beta3-71077" />
     <PackageReference Include="OrchardCore.Media.Abstractions" Version="1.0.0-beta3-71077" />
     <PackageReference Include="OrchardCore.Module.Targets" Version="1.0.0-beta3-71077" />
+    <PackageReference Include="OrchardCore.ResourceManagement" Version="1.0.0-beta3-71077" />
   </ItemGroup>
 
   <ItemGroup>
