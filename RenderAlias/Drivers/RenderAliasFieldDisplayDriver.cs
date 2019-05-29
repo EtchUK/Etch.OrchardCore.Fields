@@ -1,0 +1,60 @@
+﻿using Etch.OrchardCore.Fields.RenderAlias.Fields;
+using Etch.OrchardCore.Fields.RenderAlias.ViewModels;
+using OrchardCore.ContentManagement.Display.ContentDisplay;
+using OrchardCore.ContentManagement.Display.Models;
+using OrchardCore.DisplayManagement.ModelBinding;
+using OrchardCore.DisplayManagement.Views;
+using System.Threading.Tasks;
+
+namespace Etch.OrchardCore.Fields.RenderAlias.Drivers
+{
+    public class RenderAliasFieldDisplayDriver : ContentFieldDisplayDriver<RenderAliasField>
+    {
+        #region ContentFieldDisplayDriver
+
+        #region Display
+
+        public override IDisplayResult Display(RenderAliasField field, BuildFieldDisplayContext context)
+        {
+            return Initialize<DisplayRenderAliasFieldViewModel>(GetDisplayShapeType(context), model =>
+            {
+                model.Field = field;
+                model.Part = context.ContentPart;
+                model.PartFieldDefinition = context.PartFieldDefinition;
+                model.Alias = field.Alias;
+                model.DisplayType = field.DisplayType;
+            })
+            .Location("Content")
+            .Location("SummaryAdmin", "")
+            .Location("DetailAdmin", "");
+        }
+
+        #endregion Display
+
+        #region Edit
+
+        public override IDisplayResult Edit(RenderAliasField field, BuildFieldEditorContext context)
+        {
+            return Initialize<EditRenderAliasFieldViewModel>(GetEditorShapeType(context), model =>
+            {
+                model.Field = field;
+                model.Part = context.ContentPart;
+                model.PartFieldDefinition = context.PartFieldDefinition;
+
+                model.Alias = field.Alias;
+                model.DisplayType = field.DisplayType;
+            });
+        }
+
+        public override async Task<IDisplayResult> UpdateAsync(RenderAliasField field, IUpdateModel updater, UpdateFieldEditorContext context)
+        {
+            await updater.TryUpdateModelAsync(field, Prefix);
+
+            return Edit(field, context);
+        }
+
+        #endregion Edit
+
+        #endregion ContentFieldDisplayDriver
+    }
+}
