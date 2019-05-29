@@ -39,3 +39,9 @@ _This field is still in development._
 Content editors can define an arbitary list of values with a user friendly editor experience. Values will be displayed on the page as an unordered list. Below is a screen recording of the field in action.
 
 ![Screen recording of values field](https://github.com/etchuk/Etch.OrchardCore.Fields/raw/master/docs/demo-values-field.gif)
+
+### Render Alias
+
+Allows editors to specify a content item by its alias to be rendered in a specified display type.
+
+![Screen recording of render alias field](https://github.com/etchuk/Etch.OrchardCore.Fields/raw/master/docs/demo-render-alias-field.gif)
