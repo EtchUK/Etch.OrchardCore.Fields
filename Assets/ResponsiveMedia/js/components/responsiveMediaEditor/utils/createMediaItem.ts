@@ -1,5 +1,6 @@
 import MediaItem from '../models/mediaItem';
 import { sortNumbers } from './sortUtils';
+import getUrlFromSelectedMediaItem from './getUrlFromSelectedMediaItem';
 
 export default async function createMediaItem(
     breakpoints: number[],
@@ -14,12 +15,14 @@ export default async function createMediaItem(
 
         const processNextImage = () => {
             const selectedMediaItem = selectedMedia[processedCount];
-            const imageUrl = `${window.location.origin}${
-                selectedMediaItem.url
-            }`;
+            const imageUrl = getUrlFromSelectedMediaItem(selectedMediaItem);
+            if (imageUrl == null) {
+                processNextImage();
+                return;
+            }
 
             var img = new Image();
-            img.onload = function() {
+            img.onload = function () {
                 const imageWidth: number = (this as any).naturalWidth;
 
                 for (var i = 0; i < orderedBreakpoints.length; i++) {
