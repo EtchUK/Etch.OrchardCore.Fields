@@ -4,7 +4,8 @@ Module for [Orchard Core](https://github.com/OrchardCMS/OrchardCore) that provid
 
 ## Build Status
 
-[![Build Status](https://secure.travis-ci.org/etchuk/Etch.OrchardCore.Fields.png?branch=master)](http://travis-ci.org/etchuk/Etch.OrchardCore.Widgets)
+[![Build Status](https://secure.travis-ci.org/etchuk/Etch.OrchardCore.Fields.png?branch=master)](http://travis-ci.org/etchuk/Etch.OrchardCore.Widgets) [![NuGet](https://img.shields.io/nuget/v/Etch.OrchardCore.Fields.svg)](https://www.nuget.org/packages/Etch.OrchardCore.Fields)
+
 
 _This module is currently under development and will be made available on NuGet when usable._
 
