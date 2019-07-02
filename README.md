@@ -7,8 +7,6 @@ Module for [Orchard Core](https://github.com/OrchardCMS/OrchardCore) that provid
 [![Build Status](https://secure.travis-ci.org/etchuk/Etch.OrchardCore.Fields.png?branch=master)](http://travis-ci.org/etchuk/Etch.OrchardCore.Widgets) [![NuGet](https://img.shields.io/nuget/v/Etch.OrchardCore.Fields.svg)](https://www.nuget.org/packages/Etch.OrchardCore.Fields)
 
 
-_This module is currently under development and will be made available on NuGet when usable._
-
 ## Orchard Core Reference
 
 This module is referencing the beta 3 build of Orchard Core ([`1.0.0-beta3-71077`](https://www.nuget.org/packages/OrchardCore.Module.Targets/1.0.0-beta3-71077)).
