@@ -15,6 +15,15 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
 
         #endregion
 
+        #region Constructor
+
+        public ResponsiveMediaFieldSettingsDriver(IStringLocalizer<ResponsiveMediaFieldSettingsDriver> localizer)
+        {
+            T = localizer;
+        }
+
+        #endregion
+
         public override IDisplayResult Edit(ContentPartFieldDefinition partFieldDefinition)
         {
             return Initialize<ResponsiveMediaFieldSettings>("ResponsiveMediaFieldSettings_Edit", model => partFieldDefinition.Settings.Populate(model))
