@@ -11,28 +11,35 @@ using OrchardCore.Modules.Manifest;
     Id = "Etch.OrchardCore.Fields.ResponsiveMedia",
     Name = "Responsive Media Field",
     Dependencies = new[] { "OrchardCore.Media" },
-    Description = "Provides content field for managing responsive media content.",
+    Description = "Field for managing responsive media content.",
     Category = "Content"
 )]
 
 [assembly: Feature(
     Id = "Etch.OrchardCore.Fields.Dictionary",
     Name = "Dictionary Field",
-    Description = "Provides content field for managing an arbitrary amount of names and associated values.",
+    Description = "Field for managing an arbitrary amount of names and associated values.",
     Category = "Content"
 )]
 
 [assembly: Feature(
     Id = "Etch.OrchardCore.Fields.Values",
     Name = "Values Field",
-    Description = "Provides content field for managing an arbitrary list of values.",
+    Description = "Field for managing an arbitrary list of values.",
     Category = "Content"
 )]
 
 [assembly: Feature(
     Id = "Etch.OrchardCore.Fields.RenderAlias",
     Name = "Render Alias Field",
-    Description = "Provides field for specifying an alias and display type to be rendered.",
+    Description = "Field for specifying an alias and display type to be rendered.",
     Category = "Content",
     Dependencies = new[] { "OrchardCore.Alias" }
+)]
+
+[assembly: Feature(
+    Id = "Etch.OrchardCore.Fields.MultiSelect",
+    Name = "Multi Select Field",
+    Description = "Field for choosing multiple values from collection of configured options.",
+    Category = "Content"
 )]

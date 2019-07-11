@@ -1,0 +1,11 @@
+﻿@model Etch.OrchardCore.Fields.MultiSelect.ViewModels.DisplayMultiSelectFieldViewModel
+
+@if (Model.HasValues)
+{
+    <ul>
+        @foreach (var value in Model.SelectedValues)
+        {
+            <li>@value</li>
+        }
+    </ul>
+}
