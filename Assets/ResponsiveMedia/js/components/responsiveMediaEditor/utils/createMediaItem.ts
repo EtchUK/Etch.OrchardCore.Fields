@@ -22,20 +22,24 @@ export default async function createMediaItem(
             }
 
             var img = new Image();
-            img.onload = function () {
+            img.onload = function() {
                 const imageWidth: number = (this as any).naturalWidth;
+                let possibleBreakpoints: number[] = [];
 
                 for (var i = 0; i < orderedBreakpoints.length; i++) {
                     if (
                         orderedBreakpoints[i] <= imageWidth &&
                         !mediaItem.hasSource(orderedBreakpoints[i])
                     ) {
-                        mediaItem.addSource(
-                            orderedBreakpoints[i],
-                            selectedMediaItem
-                        );
-                        break;
+                        possibleBreakpoints.push(orderedBreakpoints[i]);
                     }
+                }
+
+                if (possibleBreakpoints.length > 0) {
+                    mediaItem.addSource(
+                        Math.max(...possibleBreakpoints),
+                        selectedMediaItem
+                    );
                 }
 
                 processedCount++;
