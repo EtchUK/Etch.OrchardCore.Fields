@@ -18,6 +18,16 @@
     </fieldset>
 </div>
 
+<div class="row">
+    <fieldset class="form-group col-md-6">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" asp-for="Multiple" checked="@Model.Multiple">
+            <label class="custom-control-label" asp-for="Multiple">@T["Multiple"]</label>
+            <span class="hint">@T["Whether multiple media can be selected.."]</span>
+        </div>
+    </fieldset>
+</div>
+
 <fieldset class="form-group">
     <div class="row col-sm-6">
         <label asp-for="Hint">@T["Hint"]</label>

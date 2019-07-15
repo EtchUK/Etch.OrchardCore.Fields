@@ -17,7 +17,7 @@
 
 <script at="Foot">
     initializeMediaApplication(false, '@Url.Action("MediaApplication", "Admin", new { area = "OrchardCore.Media" })');
-    initializeResponsiveMediaEditor(document.getElementById('@Html.IdFor(m => m)'), document.getElementById('@Html.IdFor(m => m)-ModalBody'), @(Newtonsoft.Json.JsonConvert.SerializeObject(settings.GetBreakpoints())));
+    initializeResponsiveMediaEditor(document.getElementById('@Html.IdFor(m => m)'), document.getElementById('@Html.IdFor(m => m)-ModalBody'), @(Newtonsoft.Json.JsonConvert.SerializeObject(settings.GetBreakpoints())), @(settings.Multiple ? "true" : "false"));
 </script>
 
 <div class="responsive-media-field-editor" id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.Data)">
@@ -33,7 +33,7 @@
 
             <nav class="responsive-media-field-toolbar mb-3">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-secondary btn-sm" v-on:click="add" :disabled="!!hasMedia"><i class="fa fa-plus"></i></button>
+                    <button type="button" class="btn btn-secondary btn-sm" v-on:click="add" :disabled="!canAdd"><i class="fa fa-plus"></i></button>
                 </div>
             </nav>
 
