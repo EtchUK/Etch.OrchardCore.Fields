@@ -22,13 +22,15 @@ export default (
     el: HTMLElement,
     initialData: any,
     modalBodyElement: HTMLElement,
-    breakpoints: number[]
+    breakpoints: number[],
+    isMultiple: boolean
 ) => {
     return new Vue({
         el,
 
         data: {
             breakpoints,
+            isMultiple,
             mediaItems: [] as MediaItem[],
         },
 
@@ -37,6 +39,9 @@ export default (
         },
 
         computed: {
+            canAdd(): boolean {
+                return this.isMultiple || this.mediaItems.length === 0;
+            },
             hasMedia(): boolean {
                 return this.mediaItems.length > 0;
             },

@@ -11,7 +11,8 @@ window.mediaApp = window.mediaApp || {};
 (window as any).initializeResponsiveMediaEditor = (
     el: HTMLElement,
     modalBodyElement: HTMLElement,
-    breakpoints: number[]
+    breakpoints: number[],
+    isMultiple: boolean
 ): void => {
     const rawDataInputElement = document.getElementById($(el).data('for'));
 
@@ -23,6 +24,7 @@ window.mediaApp = window.mediaApp || {};
         el,
         $(rawDataInputElement).data('init'),
         modalBodyElement,
-        breakpoints
+        breakpoints,
+        isMultiple
     );
 };

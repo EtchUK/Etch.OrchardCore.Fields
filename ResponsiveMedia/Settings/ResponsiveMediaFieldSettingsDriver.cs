@@ -39,6 +39,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
             var settings = new ResponsiveMediaFieldSettings
             {
                 Hint = model.Hint,
+                Multiple = model.Multiple,
                 Required = model.Required
             };
 

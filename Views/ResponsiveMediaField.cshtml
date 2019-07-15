@@ -2,15 +2,30 @@
 
 @if (Model.HasMedia)
 {
-    foreach (var media in Model.Media)
-    {
+    if (Model.Media.Count == 1) {
         <picture>
-            @foreach (var sourceSet in media.Sources)
+            @foreach (var sourceSet in Model.Media[0].Sources)
             {
                 <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
             }
 
-            <img src="@media.SmallestImageUrl" />
+            <img src="@Model.Media[0].SmallestImageUrl" />
         </picture>
+    } else {
+        <ul>
+        @foreach (var media in Model.Media)
+        {
+            <li>
+                <picture>
+                    @foreach (var sourceSet in media.Sources)
+                    {
+                        <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
+                    }
+
+                    <img src="@media.SmallestImageUrl" />
+                </picture>
+            </li>
+        }
+        </ul>
     }
 }
