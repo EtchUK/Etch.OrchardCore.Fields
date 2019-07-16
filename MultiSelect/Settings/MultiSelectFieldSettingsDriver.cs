@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Etch.OrchardCore.Fields.MultiSelect.Fields;
+using Etch.OrchardCore.Fields.MultiSelect.ViewModels;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.ContentTypes.Editors;
@@ -16,11 +17,13 @@ namespace Etch.OrchardCore.Fields.MultiSelect.Settings
 
         public override IDisplayResult Edit(ContentPartFieldDefinition partFieldDefinition)
         {
-            return Initialize<MultiSelectFieldSettings>("MultiSelectFieldSettings_Edit", model =>
+            return Initialize<EditMultiSelectFieldSettingsViewModel>("MultiSelectFieldSettings_Edit", model =>
             {
                 var settings = partFieldDefinition.GetSettings<MultiSelectFieldSettings>();
 
-                model.OptionsJson = JsonConvert.SerializeObject(settings.Options ?? Array.Empty<string>(), Formatting.Indented);
+                model.Hint = settings.Hint;
+                model.Options = settings.Options;
+                model.OptionsJson = JsonConvert.SerializeObject(settings.Options ?? Array.Empty<string>());
             })
             .Location("Content");
 
@@ -28,12 +31,14 @@ namespace Etch.OrchardCore.Fields.MultiSelect.Settings
 
         public override async Task<IDisplayResult> UpdateAsync(ContentPartFieldDefinition partFieldDefinition, UpdatePartFieldEditorContext context)
         {
-            var settings = new MultiSelectFieldSettings();
+            var model = new EditMultiSelectFieldSettingsViewModel();
 
-            if (await context.Updater.TryUpdateModelAsync(settings, Prefix)) {
-                settings.Options = string.IsNullOrWhiteSpace(settings.OptionsJson) ? Array.Empty<string>() : JsonConvert.DeserializeObject<string[]>(settings.OptionsJson);
-                settings.OptionsJson = string.Empty;
-                context.Builder.WithSettings(settings);
+            if (await context.Updater.TryUpdateModelAsync(model, Prefix)) {
+                context.Builder.WithSettings(new MultiSelectFieldSettings
+                {
+                    Hint = model.Hint,
+                    Options = string.IsNullOrWhiteSpace(model.OptionsJson) ? Array.Empty<string>() : JsonConvert.DeserializeObject<string[]>(model.OptionsJson)
+                });
             }
 
             return Edit(partFieldDefinition);
