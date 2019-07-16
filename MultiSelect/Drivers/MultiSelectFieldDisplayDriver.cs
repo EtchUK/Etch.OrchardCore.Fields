@@ -1,14 +1,11 @@
-﻿using Etch.OrchardCore.Fields.MultiSelect.Fields;
+﻿using System.Threading.Tasks;
+using Etch.OrchardCore.Fields.MultiSelect.Fields;
 using Etch.OrchardCore.Fields.MultiSelect.ViewModels;
-using Etch.OrchardCore.Fields.Values.ViewModels;
 using Microsoft.Extensions.Localization;
-using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
 using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Etch.OrchardCore.Fields.MultiSelect.Drivers
 {
@@ -66,11 +63,12 @@ namespace Etch.OrchardCore.Fields.MultiSelect.Drivers
         {
             var model = new EditMultiSelectFieldViewModel();
 
-            await updater.TryUpdateModelAsync(model, Prefix, m => m.SelectedValues);
-
-            field.SelectedValues = model.SelectedValues;
+            if (await updater.TryUpdateModelAsync(model, Prefix, m => m.SelectedValues)) {
+                field.SelectedValues = model.SelectedValues;
+            }
 
             return Edit(field, context);
+
         }
 
         #endregion

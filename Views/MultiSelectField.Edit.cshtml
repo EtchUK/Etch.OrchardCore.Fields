@@ -4,8 +4,8 @@
 @using Etch.OrchardCore.Fields.MultiSelect.Settings
 
 @{
-    var settings = Model.PartFieldDefinition.Settings.ToObject<MultiSelectFieldSettings>();
-    var options = settings.GetOptions();
+    var settings = Model.PartFieldDefinition.GetSettings<MultiSelectFieldSettings>();
+    var options = settings.Options == null ? Array.Empty<string>() : settings.Options;
 }
 
 <fieldset class="form-group">
