@@ -14,11 +14,17 @@
         initializeValuesEditor(document.getElementById('@Html.IdFor(m => m)'));
 </script>
 
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
+
 <fieldset class="form-group">
     <label asp-for="Options">Options</label>
     <p class="hint">Configure options available on content field.</p>
 
-    <div id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.OptionsJson)" asp-validation-class-for="OptionsJson">
+    <div id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.OptionsJson)" asp-validation-class-for="OptionsJson" v-cloak>
         <input type="hidden" asp-for="OptionsJson" :value="value" data-init="@Model.OptionsJson">
 
         <div class="form-inline mb-3">
