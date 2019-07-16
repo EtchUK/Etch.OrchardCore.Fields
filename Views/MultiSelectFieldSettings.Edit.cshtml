@@ -18,8 +18,8 @@
     <label asp-for="Options">Options</label>
     <p class="hint">Configure options available on content field.</p>
 
-    <div id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.Options)" asp-validation-class-for="Options">
-        <input type="hidden" asp-for="Options" :value="value" data-init="@Model.Options">
+    <div id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.OptionsJson)" asp-validation-class-for="OptionsJson">
+        <input type="hidden" asp-for="OptionsJson" :value="value" data-init="@Model.OptionsJson">
 
         <div class="form-inline mb-3">
             <div class="form-group mr-3 w-100" style="max-width: 300px;">
