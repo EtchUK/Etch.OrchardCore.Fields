@@ -42,12 +42,6 @@ export default Vue.extend({
             return source.name;
         },
 
-        orderedBreakpoints(): number[] {
-            return (this.breakpoints as number[]).sort((a, b) => {
-                return a - b;
-            });
-        },
-
         url(): string {
             return (this.media as MediaItem).getUrlAt(this
                 .activeBreakpoint as number);
@@ -89,7 +83,14 @@ export default Vue.extend({
             <p class="small">{{ activeName }}</p>
 
             <div class="d-flex flex-row flex-wrap mb-1">
-                <button v-for="breakpoint in orderedBreakpoints" type="button" class="btn btn-secondary btn-sm mb-1 mr-1" v-on:click="selectedBreakpoint = breakpoint" v-bind:class="{ active: activeBreakpoint == breakpoint, 'btn-warning': hasNoSource(breakpoint) }">{{ breakpoint }}</button>
+                <button 
+                    v-for="breakpoint in breakpoints" 
+                    type="button" 
+                    class="btn btn-secondary btn-sm mb-1 mr-1" 
+                    v-on:click="selectedBreakpoint = breakpoint" 
+                    v-bind:class="{ active: activeBreakpoint == breakpoint, 'btn-warning': hasNoSource(breakpoint) }">
+                    {{ breakpoint }}
+                </button>
             </div>
 
             <div class="d-flex flex-row flex-wrap mb-2">
