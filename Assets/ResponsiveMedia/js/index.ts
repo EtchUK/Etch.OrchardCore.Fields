@@ -24,7 +24,9 @@ window.mediaApp = window.mediaApp || {};
         el,
         $(rawDataInputElement).data('init'),
         modalBodyElement,
-        breakpoints,
+        breakpoints.sort((a, b) => {
+            return a - b;
+        }),
         isMultiple
     );
 };

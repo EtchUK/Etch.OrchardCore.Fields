@@ -37,11 +37,11 @@
                 </div>
             </nav>
 
-            <div class="row" v-if="hasMedia">
+            <draggable :list="mediaItems" element="ol" class="row media-items-grid" v-if="hasMedia">
                 <div class="col-sm-3" v-for="(item, index) in mediaItems">
                     <responsive-media-item v-bind:media="item" v-bind:breakpoints="breakpoints" v-on:remove="remove" v-on:update="update" />
                 </div>
-            </div>
+            </draggable>
         </fieldset>
     </div>
 </div>
