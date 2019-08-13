@@ -12,14 +12,14 @@
     const maxEntriesInputElement = document.getElementById($(el).data('max')) as HTMLInputElement;
     const minEntriesInputElement = document.getElementById($(el).data('min')) as HTMLInputElement;
 
-    let max: number | undefined = parseInt(maxEntriesInputElement.value, 10);
-    let min: number | undefined = parseInt(minEntriesInputElement.value, 10);
+    let max: number | undefined = maxEntriesInputElement ? parseInt(maxEntriesInputElement.value, 10) : undefined;
+    let min: number | undefined = minEntriesInputElement ? parseInt(minEntriesInputElement.value, 10) : undefined;
 
-    if (isNaN(max)) {
+    if (typeof(max) !== 'undefined' && isNaN(max)) {
         max = undefined;
     }
 
-    if (isNaN(min)) {
+    if (typeof(min) !== 'undefined' && isNaN(min)) {
         min = undefined;
     }
 
