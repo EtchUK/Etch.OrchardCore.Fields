@@ -7,6 +7,7 @@ using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentTypes.Editors;
 using OrchardCore.Modules;
+using Etch.OrchardCore.Fields.Dictionary.Models;
 
 namespace Etch.OrchardCore.Fields.Dictionary
 {
@@ -16,6 +17,7 @@ namespace Etch.OrchardCore.Fields.Dictionary
         public Startup()
         {
             TemplateContext.GlobalMemberAccessStrategy.Register<DictionaryField>();
+            TemplateContext.GlobalMemberAccessStrategy.Register<DictionaryItem>();
         }
 
         public override void ConfigureServices(IServiceCollection services)
