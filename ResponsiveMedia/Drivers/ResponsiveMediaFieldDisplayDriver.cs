@@ -53,6 +53,18 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
 
         public override IDisplayResult Edit(ResponsiveMediaField field, BuildFieldEditorContext context)
         {
+            var settings = context.PartFieldDefinition.Settings.ToObject<ResponsiveMediaFieldSettings>();
+
+            if (!settings.IsConfigured)
+            {
+                return Initialize<EditResponsiveMediaFieldViewModel>("ResponsiveMediaField_Unconfigured", model =>
+                {
+                    model.Field = field;
+                    model.Part = context.ContentPart;
+                    model.PartFieldDefinition = context.PartFieldDefinition;
+                });
+            }
+
             return Initialize<EditResponsiveMediaFieldViewModel>(GetEditorShapeType(context), model =>
             {
                 model.Field = field;

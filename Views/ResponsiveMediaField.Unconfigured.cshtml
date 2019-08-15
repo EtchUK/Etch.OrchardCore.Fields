@@ -1,0 +1,10 @@
+﻿@model Etch.OrchardCore.Fields.ResponsiveMedia.ViewModels.EditResponsiveMediaFieldViewModel
+
+@{ 
+    var foo = Model.PartFieldDefinition.Name;
+    var boo = Model.PartFieldDefinition.PartDefinition.Name;
+}
+
+<p class="alert alert-warning">
+    <a asp-action="EditField" asp-controller="Admin" asp-route-area="OrchardCore.ContentTypes" asp-route-id="@Model.PartFieldDefinition.PartDefinition.Name" asp-route-name="@Model.PartFieldDefinition.Name" asp-route-returnUrl="@FullRequestPath">@T["Please specify responsive breakpoints for field."]</a>
+</p>
