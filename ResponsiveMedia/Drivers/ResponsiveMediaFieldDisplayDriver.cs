@@ -1,6 +1,7 @@
 ﻿using Etch.OrchardCore.Fields.ResponsiveMedia.Fields;
 using Etch.OrchardCore.Fields.ResponsiveMedia.Models;
 using Etch.OrchardCore.Fields.ResponsiveMedia.Settings;
+using Etch.OrchardCore.Fields.ResponsiveMedia.Utils;
 using Etch.OrchardCore.Fields.ResponsiveMedia.ViewModels;
 using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
@@ -11,7 +12,6 @@ using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
 using OrchardCore.Media;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,12 +39,15 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
 
         public override IDisplayResult Display(ResponsiveMediaField field, BuildFieldDisplayContext context)
         {
+            var settings = context.PartFieldDefinition.Settings.ToObject<ResponsiveMediaFieldSettings>();
+            var data = field.HasData ? field.Data : settings.DefaultData;
+
             return Initialize<DisplayResponsiveMediaFieldViewModel>(GetDisplayShapeType(context), model =>
             {
                 model.Field = field;
                 model.Part = context.ContentPart;
                 model.PartFieldDefinition = context.PartFieldDefinition;
-                model.Media = ParseMedia(field.Data, context.PartFieldDefinition.Settings.ToObject<ResponsiveMediaFieldSettings>().GetBreakpoints());
+                model.Media = ParseMedia(data, settings.GetBreakpoints());
             })
             .Location("Content")
             .Location("SummaryAdmin", "")
@@ -70,7 +73,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
                 model.Field = field;
                 model.Part = context.ContentPart;
                 model.PartFieldDefinition = context.PartFieldDefinition;
-                model.Data = JsonConvert.SerializeObject(ParseMedia(field.Data));
+                model.Data = JsonConvert.SerializeObject(ResponsiveMediaUtils.ParseMedia(_mediaFileStore, field.Data));
             });
         }
 
@@ -89,35 +92,10 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
 
             return Edit(field, context);
         }
-
-        public IList<ResponsiveMediaItem> ParseMedia(string data)
-        {
-            var media = new List<ResponsiveMediaItem>();
-
-            if (!string.IsNullOrWhiteSpace(data)) {
-                media = data.StartsWith("[") ? JsonConvert.DeserializeObject<List<ResponsiveMediaItem>>(data) : new List<ResponsiveMediaItem> { JsonConvert.DeserializeObject<ResponsiveMediaItem>(data) };
-            }
-            
-            foreach (var mediaItem in media)
-            {
-                if (mediaItem.Sources == null)
-                {
-                    continue;
-                }
-
-                foreach (var source in mediaItem.Sources)
-                {
-                    source.Name = Path.GetFileName(source.Path);
-                    source.Url = _mediaFileStore.MapPathToPublicUrl(source.Path);
-                }
-            }
-
-            return media;
-        }
-
+        
         public IList<ResponsiveMediaItem> ParseMedia(string data, int[] breakpoints)
         {
-            var media = ParseMedia(data);
+            var media = ResponsiveMediaUtils.ParseMedia(_mediaFileStore, data);
 
             foreach (var mediaItem in media)
             {
