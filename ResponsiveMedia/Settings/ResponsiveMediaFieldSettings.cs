@@ -22,5 +22,10 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
 
             return Breakpoints.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).Select(x => int.Parse(x)).OrderBy(x => x).ToArray();
         }
+
+        public bool IsConfigured
+        {
+            get { return !string.IsNullOrWhiteSpace(Breakpoints); }
+        }
     }
 }
