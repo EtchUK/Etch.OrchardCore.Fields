@@ -127,6 +127,18 @@ export default (
                         return true;
                     });
             },
+
+            updatePreview: function() {
+                this.$nextTick(() => {
+                    $(document).trigger('contentpreview:render');
+                });
+            },
+        },
+
+        watch: {
+            mediaItems: function() {
+                this.updatePreview();
+            },
         },
     });
 };
