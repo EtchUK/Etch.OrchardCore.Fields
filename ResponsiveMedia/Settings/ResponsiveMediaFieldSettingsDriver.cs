@@ -4,6 +4,9 @@ using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.ContentTypes.Editors;
 using OrchardCore.DisplayManagement.Views;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Etch.OrchardCore.Fields.ResponsiveMedia.Utils;
+using OrchardCore.Media;
 
 namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
 {
@@ -11,15 +14,17 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
     {
         #region Dependencies
 
+        private readonly IMediaFileStore _mediaFileStore;
         private readonly IStringLocalizer<ResponsiveMediaFieldSettingsDriver> T;
 
         #endregion
 
         #region Constructor
 
-        public ResponsiveMediaFieldSettingsDriver(IStringLocalizer<ResponsiveMediaFieldSettingsDriver> localizer)
+        public ResponsiveMediaFieldSettingsDriver(IStringLocalizer<ResponsiveMediaFieldSettingsDriver> localizer, IMediaFileStore mediaFileStore)
         {
             T = localizer;
+            _mediaFileStore = mediaFileStore;
         }
 
         #endregion
@@ -40,7 +45,8 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
             {
                 Hint = model.Hint,
                 Multiple = model.Multiple,
-                Required = model.Required
+                Required = model.Required,
+                DefaultData = JsonConvert.SerializeObject(ResponsiveMediaUtils.ParseMedia(_mediaFileStore, model.DefaultData))
             };
 
             try

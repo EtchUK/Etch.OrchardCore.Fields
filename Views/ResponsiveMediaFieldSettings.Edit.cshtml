@@ -1,5 +1,21 @@
 ﻿@model Etch.OrchardCore.Fields.ResponsiveMedia.Settings.ResponsiveMediaFieldSettings
 
+@if (Model.IsConfigured)
+{
+    <script asp-src="~/OrchardCore.Media/Scripts/media.js" asp-name="media" at="Foot" depends-on="admin, vuejs, sortable, vuedraggable"></script>
+    <style asp-src="~/OrchardCore.Media/Styles/media.min.css" debug-src="~/OrchardCore.Media/Styles/media.css"></style>
+    <script asp-src="https://vuejs.org/js/vue.min.js" debug-src="https://vuejs.org/js/vue.js" asp-name="vuejs" at="Foot"></script>
+    <script asp-src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.min.js" debug-src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.js" asp-name="sortable" at="Foot"></script>
+    <script asp-src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.min.js" debug-src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.js" asp-name="vuedraggable" depends-on="vuejs, sortable" at="Foot"></script>
+
+    <script asp-src="~/Etch.OrchardCore.Fields/Scripts/responsiveMedia/admin.js" asp-name="responsiveMedia" depends-on="jquery" at="Foot"></script>
+
+    <script at="Foot">
+        initializeMediaApplication(false, '@Url.Action("MediaApplication", "Admin", new { area = "OrchardCore.Media" })');
+        initializeResponsiveMediaEditor(document.getElementById('@Html.IdFor(m => m)'), document.getElementById('@Html.IdFor(m => m)-ModalBody'), @(Newtonsoft.Json.JsonConvert.SerializeObject(Model.GetBreakpoints())), @(Model.Multiple ? "true" : "false"));
+    </script>
+}
+
 <fieldset class="form-group">
     <div class="row col-sm-6">
         <label asp-for="Breakpoints">@T["Breakpoints"]</label>
@@ -35,3 +51,53 @@
         <span class="hint">@T["The hint text to display for this field on the editor."]</span>
     </div>
 </fieldset>
+
+@if (Model.IsConfigured)
+{
+    <div class="responsive-media-field-editor" id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.DefaultData)">
+        <div class="responsive-media-field">
+            <fieldset class="form-group">
+                <label asp-for="DefaultData">Default Image</label>
+                <span class="hint">Displayed when image hasn't been defined on content field.</span>
+
+                <input asp-for="DefaultData" type="hidden" :value="value" data-init="@Model.DefaultData" />
+
+                <nav class="responsive-media-field-toolbar mb-3">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary btn-sm" v-on:click="add" :disabled="!canAdd"><i class="fa fa-plus"></i></button>
+                    </div>
+                </nav>
+
+                <draggable :list="mediaItems" element="ol" class="row media-items-grid" v-if="hasMedia">
+                    <div class="col-sm-3" v-for="(item, index) in mediaItems">
+                        <responsive-media-item v-bind:media="item" v-bind:breakpoints="breakpoints" v-on:remove="remove" v-on:update="update" />
+                    </div>
+                </draggable>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="modal" id="@Html.IdFor(m => m)-ModalBody">
+        <div class="modal-dialog modal-lg media-modal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@T["Select Media"]</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body"></div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary mediaFieldSelectButton">@T["OK"]</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@T["Cancel"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning" role="alert">@T["You'll be able to define default image once breakpoints have been added."]</div>
+}
