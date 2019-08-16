@@ -13,7 +13,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
         
         public bool Multiple { get; set; }
 
-        public string DefaultData { get; set; }
+        public string FallbackData { get; set; }
 
         public int[] GetBreakpoints()
         {

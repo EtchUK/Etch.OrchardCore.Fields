@@ -54,13 +54,13 @@
 
 @if (Model.IsConfigured)
 {
-    <div class="responsive-media-field-editor" id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.DefaultData)">
+    <div class="responsive-media-field-editor" id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.FallbackData)">
         <div class="responsive-media-field">
             <fieldset class="form-group">
-                <label asp-for="DefaultData">Default Image</label>
+                <label asp-for="FallbackData">Fallback Image</label>
                 <span class="hint">Displayed when image hasn't been defined on content field.</span>
 
-                <input asp-for="DefaultData" type="hidden" :value="value" data-init="@Model.DefaultData" />
+                <input asp-for="FallbackData" type="hidden" :value="value" data-init="@Model.FallbackData" />
 
                 <nav class="responsive-media-field-toolbar mb-3">
                     <div class="btn-group">
