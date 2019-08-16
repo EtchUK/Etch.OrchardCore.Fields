@@ -46,7 +46,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
                 Hint = model.Hint,
                 Multiple = model.Multiple,
                 Required = model.Required,
-                DefaultData = JsonConvert.SerializeObject(ResponsiveMediaUtils.ParseMedia(_mediaFileStore, model.DefaultData))
+                FallbackData = JsonConvert.SerializeObject(ResponsiveMediaUtils.ParseMedia(_mediaFileStore, model.FallbackData))
             };
 
             try
