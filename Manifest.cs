@@ -6,7 +6,6 @@ using OrchardCore.Modules.Manifest;
     Website = "https://etchuk.com",
     Version = "0.5.2"
 )]
-
 [assembly: Feature(
     Id = "Etch.OrchardCore.Fields.ResponsiveMedia",
     Name = "Responsive Media Field",
@@ -21,14 +20,18 @@ using OrchardCore.Modules.Manifest;
     Description = "Field for managing an arbitrary amount of names and associated values.",
     Category = "Content"
 )]
-
+[assembly: Feature(
+    Id = "Etch.OrchardCore.Fields.EventBrite",
+    Name = "EventBrite Field",
+    Description = "Field for fetching information from an EventBrite event.",
+    Category = "Content"
+)]
 [assembly: Feature(
     Id = "Etch.OrchardCore.Fields.Values",
     Name = "Values Field",
     Description = "Field for managing an arbitrary list of values.",
     Category = "Content"
 )]
-
 [assembly: Feature(
     Id = "Etch.OrchardCore.Fields.RenderAlias",
     Name = "Render Alias Field",
@@ -36,7 +39,6 @@ using OrchardCore.Modules.Manifest;
     Category = "Content",
     Dependencies = new[] { "OrchardCore.Alias" }
 )]
-
 [assembly: Feature(
     Id = "Etch.OrchardCore.Fields.MultiSelect",
     Name = "Multi Select Field",
