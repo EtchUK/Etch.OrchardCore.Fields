@@ -12,5 +12,6 @@ namespace Etch.OrchardCore.Fields.EventBrite.ViewModels
 
         public string Data { get; set; }
         public string Value { get; set; }
+        public bool HasApiKey { get; set; }
     }
 }
