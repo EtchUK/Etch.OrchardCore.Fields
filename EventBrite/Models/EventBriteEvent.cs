@@ -1,4 +1,4 @@
-using Etch.OrchardCore.Fields.EventBrite.Models.Dto;
+﻿using Etch.OrchardCore.Fields.EventBrite.Models.Dto;
 using System;
 
 namespace Etch.OrchardCore.Fields.EventBrite.Models
@@ -49,7 +49,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Models
 
         private void UpdateVenueFields(EventBriteVenueDto eventBriteVenueDto)
         {
-            Address = string.Join(string.Format(",{0}", Environment.NewLine), eventBriteVenueDto.address.localized_multi_line_address_display);
+            Address = string.Join(string.Format(",{0}", Environment.NewLine), eventBriteVenueDto.Address.LocalizedMultiLineAddressDisplay);
         }
 
         #endregion Helpers
