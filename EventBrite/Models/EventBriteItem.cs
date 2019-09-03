@@ -23,7 +23,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Models
                 return;
             }
 
-            Address = string.Join(",\n", venueDto.address.localized_multi_line_address_display);
+            Address = string.Join(string.Format(",{0}", Environment.NewLine), venueDto.address.localized_multi_line_address_display);
         }
 
         #endregion Constructors
