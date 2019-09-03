@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
     <PackageReference Include="OrchardCore.ContentManagement" Version="1.0.0-beta3-71077" />
     <PackageReference Include="OrchardCore.ContentTypes.Abstractions" Version="1.0.0-beta3-71077" />
     <PackageReference Include="OrchardCore.Liquid.Abstractions" Version="1.0.0-beta3-71077" />
