@@ -16,7 +16,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.ViewModels
         {
             get
             {
-                return Field.EventBriteData != null;
+                return Field.Data != null;
             }
         }
 
@@ -24,7 +24,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.ViewModels
         {
             get
             {
-                return Field.EventBriteData;
+                return Field.Data;
             }
         }
     }

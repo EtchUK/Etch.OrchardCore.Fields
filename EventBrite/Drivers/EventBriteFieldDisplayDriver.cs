@@ -1,4 +1,4 @@
-using Etch.OrchardCore.Fields.EventBrite.Fields;
+﻿using Etch.OrchardCore.Fields.EventBrite.Fields;
 using Etch.OrchardCore.Fields.EventBrite.Models;
 using Etch.OrchardCore.Fields.EventBrite.Models.Dto;
 using Etch.OrchardCore.Fields.EventBrite.Services;
@@ -72,7 +72,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
                 model.Part = context.ContentPart;
                 model.PartFieldDefinition = context.PartFieldDefinition;
 
-                model.Data = JsonConvert.SerializeObject(field.EventBriteData == null ? new EventBriteItem() : field.EventBriteData);
+                model.Data = JsonConvert.SerializeObject(field.Data == null ? new EventBriteItem() : field.Data);
                 model.HasApiKey = !string.IsNullOrWhiteSpace(settings.PrivateToken);
             });
         }
@@ -103,7 +103,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
                     return Edit(field, context);
                 }
 
-                field.EventBriteData = new EventBriteItem(eventBriteEventDto, eventBriteVenueDto);
+                field.Data = new EventBriteItem(eventBriteEventDto, eventBriteVenueDto);
             }
             catch (Exception e)
             {
