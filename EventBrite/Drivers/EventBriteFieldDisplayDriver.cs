@@ -129,20 +129,23 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
 
         private async Task<EventBriteVenueDto> GetEventBriteVenueDtoAsync(IUpdateModel updater, EventBriteSettings settings, EventBriteEventDto eventBriteEventDto)
         {
-            if (!string.IsNullOrWhiteSpace(eventBriteEventDto.venue_id))
+            if (string.IsNullOrWhiteSpace(eventBriteEventDto.venue_id))
             {
-                var request = new HttpRequestMessage(HttpMethod.Get, string.Format("https://www.eventbriteapi.com/v3/venues/{0}/", eventBriteEventDto.venue_id));
-                request.Headers.Add("Authorization", string.Format("Bearer {0}", settings.PrivateToken));
-
-                var client = _clientFactory.CreateClient();
-
-                var response = await client.SendAsync(request);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return JsonConvert.DeserializeObject<EventBriteVenueDto>(await response.Content.ReadAsStringAsync());
-                }
+                return null;
             }
+
+            var request = new HttpRequestMessage(HttpMethod.Get, string.Format("https://www.eventbriteapi.com/v3/venues/{0}/", eventBriteEventDto.venue_id));
+            request.Headers.Add("Authorization", string.Format("Bearer {0}", settings.PrivateToken));
+
+            var client = _clientFactory.CreateClient();
+
+            var response = await client.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<EventBriteVenueDto>(await response.Content.ReadAsStringAsync());
+            }
+
             return null;
         }
 
