@@ -7,23 +7,17 @@ namespace Etch.OrchardCore.Fields.EventBrite.Models
     {
         #region Constructors
 
-        public EventBriteEvent()
+        public EventBriteEvent(EventBriteEventDto eventDto = null, EventBriteVenueDto venueDto = null)
         {
-        }
-
-        public EventBriteEvent(EventBriteEventDto eventDto, EventBriteVenueDto venueDto)
-        {
-            Name = eventDto.name.text;
-            StartDate = eventDto.start.utc;
-            EndDate = eventDto.end.utc;
-            Url = eventDto.url;
-
-            if (venueDto == null)
+            if (eventDto != null)
             {
-                return;
+                UpdateEventFields(eventDto);
             }
 
-            Address = string.Join(string.Format(",{0}", Environment.NewLine), venueDto.address.localized_multi_line_address_display);
+            if (venueDto != null)
+            {
+                UpdateVenueFields(venueDto);
+            }
         }
 
         #endregion Constructors
@@ -42,5 +36,22 @@ namespace Etch.OrchardCore.Fields.EventBrite.Models
         public string Address { get; set; }
 
         #endregion Venue Fields
+
+        #region Helpers
+
+        private void UpdateEventFields(EventBriteEventDto eventBriteEventDto)
+        {
+            Name = eventDto.name.text;
+            StartDate = eventDto.start.utc;
+            EndDate = eventDto.end.utc;
+            Url = eventDto.url;
+        }
+
+        private void UpdateVenueFields(EventBriteVenueDto eventBriteVenueDto)
+        {
+            Address = string.Join(string.Format(",{0}", Environment.NewLine), venueDto.address.localized_multi_line_address_display);
+        }
+
+        #endregion Helpers
     }
 }
