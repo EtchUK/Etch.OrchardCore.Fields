@@ -100,14 +100,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
                     return Edit(field, context);
                 }
 
-                if (eventBriteVenueDto != null)
-                {
-                    field.EventBriteData = new EventBriteItem(eventBriteEventDto, eventBriteVenueDto);
-                }
-                else
-                {
-                    field.EventBriteData = new EventBriteItem(eventBriteEventDto);
-                }
+                field.EventBriteData = new EventBriteItem(eventBriteEventDto, eventBriteVenueDto);
             }
             catch (Exception e)
             {
