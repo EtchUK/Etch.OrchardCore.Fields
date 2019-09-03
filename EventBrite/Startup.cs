@@ -19,7 +19,7 @@ namespace Etch.OrchardCore.Fields.EventBrite
         public Startup()
         {
             TemplateContext.GlobalMemberAccessStrategy.Register<EventBriteField>();
-            TemplateContext.GlobalMemberAccessStrategy.Register<EventBriteItem>();
+            TemplateContext.GlobalMemberAccessStrategy.Register<EventBriteEvent>();
         }
 
         public override void ConfigureServices(IServiceCollection services)

@@ -72,7 +72,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
                 model.Part = context.ContentPart;
                 model.PartFieldDefinition = context.PartFieldDefinition;
 
-                model.Data = JsonConvert.SerializeObject(field.Data == null ? new EventBriteItem() : field.Data);
+                model.Data = JsonConvert.SerializeObject(field.Data == null ? new EventBriteEvent() : field.Data);
                 model.HasApiKey = !string.IsNullOrWhiteSpace(settings.PrivateToken);
             });
         }
@@ -103,7 +103,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
                     return Edit(field, context);
                 }
 
-                field.Data = new EventBriteItem(eventBriteEventDto, eventBriteVenueDto);
+                field.Data = new EventBriteEvent(eventBriteEventDto, eventBriteVenueDto);
             }
             catch (Exception e)
             {

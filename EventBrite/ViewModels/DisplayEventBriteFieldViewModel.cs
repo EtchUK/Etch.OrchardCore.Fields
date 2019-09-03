@@ -20,7 +20,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.ViewModels
             }
         }
 
-        public EventBriteItem Data
+        public EventBriteEvent Data
         {
             get
             {
