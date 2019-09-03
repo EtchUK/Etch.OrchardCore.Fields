@@ -41,10 +41,10 @@ namespace Etch.OrchardCore.Fields.EventBrite.Models
 
         private void UpdateEventFields(EventBriteEventDto eventBriteEventDto)
         {
-            Name = eventBriteEventDto.name.text;
-            StartDate = eventBriteEventDto.start.utc;
-            EndDate = eventBriteEventDto.end.utc;
-            Url = eventBriteEventDto.url;
+            Name = eventBriteEventDto.Name.text;
+            StartDate = eventBriteEventDto.Start.utc;
+            EndDate = eventBriteEventDto.End.utc;
+            Url = eventBriteEventDto.Url;
         }
 
         private void UpdateVenueFields(EventBriteVenueDto eventBriteVenueDto)
