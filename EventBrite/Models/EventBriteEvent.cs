@@ -3,15 +3,15 @@ using System;
 
 namespace Etch.OrchardCore.Fields.EventBrite.Models
 {
-    public class EventBriteItem
+    public class EventBriteEvent
     {
         #region Constructors
 
-        public EventBriteItem()
+        public EventBriteEvent()
         {
         }
 
-        public EventBriteItem(EventBriteEventDto eventDto, EventBriteVenueDto venueDto)
+        public EventBriteEvent(EventBriteEventDto eventDto, EventBriteVenueDto venueDto)
         {
             Name = eventDto.name.text;
             StartDate = eventDto.start.utc;

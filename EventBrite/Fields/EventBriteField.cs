@@ -7,6 +7,6 @@ namespace Etch.OrchardCore.Fields.EventBrite.Fields
     public class EventBriteField : ContentField
     {
         public string Value { get; set; }
-        public EventBriteItem Data { get; set; }
+        public EventBriteEvent Data { get; set; }
     }
 }
