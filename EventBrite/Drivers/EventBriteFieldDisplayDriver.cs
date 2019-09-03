@@ -62,8 +62,10 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
 
         #region Edit
 
-        public override IDisplayResult Edit(EventBriteField field, BuildFieldEditorContext context)
+        public override async Task<IDisplayResult> EditAsync(EventBriteField field, BuildFieldEditorContext context)
         {
+            var settings = await _eventBriteSettingsService.GetSettingsAsync();
+
             return Initialize<EditEventBriteFieldViewModel>(GetEditorShapeType(context), model =>
             {
                 model.Field = field;
@@ -71,6 +73,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
                 model.PartFieldDefinition = context.PartFieldDefinition;
 
                 model.Data = JsonConvert.SerializeObject(field.EventBriteData == null ? new EventBriteItem() : field.EventBriteData);
+                model.HasApiKey = !string.IsNullOrWhiteSpace(settings.PrivateToken);
             });
         }
 
