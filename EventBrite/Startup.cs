@@ -27,7 +27,6 @@ namespace Etch.OrchardCore.Fields.EventBrite
             services.AddSingleton<ContentField, EventBriteField>();
 
             services.AddScoped<IDisplayDriver<ISite>, EventBriteSettingsDisplayDriver>();
-            services.AddScoped<IContentFieldDisplayDriver, EventBriteFieldDisplayDriver>();
 
             services.AddScoped<INavigationProvider, AdminMenu>();
 
