@@ -1,4 +1,4 @@
-using Etch.OrchardCore.Fields.EventBrite.Fields;
+﻿using Etch.OrchardCore.Fields.EventBrite.Fields;
 using Etch.OrchardCore.Fields.EventBrite.Models;
 using Etch.OrchardCore.Fields.EventBrite.Models.Dto;
 using Etch.OrchardCore.Fields.EventBrite.Services;
@@ -174,11 +174,11 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
                 }
             }
 
-            return "";
+            return string.Empty;
         }
 
         #endregion Edit
 
-        #endregion ContentFieldDisplayDriver<EventBriteField>
+        #endregion Implementation
     }
 }
