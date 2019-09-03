@@ -48,6 +48,11 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
 
         public override IDisplayResult Display(EventBriteField field, BuildFieldDisplayContext context)
         {
+            if (field == null)
+            {
+                return null;
+            }
+
             return Initialize<DisplayEventBriteFieldViewModel>(GetDisplayShapeType(context), model =>
             {
                 model.Field = field;

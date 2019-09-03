@@ -12,14 +12,6 @@ namespace Etch.OrchardCore.Fields.EventBrite.ViewModels
         public ContentPart Part { get; set; }
         public ContentPartFieldDefinition PartFieldDefinition { get; set; }
 
-        public bool HasData
-        {
-            get
-            {
-                return Field.Data != null;
-            }
-        }
-
         public EventBriteEvent Data
         {
             get
