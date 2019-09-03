@@ -2,6 +2,6 @@
 
 <fieldset class="form-group" asp-validation-class-for="PrivateToken">
     <label asp-for="PrivateToken">@T["Private Token"] <span asp-validation-for="PrivateToken"></span></label>
-    <input asp-for="PrivateToken" class="form-control content-preview-text content-caption-text js-regenerate-value" />
+    <input asp-for="PrivateToken" class="form-control" />
     <span class="hint">@T["This can be generated from here: https://www.eventbrite.co.uk/platform/api-keys/"]</span>
 </fieldset>
