@@ -26,6 +26,10 @@ Provides content field for managing an arbitrary amount of names and associated 
 
 ![Screen recording of dictionary field](https://github.com/etchuk/Etch.OrchardCore.Fields/raw/master/docs/demo-dictionary-field.gif)
 
+### EventBrite field
+
+Provides a content field that will fetch event data from Eventbrite and display it as an unordered list.
+
 ### Multi Select
 
 Content field that has a collection of pre-configured options where content editors can choose multiple options that will be rendered in an unordered list.
