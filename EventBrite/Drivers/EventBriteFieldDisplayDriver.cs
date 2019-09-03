@@ -1,4 +1,4 @@
-﻿using Etch.OrchardCore.Fields.EventBrite.Fields;
+using Etch.OrchardCore.Fields.EventBrite.Fields;
 using Etch.OrchardCore.Fields.EventBrite.Models;
 using Etch.OrchardCore.Fields.EventBrite.Models.Dto;
 using Etch.OrchardCore.Fields.EventBrite.Services;
@@ -158,7 +158,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
             {
                 if (int.TryParse(model.Field.Value.Split('=').Last(), out var eventId))
                 {
-                    string.Format("https://www.eventbriteapi.com/v3/events/{0}/", eventId);
+                    return string.Format("https://www.eventbriteapi.com/v3/events/{0}/", eventId);
                 }
                 else
                 {
