@@ -42,7 +42,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
 
         #endregion Constructor
 
-        #region ContentFieldDisplayDriver<EventBriteField>
+        #region Implementation
 
         #region Display
 
