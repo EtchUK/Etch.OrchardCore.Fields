@@ -1,4 +1,4 @@
-﻿using Etch.OrchardCore.Fields.EventBrite.Models.Dto;
+using Etch.OrchardCore.Fields.EventBrite.Models.Dto;
 using System;
 
 namespace Etch.OrchardCore.Fields.EventBrite.Models
@@ -41,9 +41,9 @@ namespace Etch.OrchardCore.Fields.EventBrite.Models
 
         private void UpdateEventFields(EventBriteEventDto eventBriteEventDto)
         {
-            Name = eventBriteEventDto.Name.text;
-            StartDate = eventBriteEventDto.Start.utc;
-            EndDate = eventBriteEventDto.End.utc;
+            Name = eventBriteEventDto.Name.Text;
+            StartDate = eventBriteEventDto.Start.Utc;
+            EndDate = eventBriteEventDto.End.Utc;
             Url = eventBriteEventDto.Url;
         }
 
