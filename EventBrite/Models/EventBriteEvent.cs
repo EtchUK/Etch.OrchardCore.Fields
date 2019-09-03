@@ -41,15 +41,15 @@ namespace Etch.OrchardCore.Fields.EventBrite.Models
 
         private void UpdateEventFields(EventBriteEventDto eventBriteEventDto)
         {
-            Name = eventDto.name.text;
-            StartDate = eventDto.start.utc;
-            EndDate = eventDto.end.utc;
-            Url = eventDto.url;
+            Name = eventBriteEventDto.name.text;
+            StartDate = eventBriteEventDto.start.utc;
+            EndDate = eventBriteEventDto.end.utc;
+            Url = eventBriteEventDto.url;
         }
 
         private void UpdateVenueFields(EventBriteVenueDto eventBriteVenueDto)
         {
-            Address = string.Join(string.Format(",{0}", Environment.NewLine), venueDto.address.localized_multi_line_address_display);
+            Address = string.Join(string.Format(",{0}", Environment.NewLine), eventBriteVenueDto.address.localized_multi_line_address_display);
         }
 
         #endregion Helpers
