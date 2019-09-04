@@ -48,7 +48,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
 
         public override IDisplayResult Display(EventBriteField field, BuildFieldDisplayContext context)
         {
-            if (field == null)
+            if (field == null || field.Data == null)
             {
                 return null;
             }
