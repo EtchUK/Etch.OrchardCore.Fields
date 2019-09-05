@@ -73,13 +73,22 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
         {
             var settings = await _eventbriteSettingsService.GetSettingsAsync();
 
+            if (!settings.IsConfigured && string.IsNullOrWhiteSpace(field.Value))
+            {
+                return Initialize<EditEventbriteFieldViewModel>("EventbriteField_Unconfigured", model =>
+                {
+                    model.Field = field;
+                    model.Part = context.ContentPart;
+                    model.PartFieldDefinition = context.PartFieldDefinition;
+                });
+            }
+
             return Initialize<EditEventbriteFieldViewModel>(GetEditorShapeType(context), model =>
             {
                 model.Field = field;
                 model.Part = context.ContentPart;
                 model.PartFieldDefinition = context.PartFieldDefinition;
                 model.Value = field.Value;
-                model.HasApiKey = !string.IsNullOrWhiteSpace(settings.PrivateToken);
             });
         }
 
