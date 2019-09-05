@@ -31,6 +31,7 @@ namespace Etch.OrchardCore.Fields.Eventbrite
 
             services.AddScoped<INavigationProvider, AdminMenu>();
 
+            services.AddScoped<IEventbriteService, EventbriteService>();
             services.AddScoped<IEventbriteSettingsService, EventbriteSettingsService>();
 
             services.AddHttpClient();
