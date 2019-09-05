@@ -11,7 +11,5 @@ namespace Etch.OrchardCore.Fields.Eventbrite.ViewModels
         public ContentPartFieldDefinition PartFieldDefinition { get; set; }
         
         public string Value { get; set; }
-
-        public bool HasApiKey { get; set; }
     }
 }
