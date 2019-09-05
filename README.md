@@ -30,13 +30,13 @@ Provides content field for managing an arbitrary amount of names and associated 
 
 Content field that has a collection of pre-configured options where content editors can choose multiple options that will be rendered in an unordered list.
 
-![Screen recording of multi select field](https://github.com/etchuk/Etch.OrchardCore.Fields/raw/master/docs/demo-multi-select-field.gif)
+![Screen recording of multi select field](/docs/demo-multi-select-field.gif?raw=true)
 
 ### Render Alias
 
 Allows editors to specify a content item by its alias to be rendered in a specified display type.
 
-![Screen recording of render alias field](https://github.com/etchuk/Etch.OrchardCore.Fields/raw/master/docs/demo-render-alias-field.gif)
+![Screen recording of render alias field](/docs/demo-render-alias-field.gif?raw=true)
 
 ### Responsive Media
 
@@ -48,4 +48,4 @@ _This field is still in development._
 
 Content editors can define an arbitary list of values with a user friendly editor experience. Values will be displayed on the page as an unordered list.
 
-![Screen recording of values field](https://github.com/etchuk/Etch.OrchardCore.Fields/raw/master/docs/demo-values-field.gif)
+![Screen recording of values field](/docs/demo-values-field.gif?raw=true)
