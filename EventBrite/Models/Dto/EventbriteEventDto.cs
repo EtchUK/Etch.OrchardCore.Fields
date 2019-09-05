@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Etch.OrchardCore.Fields.EventBrite.Models.Dto
+namespace Etch.OrchardCore.Fields.Eventbrite.Models.Dto
 {
-    public class EventBriteEventDto
+    public class EventbriteEventDto
     {
         [JsonProperty(PropertyName = "name")]
         public Name Name { get; set; }

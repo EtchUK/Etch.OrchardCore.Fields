@@ -26,7 +26,7 @@ Provides content field for managing an arbitrary amount of names and associated 
 
 ![Screen recording of dictionary field](/docs/demo-dictionary-field.gif?raw=true)
 
-### EventBrite field
+### Eventbrite field
 
 Provides a content field that will fetch event data from Eventbrite and display it as an unordered list.
 

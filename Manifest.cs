@@ -21,9 +21,9 @@ using OrchardCore.Modules.Manifest;
     Category = "Content"
 )]
 [assembly: Feature(
-    Id = "Etch.OrchardCore.Fields.EventBrite",
-    Name = "EventBrite Field",
-    Description = "Field for fetching information from an EventBrite event.",
+    Id = "Etch.OrchardCore.Fields.Eventbrite",
+    Name = "Eventbrite Field",
+    Description = "Field for fetching information from an Eventbrite event.",
     Category = "Content"
 )]
 [assembly: Feature(

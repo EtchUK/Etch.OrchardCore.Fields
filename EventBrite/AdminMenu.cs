@@ -1,13 +1,13 @@
-﻿using Etch.OrchardCore.Fields.EventBrite.Drivers;
+﻿using Etch.OrchardCore.Fields.Eventbrite.Drivers;
 using Microsoft.Extensions.Localization;
 using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using System;
 using System.Threading.Tasks;
 
-namespace Etch.OrchardCore.Fields.EventBrite
+namespace Etch.OrchardCore.Fields.Eventbrite
 {
-    [Feature("Etch.OrchardCore.Fields.EventBrite")]
+    [Feature("Etch.OrchardCore.Fields.Eventbrite")]
     public class AdminMenu : INavigationProvider
     {
         public AdminMenu(IStringLocalizer<AdminMenu> localizer)
@@ -27,9 +27,9 @@ namespace Etch.OrchardCore.Fields.EventBrite
             builder
                 .Add(T["Configuration"], configuration => configuration
                     .Add(T["API"], settings => settings
-                        .Add(T["EventBrite API"], T["EventBrite API"], layers => layers
-                            .Action("Index", "Admin", new { area = "OrchardCore.Settings", groupId = EventBriteSettingsDisplayDriver.GroupId })
-                            .Permission(Permissions.ManageEventBriteAPI)
+                        .Add(T["Eventbrite API"], T["Eventbrite API"], layers => layers
+                            .Action("Index", "Admin", new { area = "OrchardCore.Settings", groupId = EventbriteSettingsDisplayDriver.GroupId })
+                            .Permission(Permissions.ManageEventbriteAPI)
                             .LocalNav()
                         )));
 

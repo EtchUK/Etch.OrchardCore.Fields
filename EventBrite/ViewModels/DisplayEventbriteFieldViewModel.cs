@@ -1,18 +1,18 @@
-﻿using Etch.OrchardCore.Fields.EventBrite.Fields;
-using Etch.OrchardCore.Fields.EventBrite.Models;
+﻿using Etch.OrchardCore.Fields.Eventbrite.Fields;
+using Etch.OrchardCore.Fields.Eventbrite.Models;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Metadata.Models;
 using System.Collections.Generic;
 
-namespace Etch.OrchardCore.Fields.EventBrite.ViewModels
+namespace Etch.OrchardCore.Fields.Eventbrite.ViewModels
 {
-    public class DisplayEventBriteFieldViewModel
+    public class DisplayEventbriteFieldViewModel
     {
-        public EventBriteField Field { get; set; }
+        public EventbriteField Field { get; set; }
         public ContentPart Part { get; set; }
         public ContentPartFieldDefinition PartFieldDefinition { get; set; }
 
-        public EventBriteEvent Data
+        public EventbriteEvent Data
         {
             get
             {

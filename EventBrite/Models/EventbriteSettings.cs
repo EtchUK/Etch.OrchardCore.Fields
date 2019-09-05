@@ -1,6 +1,6 @@
-﻿namespace Etch.OrchardCore.Fields.EventBrite.Models
+﻿namespace Etch.OrchardCore.Fields.Eventbrite.Models
 {
-    public class EventBriteSettings
+    public class EventbriteSettings
     {
         public string APIKey { get; set; }
         public string ClientSecret { get; set; }

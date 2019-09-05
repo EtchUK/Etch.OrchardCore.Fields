@@ -1,7 +1,7 @@
-﻿using Etch.OrchardCore.Fields.EventBrite.Drivers;
-using Etch.OrchardCore.Fields.EventBrite.Fields;
-using Etch.OrchardCore.Fields.EventBrite.Models;
-using Etch.OrchardCore.Fields.EventBrite.Services;
+﻿using Etch.OrchardCore.Fields.Eventbrite.Drivers;
+using Etch.OrchardCore.Fields.Eventbrite.Fields;
+using Etch.OrchardCore.Fields.Eventbrite.Models;
+using Etch.OrchardCore.Fields.Eventbrite.Services;
 using Fluid;
 using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.ContentManagement;
@@ -11,26 +11,26 @@ using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using OrchardCore.Settings;
 
-namespace Etch.OrchardCore.Fields.EventBrite
+namespace Etch.OrchardCore.Fields.Eventbrite
 {
-    [Feature("Etch.OrchardCore.Fields.EventBrite")]
+    [Feature("Etch.OrchardCore.Fields.Eventbrite")]
     public class Startup : StartupBase
     {
         public Startup()
         {
-            TemplateContext.GlobalMemberAccessStrategy.Register<EventBriteField>();
-            TemplateContext.GlobalMemberAccessStrategy.Register<EventBriteEvent>();
+            TemplateContext.GlobalMemberAccessStrategy.Register<EventbriteField>();
+            TemplateContext.GlobalMemberAccessStrategy.Register<EventbriteEvent>();
         }
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ContentField, EventBriteField>();
+            services.AddSingleton<ContentField, EventbriteField>();
 
-            services.AddScoped<IDisplayDriver<ISite>, EventBriteSettingsDisplayDriver>();
+            services.AddScoped<IDisplayDriver<ISite>, EventbriteSettingsDisplayDriver>();
 
             services.AddScoped<INavigationProvider, AdminMenu>();
 
-            services.AddScoped<IEventBriteSettingsService, EventBriteSettingsService>();
+            services.AddScoped<IEventbriteSettingsService, EventbriteSettingsService>();
 
             services.AddHttpClient();
         }
