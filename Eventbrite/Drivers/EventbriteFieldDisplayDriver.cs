@@ -76,8 +76,7 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
                 model.Field = field;
                 model.Part = context.ContentPart;
                 model.PartFieldDefinition = context.PartFieldDefinition;
-
-                model.Data = JsonConvert.SerializeObject(field.Data == null ? new EventbriteEvent() : field.Data);
+                model.Value = field.Value;
                 model.HasApiKey = !string.IsNullOrWhiteSpace(settings.PrivateToken);
             });
         }
@@ -86,7 +85,7 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
         {
             var model = new EditEventbriteFieldViewModel();
 
-            await updater.TryUpdateModelAsync(model, Prefix, m => m.Data);
+            await updater.TryUpdateModelAsync(model, Prefix, m => m.Value);
 
             try
             {
@@ -105,17 +104,18 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
 
                 if (updater.ModelState.ErrorCount > 0)
                 {
-                    return Edit(field, context);
+                    return await EditAsync(field, context);
                 }
 
+                field.Value = model.Value;
                 field.Data = new EventbriteEvent(eventbriteEventDto, eventBriteVenueDto);
             }
-            catch (Exception e)
+            catch
             {
-                updater.ModelState.AddModelError("Value", "Something went wrong saving the event");
+                updater.ModelState.AddModelError("Value", "Something went wrong saving the event.");
             }
 
-            return Edit(field, context);
+            return await EditAsync(field, context);
         }
 
         private async Task<EventbriteEventDto> GetEventbriteEventDtoAsync(IUpdateModel updater, EventbriteSettings settings, string url)
@@ -159,30 +159,18 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
 
         private string GetUrl(IUpdateModel updater, EditEventbriteFieldViewModel model)
         {
-            if (model.Field.Value.Contains("eid"))
+            if (model.Value.Contains("eid"))
             {
-                if (int.TryParse(model.Field.Value.Split('=').Last(), out var eventId))
+                if (int.TryParse(model.Value.Split('=').Last(), out var eventId))
                 {
                     return string.Format("https://www.eventbriteapi.com/v3/events/{0}/", eventId);
                 }
-                else
-                {
-                    updater.ModelState.AddModelError("Value", "Error parsing EventId from Url, please check the format and try again.");
-                }
-            }
-            else
-            {
-                if (int.TryParse(model.Field.Value.Split('=').Last(), out var eventId))
-                {
-                    return string.Format("https://www.eventbriteapi.com/v3/events/{0}/", model.Field.Value);
-                }
-                else
-                {
-                    updater.ModelState.AddModelError("Value", "Error parsing EventId, please check the Id and try again.");
-                }
+
+                updater.ModelState.AddModelError("Value", "Error parsing EventId from Url, please check the format and try again.");
+                return string.Empty;
             }
 
-            return string.Empty;
+            return string.Format("https://www.eventbriteapi.com/v3/events/{0}/", model.Value);
         }
 
         #endregion Edit
