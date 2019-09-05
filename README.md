@@ -24,7 +24,7 @@ Each content field is packaged as it's own feature that needs to be enabled.
 
 Provides content field for managing an arbitrary amount of names and associated values. Items will be displayed on the page as an unordered list with name/value.
 
-![Screen recording of dictionary field](https://github.com/etchuk/Etch.OrchardCore.Fields/raw/master/docs/demo-dictionary-field.gif)
+![Screen recording of dictionary field](/docs/demo-dictionary-field.gif?raw=true)
 
 ### Multi Select
 
