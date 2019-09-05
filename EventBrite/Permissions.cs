@@ -1,15 +1,15 @@
 ﻿using OrchardCore.Security.Permissions;
 using System.Collections.Generic;
 
-namespace Etch.OrchardCore.Fields.EventBrite
+namespace Etch.OrchardCore.Fields.Eventbrite
 {
     public class Permissions : IPermissionProvider
     {
-        public static readonly Permission ManageEventBriteAPI = new Permission("EventBriteAPI", "Manage EventBrite API Details");
+        public static readonly Permission ManageEventbriteAPI = new Permission("EventbriteAPI", "Manage Eventbrite API Details");
 
         public IEnumerable<Permission> GetPermissions()
         {
-            return new[] { ManageEventBriteAPI };
+            return new[] { ManageEventbriteAPI };
         }
 
         public IEnumerable<PermissionStereotype> GetDefaultStereotypes()
@@ -19,7 +19,7 @@ namespace Etch.OrchardCore.Fields.EventBrite
                 new PermissionStereotype
                 {
                     Name = "Administrator",
-                    Permissions = new[] { ManageEventBriteAPI }
+                    Permissions = new[] { ManageEventbriteAPI }
                 }
             };
         }

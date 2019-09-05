@@ -1,13 +1,13 @@
-﻿using Etch.OrchardCore.Fields.EventBrite.Models.Dto;
+﻿using Etch.OrchardCore.Fields.Eventbrite.Models.Dto;
 using System;
 
-namespace Etch.OrchardCore.Fields.EventBrite.Models
+namespace Etch.OrchardCore.Fields.Eventbrite.Models
 {
-    public class EventBriteEvent
+    public class EventbriteEvent
     {
         #region Constructors
 
-        public EventBriteEvent(EventBriteEventDto eventDto = null, EventBriteVenueDto venueDto = null)
+        public EventbriteEvent(EventbriteEventDto eventDto = null, EventbriteVenueDto venueDto = null)
         {
             if (eventDto != null)
             {
@@ -39,7 +39,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Models
 
         #region Helpers
 
-        private void UpdateEventFields(EventBriteEventDto eventBriteEventDto)
+        private void UpdateEventFields(EventbriteEventDto eventBriteEventDto)
         {
             Name = eventBriteEventDto.Name.Text;
             StartDate = eventBriteEventDto.Start.Utc;
@@ -47,7 +47,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Models
             Url = eventBriteEventDto.Url;
         }
 
-        private void UpdateVenueFields(EventBriteVenueDto eventBriteVenueDto)
+        private void UpdateVenueFields(EventbriteVenueDto eventBriteVenueDto)
         {
             Address = string.Join(string.Format(",{0}", Environment.NewLine), eventBriteVenueDto.Address.LocalizedMultiLineAddressDisplay);
         }

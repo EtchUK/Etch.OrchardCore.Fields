@@ -1,8 +1,8 @@
-﻿using Etch.OrchardCore.Fields.EventBrite.Fields;
-using Etch.OrchardCore.Fields.EventBrite.Models;
-using Etch.OrchardCore.Fields.EventBrite.Models.Dto;
-using Etch.OrchardCore.Fields.EventBrite.Services;
-using Etch.OrchardCore.Fields.EventBrite.ViewModels;
+﻿using Etch.OrchardCore.Fields.Eventbrite.Fields;
+using Etch.OrchardCore.Fields.Eventbrite.Models;
+using Etch.OrchardCore.Fields.Eventbrite.Models.Dto;
+using Etch.OrchardCore.Fields.Eventbrite.Services;
+using Etch.OrchardCore.Fields.Eventbrite.ViewModels;
 using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
@@ -14,9 +14,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Etch.OrchardCore.Fields.EventBrite.Drivers
+namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
 {
-    public class EventBriteFieldDisplayDriver : ContentFieldDisplayDriver<EventBriteField>
+    public class EventbriteFieldDisplayDriver : ContentFieldDisplayDriver<EventbriteField>
     {
         #region PublicVariables
 
@@ -26,17 +26,17 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
 
         #region Dependencies
 
-        private readonly IEventBriteSettingsService _eventBriteSettingsService;
+        private readonly IEventbriteSettingsService _eventbriteSettingsService;
         private readonly IHttpClientFactory _clientFactory;
 
         #endregion Dependencies
 
         #region Constructor
 
-        public EventBriteFieldDisplayDriver(IStringLocalizer<EventBriteFieldDisplayDriver> localizer, IEventBriteSettingsService eventBriteSettingsService, IHttpClientFactory clientFactory)
+        public EventbriteFieldDisplayDriver(IStringLocalizer<EventbriteFieldDisplayDriver> localizer, IEventbriteSettingsService eventbriteSettingsService, IHttpClientFactory clientFactory)
         {
             T = localizer;
-            _eventBriteSettingsService = eventBriteSettingsService;
+            _eventbriteSettingsService = eventbriteSettingsService;
             _clientFactory = clientFactory;
         }
 
@@ -46,14 +46,14 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
 
         #region Display
 
-        public override IDisplayResult Display(EventBriteField field, BuildFieldDisplayContext context)
+        public override IDisplayResult Display(EventbriteField field, BuildFieldDisplayContext context)
         {
             if (field == null || field.Data == null)
             {
                 return null;
             }
 
-            return Initialize<DisplayEventBriteFieldViewModel>(GetDisplayShapeType(context), model =>
+            return Initialize<DisplayEventbriteFieldViewModel>(GetDisplayShapeType(context), model =>
             {
                 model.Field = field;
                 model.Part = context.ContentPart;
@@ -67,30 +67,30 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
 
         #region Edit
 
-        public override async Task<IDisplayResult> EditAsync(EventBriteField field, BuildFieldEditorContext context)
+        public override async Task<IDisplayResult> EditAsync(EventbriteField field, BuildFieldEditorContext context)
         {
-            var settings = await _eventBriteSettingsService.GetSettingsAsync();
+            var settings = await _eventbriteSettingsService.GetSettingsAsync();
 
-            return Initialize<EditEventBriteFieldViewModel>(GetEditorShapeType(context), model =>
+            return Initialize<EditEventbriteFieldViewModel>(GetEditorShapeType(context), model =>
             {
                 model.Field = field;
                 model.Part = context.ContentPart;
                 model.PartFieldDefinition = context.PartFieldDefinition;
 
-                model.Data = JsonConvert.SerializeObject(field.Data == null ? new EventBriteEvent() : field.Data);
+                model.Data = JsonConvert.SerializeObject(field.Data == null ? new EventbriteEvent() : field.Data);
                 model.HasApiKey = !string.IsNullOrWhiteSpace(settings.PrivateToken);
             });
         }
 
-        public override async Task<IDisplayResult> UpdateAsync(EventBriteField field, IUpdateModel updater, UpdateFieldEditorContext context)
+        public override async Task<IDisplayResult> UpdateAsync(EventbriteField field, IUpdateModel updater, UpdateFieldEditorContext context)
         {
-            var model = new EditEventBriteFieldViewModel();
+            var model = new EditEventbriteFieldViewModel();
 
             await updater.TryUpdateModelAsync(model, Prefix, m => m.Data);
 
             try
             {
-                var settings = await _eventBriteSettingsService.GetSettingsAsync();
+                var settings = await _eventbriteSettingsService.GetSettingsAsync();
 
                 if (string.IsNullOrWhiteSpace(settings.PrivateToken))
                 {
@@ -99,16 +99,16 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
 
                 var url = GetUrl(updater, model);
 
-                var eventBriteEventDto = await GetEventBriteEventDtoAsync(updater, settings, url);
+                var eventbriteEventDto = await GetEventbriteEventDtoAsync(updater, settings, url);
 
-                EventBriteVenueDto eventBriteVenueDto = await GetEventBriteVenueDtoAsync(updater, settings, eventBriteEventDto);
+                EventbriteVenueDto eventBriteVenueDto = await GetEventbriteVenueDtoAsync(updater, settings, eventbriteEventDto);
 
                 if (updater.ModelState.ErrorCount > 0)
                 {
                     return Edit(field, context);
                 }
 
-                field.Data = new EventBriteEvent(eventBriteEventDto, eventBriteVenueDto);
+                field.Data = new EventbriteEvent(eventbriteEventDto, eventBriteVenueDto);
             }
             catch (Exception e)
             {
@@ -118,7 +118,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
             return Edit(field, context);
         }
 
-        private async Task<EventBriteEventDto> GetEventBriteEventDtoAsync(IUpdateModel updater, EventBriteSettings settings, string url)
+        private async Task<EventbriteEventDto> GetEventbriteEventDtoAsync(IUpdateModel updater, EventbriteSettings settings, string url)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Add("Authorization", string.Format("Bearer {0}", settings.PrivateToken));
@@ -129,13 +129,13 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
 
             if (!response.IsSuccessStatusCode)
             {
-                updater.ModelState.AddModelError("Value", "Error fetching event from EventBrite API, please check the Event ID and API Credentials");
+                updater.ModelState.AddModelError("Value", "Error fetching event from Eventbrite API, please check the Event ID and API Credentials");
                 return null;
             }
-            return JsonConvert.DeserializeObject<EventBriteEventDto>(await response.Content.ReadAsStringAsync());
+            return JsonConvert.DeserializeObject<EventbriteEventDto>(await response.Content.ReadAsStringAsync());
         }
 
-        private async Task<EventBriteVenueDto> GetEventBriteVenueDtoAsync(IUpdateModel updater, EventBriteSettings settings, EventBriteEventDto eventBriteEventDto)
+        private async Task<EventbriteVenueDto> GetEventbriteVenueDtoAsync(IUpdateModel updater, EventbriteSettings settings, EventbriteEventDto eventBriteEventDto)
         {
             if (string.IsNullOrWhiteSpace(eventBriteEventDto.VenueId))
             {
@@ -151,13 +151,13 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
 
             if (response.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<EventBriteVenueDto>(await response.Content.ReadAsStringAsync());
+                return JsonConvert.DeserializeObject<EventbriteVenueDto>(await response.Content.ReadAsStringAsync());
             }
 
             return null;
         }
 
-        private string GetUrl(IUpdateModel updater, EditEventBriteFieldViewModel model)
+        private string GetUrl(IUpdateModel updater, EditEventbriteFieldViewModel model)
         {
             if (model.Field.Value.Contains("eid"))
             {

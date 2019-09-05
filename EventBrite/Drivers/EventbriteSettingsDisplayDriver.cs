@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using Etch.OrchardCore.Fields.EventBrite.Models;
-using Etch.OrchardCore.Fields.EventBrite.ViewModels;
+using Etch.OrchardCore.Fields.Eventbrite.Models;
+using Etch.OrchardCore.Fields.Eventbrite.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using OrchardCore.DisplayManagement.Entities;
@@ -8,13 +8,13 @@ using OrchardCore.DisplayManagement.Handlers;
 using OrchardCore.DisplayManagement.Views;
 using OrchardCore.Settings;
 
-namespace Etch.OrchardCore.Fields.EventBrite.Drivers
+namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
 {
-    public class EventBriteSettingsDisplayDriver : SectionDisplayDriver<ISite, EventBriteSettings>
+    public class EventbriteSettingsDisplayDriver : SectionDisplayDriver<ISite, EventbriteSettings>
     {
         #region Constants
 
-        public const string GroupId = "EventBrite";
+        public const string GroupId = "Eventbrite";
 
         #endregion Constants
 
@@ -27,7 +27,7 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
 
         #region Constructor
 
-        public EventBriteSettingsDisplayDriver(IAuthorizationService authorizationService, IHttpContextAccessor httpContextAccessor)
+        public EventbriteSettingsDisplayDriver(IAuthorizationService authorizationService, IHttpContextAccessor httpContextAccessor)
         {
             _authorizationService = authorizationService;
             _httpContextAccessor = httpContextAccessor;
@@ -37,33 +37,33 @@ namespace Etch.OrchardCore.Fields.EventBrite.Drivers
 
         #region Overrides
 
-        public override async Task<IDisplayResult> EditAsync(EventBriteSettings settings, BuildEditorContext context)
+        public override async Task<IDisplayResult> EditAsync(EventbriteSettings settings, BuildEditorContext context)
         {
             var user = _httpContextAccessor.HttpContext?.User;
 
-            if (!await _authorizationService.AuthorizeAsync(user, Permissions.ManageEventBriteAPI))
+            if (!await _authorizationService.AuthorizeAsync(user, Permissions.ManageEventbriteAPI))
             {
                 return null;
             }
 
-            return Initialize<EventBriteSettingsViewModel>("ManageEventBriteSettings_Edit", model =>
+            return Initialize<EventbriteSettingsViewModel>("ManageEventBriteSettings_Edit", model =>
             {
                 model.PrivateToken = settings.PrivateToken;
             }).Location("Content:3").OnGroup(GroupId);
         }
 
-        public override async Task<IDisplayResult> UpdateAsync(EventBriteSettings settings, BuildEditorContext context)
+        public override async Task<IDisplayResult> UpdateAsync(EventbriteSettings settings, BuildEditorContext context)
         {
             var user = _httpContextAccessor.HttpContext?.User;
 
-            if (!await _authorizationService.AuthorizeAsync(user, Permissions.ManageEventBriteAPI))
+            if (!await _authorizationService.AuthorizeAsync(user, Permissions.ManageEventbriteAPI))
             {
                 return null;
             }
 
             if (context.GroupId == GroupId)
             {
-                var model = new EventBriteSettingsViewModel();
+                var model = new EventbriteSettingsViewModel();
 
                 await context.Updater.TryUpdateModelAsync(model, Prefix);
 
