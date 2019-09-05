@@ -95,18 +95,21 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
         public override async Task<IDisplayResult> UpdateAsync(EventbriteField field, IUpdateModel updater, UpdateFieldEditorContext context)
         {
             var model = new EditEventbriteFieldViewModel();
-            var settings = await _eventbriteSettingsService.GetSettingsAsync();
-
-            if (string.IsNullOrWhiteSpace(settings.PrivateToken))
-            {
-                updater.ModelState.AddModelError(Prefix, nameof(field.Value), T[UnconfiguredErrorMessage]);
-                return await EditAsync(field, context);
-            }
 
             await updater.TryUpdateModelAsync(model, Prefix, m => m.Value);
 
             if (string.IsNullOrWhiteSpace(model.Value))
             {
+                field.Data = null;
+                field.Value = string.Empty;
+                return await EditAsync(field, context);
+            }
+
+            var settings = await _eventbriteSettingsService.GetSettingsAsync();
+
+            if (string.IsNullOrWhiteSpace(settings.PrivateToken))
+            {
+                updater.ModelState.AddModelError(Prefix, nameof(field.Value), T[UnconfiguredErrorMessage]);
                 return await EditAsync(field, context);
             }
 
