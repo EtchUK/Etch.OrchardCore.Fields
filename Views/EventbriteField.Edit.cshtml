@@ -1,8 +1,13 @@
-﻿@model Etch.OrchardCore.Fields.Eventbrite.ViewModels.EditEventbriteFieldViewModel
+﻿@using Etch.OrchardCore.Fields.Eventbrite
+
+@model Etch.OrchardCore.Fields.Eventbrite.ViewModels.EditEventbriteFieldViewModel
 
 @if (!Model.HasApiKey)
 {
-    <div class="alert alert-warning" role="alert">@T["Eventbrite API key needs to be added before using this field."]</div>
+    <p class="alert alert-warning">
+        <a asp-route-area="OrchardCore.Settings" asp-controller="Admin" asp-action="Index" asp-route-groupId="@Constants.SettingsGroupId" asp-route-returnUrl="@FullRequestPath">@T["Please specify Eventbrite API key to use for field."]</a>
+    </p>
+
 }
 else
 {

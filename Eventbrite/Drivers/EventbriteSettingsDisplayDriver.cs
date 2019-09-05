@@ -12,12 +12,6 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
 {
     public class EventbriteSettingsDisplayDriver : SectionDisplayDriver<ISite, EventbriteSettings>
     {
-        #region Constants
-
-        public const string GroupId = "Eventbrite";
-
-        #endregion Constants
-
         #region Dependencies
 
         private readonly IAuthorizationService _authorizationService;
@@ -49,7 +43,7 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
             return Initialize<EventbriteSettingsViewModel>("ManageEventBriteSettings_Edit", model =>
             {
                 model.PrivateToken = settings.PrivateToken;
-            }).Location("Content:3").OnGroup(GroupId);
+            }).Location("Content:3").OnGroup(Constants.SettingsGroupId);
         }
 
         public override async Task<IDisplayResult> UpdateAsync(EventbriteSettings settings, BuildEditorContext context)
@@ -61,7 +55,7 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
                 return null;
             }
 
-            if (context.GroupId == GroupId)
+            if (context.GroupId == Constants.SettingsGroupId)
             {
                 var model = new EventbriteSettingsViewModel();
 
