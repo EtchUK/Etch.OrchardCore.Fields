@@ -28,7 +28,7 @@ namespace Etch.OrchardCore.Fields.Eventbrite
                 .Add(T["Configuration"], configuration => configuration
                     .Add(T["API"], settings => settings
                         .Add(T["Eventbrite API"], T["Eventbrite API"], layers => layers
-                            .Action("Index", "Admin", new { area = "OrchardCore.Settings", groupId = EventbriteSettingsDisplayDriver.GroupId })
+                            .Action("Index", "Admin", new { area = "OrchardCore.Settings", groupId = Constants.SettingsGroupId })
                             .Permission(Permissions.ManageEventbriteAPI)
                             .LocalNav()
                         )));
