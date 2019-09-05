@@ -9,9 +9,9 @@ namespace Etch.OrchardCore.Fields.Eventbrite.ViewModels
         public EventbriteField Field { get; set; }
         public ContentPart Part { get; set; }
         public ContentPartFieldDefinition PartFieldDefinition { get; set; }
-
-        public string Data { get; set; }
+        
         public string Value { get; set; }
+
         public bool HasApiKey { get; set; }
     }
 }
