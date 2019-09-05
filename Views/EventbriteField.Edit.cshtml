@@ -10,6 +10,7 @@ else
         <div class="row col-sm-6">
             <label asp-for="Value">@T["Event Id"]</label>
             <input type="text" asp-for="Value" class="form-control" />
+            <span asp-validation-for="Value"></span>
             <span class="hint">@T["Event Id or Event Dashboard link for the event. E.g. https://www.eventbrite.co.uk/myevent?eid=50902591020"]</span>
         </div>
     </fieldset>

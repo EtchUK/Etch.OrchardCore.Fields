@@ -1,43 +1,45 @@
 ﻿using Etch.OrchardCore.Fields.Eventbrite.Fields;
 using Etch.OrchardCore.Fields.Eventbrite.Models;
-using Etch.OrchardCore.Fields.Eventbrite.Models.Dto;
 using Etch.OrchardCore.Fields.Eventbrite.Services;
 using Etch.OrchardCore.Fields.Eventbrite.ViewModels;
 using Microsoft.Extensions.Localization;
-using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
 using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
+using OrchardCore.Mvc.ModelBinding;
 using System;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
 {
     public class EventbriteFieldDisplayDriver : ContentFieldDisplayDriver<EventbriteField>
     {
-        #region PublicVariables
+        #region Constants
 
-        public IStringLocalizer T { get; set; }
+        private const string FailedToRetrieveErrorMessage = "Unable to retrieve event from Eventbrite.";
+        private const string UnconfiguredErrorMessage = "Unable to retrieve event from Eventbrite because API key hasn't been configured.";
 
-        #endregion PublicVariables
+        #endregion
 
         #region Dependencies
 
+        private readonly IEventbriteService _eventbriteService;
         private readonly IEventbriteSettingsService _eventbriteSettingsService;
-        private readonly IHttpClientFactory _clientFactory;
+
+        private IStringLocalizer T { get; set; }
 
         #endregion Dependencies
 
         #region Constructor
 
-        public EventbriteFieldDisplayDriver(IStringLocalizer<EventbriteFieldDisplayDriver> localizer, IEventbriteSettingsService eventbriteSettingsService, IHttpClientFactory clientFactory)
+        public EventbriteFieldDisplayDriver(IStringLocalizer<EventbriteFieldDisplayDriver> localizer, IEventbriteService eventbriteService, IEventbriteSettingsService eventbriteSettingsService)
         {
-            T = localizer;
+            _eventbriteService = eventbriteService;
             _eventbriteSettingsService = eventbriteSettingsService;
-            _clientFactory = clientFactory;
+
+            T = localizer;
         }
 
         #endregion Constructor
@@ -84,93 +86,53 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
         public override async Task<IDisplayResult> UpdateAsync(EventbriteField field, IUpdateModel updater, UpdateFieldEditorContext context)
         {
             var model = new EditEventbriteFieldViewModel();
+            var settings = await _eventbriteSettingsService.GetSettingsAsync();
+
+            if (string.IsNullOrWhiteSpace(settings.PrivateToken))
+            {
+                updater.ModelState.AddModelError(Prefix, nameof(field.Value), T[UnconfiguredErrorMessage]);
+                return await EditAsync(field, context);
+            }
 
             await updater.TryUpdateModelAsync(model, Prefix, m => m.Value);
 
+            if (string.IsNullOrWhiteSpace(model.Value))
+            {
+                return await EditAsync(field, context);
+            }
+
             try
             {
-                var settings = await _eventbriteSettingsService.GetSettingsAsync();
+                var eventbriteEvent = await _eventbriteService.GetEventAsync(GetEventbriteId(model.Value));
 
-                if (string.IsNullOrWhiteSpace(settings.PrivateToken))
+                if (eventbriteEvent == null)
                 {
-                    updater.ModelState.AddModelError("Value", "Eventbrite API settings are not set correctly, please check these and try again.");
+                    throw new Exception();
                 }
 
-                var url = GetUrl(updater, model);
-
-                var eventbriteEventDto = await GetEventbriteEventDtoAsync(updater, settings, url);
-
-                EventbriteVenueDto eventBriteVenueDto = await GetEventbriteVenueDtoAsync(updater, settings, eventbriteEventDto);
-
-                if (updater.ModelState.ErrorCount > 0)
-                {
-                    return await EditAsync(field, context);
-                }
-
+                var venue = await _eventbriteService.GetVenueAsync(eventbriteEvent.Id);
+                
                 field.Value = model.Value;
-                field.Data = new EventbriteEvent(eventbriteEventDto, eventBriteVenueDto);
+                field.Data = new EventbriteEvent(eventbriteEvent, venue);
             }
             catch
             {
-                updater.ModelState.AddModelError("Value", "Something went wrong saving the event.");
+                updater.ModelState.AddModelError(Prefix, nameof(field.Value), T[FailedToRetrieveErrorMessage]);
             }
 
             return await EditAsync(field, context);
         }
-
-        private async Task<EventbriteEventDto> GetEventbriteEventDtoAsync(IUpdateModel updater, EventbriteSettings settings, string url)
+       
+        private string GetEventbriteId(string value)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, url);
-            request.Headers.Add("Authorization", string.Format("Bearer {0}", settings.PrivateToken));
-
-            var client = _clientFactory.CreateClient();
-
-            var response = await client.SendAsync(request);
-
-            if (!response.IsSuccessStatusCode)
+            try
             {
-                updater.ModelState.AddModelError("Value", "Error fetching event from Eventbrite API, please check the Event ID and API Credentials");
-                return null;
+                return HttpUtility.ParseQueryString(new Uri(value).Query)["eid"];
             }
-            return JsonConvert.DeserializeObject<EventbriteEventDto>(await response.Content.ReadAsStringAsync());
-        }
-
-        private async Task<EventbriteVenueDto> GetEventbriteVenueDtoAsync(IUpdateModel updater, EventbriteSettings settings, EventbriteEventDto eventBriteEventDto)
-        {
-            if (string.IsNullOrWhiteSpace(eventBriteEventDto.VenueId))
+            catch
             {
-                return null;
+                return value;
             }
-
-            var request = new HttpRequestMessage(HttpMethod.Get, string.Format("https://www.eventbriteapi.com/v3/venues/{0}/", eventBriteEventDto.VenueId));
-            request.Headers.Add("Authorization", string.Format("Bearer {0}", settings.PrivateToken));
-
-            var client = _clientFactory.CreateClient();
-
-            var response = await client.SendAsync(request);
-
-            if (response.IsSuccessStatusCode)
-            {
-                return JsonConvert.DeserializeObject<EventbriteVenueDto>(await response.Content.ReadAsStringAsync());
-            }
-
-            return null;
-        }
-
-        private string GetUrl(IUpdateModel updater, EditEventbriteFieldViewModel model)
-        {
-            if (model.Value.Contains("eid"))
-            {
-                if (int.TryParse(model.Value.Split('=').Last(), out var eventId))
-                {
-                    return string.Format("https://www.eventbriteapi.com/v3/events/{0}/", eventId);
-                }
-
-                updater.ModelState.AddModelError("Value", "Error parsing EventId from Url, please check the format and try again.");
-                return string.Empty;
-            }
-
-            return string.Format("https://www.eventbriteapi.com/v3/events/{0}/", model.Value);
         }
 
         #endregion Edit
