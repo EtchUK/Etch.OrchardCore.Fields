@@ -21,7 +21,7 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
         private const string FailedToRetrieveErrorMessage = "Unable to retrieve event from Eventbrite.";
         private const string UnconfiguredErrorMessage = "Unable to retrieve event from Eventbrite because API key hasn't been configured.";
 
-        #endregion
+        #endregion Constants
 
         #region Dependencies
 
@@ -122,8 +122,8 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
                     throw new Exception();
                 }
 
-                var venue = await _eventbriteService.GetVenueAsync(eventbriteEvent.Id);
-                
+                var venue = await _eventbriteService.GetVenueAsync(eventbriteEvent.VenueId);
+
                 field.Value = model.Value;
                 field.Data = new EventbriteEvent(eventbriteEvent, venue);
             }
@@ -134,7 +134,7 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
 
             return await EditAsync(field, context);
         }
-       
+
         private string GetEventbriteId(string value)
         {
             try
