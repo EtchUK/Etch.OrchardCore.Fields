@@ -37,7 +37,7 @@ namespace Etch.OrchardCore.Fields.Dictionary.Settings
         {
             return Initialize<DictionaryFieldSettings>("DictionaryFieldSettings_Edit", model =>
                 {
-                    partFieldDefinition.Settings.Populate(model);
+                    partFieldDefinition.PopulateSettings(model);
                 })
                 .Location("Content");
         }
@@ -58,7 +58,8 @@ namespace Etch.OrchardCore.Fields.Dictionary.Settings
                 {
                     _logger.LogError(e, "Error parsing DefaultData for DictionaryFieldSettings");
                 }
-                context.Builder.MergeSettings(settings);
+
+                context.Builder.WithSettings(settings);
             }
 
             return Edit(partFieldDefinition);

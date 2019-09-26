@@ -16,7 +16,7 @@ namespace Etch.OrchardCore.Fields.Values.Settings
         {
             return Initialize<ValuesFieldSettings>("ValuesFieldSettings_Edit", model =>
             {
-                partFieldDefinition.Settings.Populate(model);
+                partFieldDefinition.PopulateSettings(model);
             })
             .Location("Content");
         }
@@ -27,7 +27,7 @@ namespace Etch.OrchardCore.Fields.Values.Settings
 
             if (await context.Updater.TryUpdateModelAsync(settings, Prefix))
             {
-                context.Builder.MergeSettings(settings);
+                context.Builder.WithSettings(settings);
             }
 
             return Edit(partFieldDefinition);
