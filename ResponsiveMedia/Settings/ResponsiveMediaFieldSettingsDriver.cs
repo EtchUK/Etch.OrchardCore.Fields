@@ -31,7 +31,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
 
         public override IDisplayResult Edit(ContentPartFieldDefinition partFieldDefinition)
         {
-            return Initialize<ResponsiveMediaFieldSettings>("ResponsiveMediaFieldSettings_Edit", model => partFieldDefinition.Settings.Populate(model))
+            return Initialize<ResponsiveMediaFieldSettings>("ResponsiveMediaFieldSettings_Edit", model => partFieldDefinition.PopulateSettings(model))
                 .Location("Content");
         }
 
@@ -58,7 +58,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
                 context.Updater.ModelState.AddModelError(Prefix, T["Failed to parse breakpoints, make sure it only contains numeric values."]);
             }
 
-            context.Builder.MergeSettings(settings);
+            context.Builder.WithSettings(settings);
 
             return Edit(partFieldDefinition);
         }
