@@ -39,7 +39,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
 
         public override IDisplayResult Display(ResponsiveMediaField field, BuildFieldDisplayContext context)
         {
-            var settings = context.PartFieldDefinition.Settings.ToObject<ResponsiveMediaFieldSettings>();
+            var settings = context.PartFieldDefinition.GetSettings<ResponsiveMediaFieldSettings>();
             var data = field.HasData ? field.Data : settings.FallbackData;
 
             return Initialize<DisplayResponsiveMediaFieldViewModel>(GetDisplayShapeType(context), model =>
@@ -56,7 +56,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
 
         public override IDisplayResult Edit(ResponsiveMediaField field, BuildFieldEditorContext context)
         {
-            var settings = context.PartFieldDefinition.Settings.ToObject<ResponsiveMediaFieldSettings>();
+            var settings = context.PartFieldDefinition.GetSettings<ResponsiveMediaFieldSettings>();
 
             if (!settings.IsConfigured)
             {
@@ -81,7 +81,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
         {
             if (await updater.TryUpdateModelAsync(field, Prefix, f => f.Data))
             {
-                var settings = context.PartFieldDefinition.Settings.ToObject<ResponsiveMediaFieldSettings>();
+                var settings = context.PartFieldDefinition.GetSettings<ResponsiveMediaFieldSettings>();
 
                 if (settings.Required && !JsonConvert.DeserializeObject<IList<ResponsiveMediaItem>>(field.Data).Any())
                 {
