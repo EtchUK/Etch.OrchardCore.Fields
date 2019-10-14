@@ -5,7 +5,7 @@
 
 @{
     var modifier = Model.PartFieldDefinition.Name.HtmlClassify();
-    var settings = Model.PartFieldDefinition.Settings.ToObject<ValuesFieldSettings>();
+    var settings = Model.PartFieldDefinition.GetSettings<ValuesFieldSettings>();
 }
 
 @if (Model.Data.Any())
