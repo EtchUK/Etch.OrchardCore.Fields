@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0" />
+    <PackageReference Include="OrchardCore.ContentFields" Version="1.0.0-rc1-10004" />
     <PackageReference Include="OrchardCore.ContentManagement" Version="1.0.0-rc1-10004" />
     <PackageReference Include="OrchardCore.ContentTypes.Abstractions" Version="1.0.0-rc1-10004" />
     <PackageReference Include="OrchardCore.Liquid.Abstractions" Version="1.0.0-rc1-10004" />
@@ -28,6 +29,7 @@
     <PackageReference Include="OrchardCore.Media.Abstractions" Version="1.0.0-rc1-10004" />
     <PackageReference Include="OrchardCore.Module.Targets" Version="1.0.0-rc1-10004" />
     <PackageReference Include="OrchardCore.ResourceManagement" Version="1.0.0-rc1-10004" />
+    <PackageReference Include="OrchardCore.Taxonomies" Version="1.0.0-rc1-10004" />
   </ItemGroup>
 
   <ItemGroup>
