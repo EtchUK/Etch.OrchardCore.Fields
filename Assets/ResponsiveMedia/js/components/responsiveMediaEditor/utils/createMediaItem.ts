@@ -40,6 +40,11 @@ export default async function createMediaItem(
                         Math.max(...possibleBreakpoints),
                         selectedMediaItem
                     );
+                } else {
+                    mediaItem.addSource(
+                        0,
+                        selectedMediaItem
+                    );
                 }
 
                 processedCount++;

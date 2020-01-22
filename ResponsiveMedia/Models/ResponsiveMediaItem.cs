@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
 {
@@ -52,6 +51,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
 
             if (!sourceSets.Any())
             {
+                SmallestImageUrl = Sources.Where(x => x.Breakpoint == 0).FirstOrDefault()?.Url;
                 return sourceSets;
             }
 

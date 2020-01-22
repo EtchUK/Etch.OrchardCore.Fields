@@ -42,6 +42,10 @@ export default Vue.extend({
             return source.name;
         },
 
+        isOnlySmallImage(): boolean {
+            return (this.media as MediaItem).sources.length === 1 && (this.media as MediaItem).sources[0].breakpoint === 0;
+        },
+
         url(): string {
             return (this.media as MediaItem).getUrlAt(this
                 .activeBreakpoint as number);
@@ -80,7 +84,7 @@ export default Vue.extend({
     template: `<div class="card">
         <img :src="url" class="card-img-top" alt="" />
         <div class="card-body flex-column">
-            <p class="small">{{ activeName }}</p>
+            <p class="small">{{ activeName }} {{ isOnlySmallImage }}</p>
 
             <div class="d-flex flex-row flex-wrap mb-1">
                 <button 
@@ -93,8 +97,21 @@ export default Vue.extend({
                 </button>
             </div>
 
-            <div class="d-flex flex-row flex-wrap mb-2">
-                <a href="#" class="mr-3" v-on:click.prevent="update">Change image at {{ activeBreakpoint }}</a>
+            <div v-bind:class="{ 'd-none': isOnlySmallImage }">
+                <div 
+                    class="d-flex flex-row flex-wrap mb-2"
+                    v-bind:class="{ 'display-none': !isOnlySmallImage }">
+                    <a href="#" class="mr-3" v-on:click.prevent="update">Change image at {{ activeBreakpoint }}</a>
+                </div>
+            </div>
+
+            <div 
+                class="d-none"
+                v-bind:class="{ 'd-block': isOnlySmallImage }">
+                <div 
+                    class="d-flex flex-row flex-wrap mb-2">
+                    <p class="small mb-1"><em>Image is smaller than smallest breakpoint</em></p>
+                </div>
             </div>
 
             <div class="btn-group">
