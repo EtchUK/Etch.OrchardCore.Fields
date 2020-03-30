@@ -4,7 +4,7 @@
 
 @{ 
     var id = Guid.NewGuid();
-	var displayName = Model.PartFieldDefinition.GetSettings<ContentPartFieldSettings>().DisplayName;
+    var displayName = Model.PartFieldDefinition.GetSettings<ContentPartFieldSettings>().DisplayName;
 }
 
 <script asp-src="~/Etch.OrchardCore.Fields/Scripts/code/ace/ace.js" asp-name="ace" at="Foot"></script>
@@ -13,35 +13,35 @@
     var editor = window.ace.edit('@id'),
         $input = document.querySelector('.editor-@id');
 
-	editor.setTheme('ace/theme/crimson_editor');
-	editor.session.setMode('ace/mode/javascript');
+    editor.setTheme('ace/theme/crimson_editor');
+    editor.session.setMode('ace/mode/javascript');
 
-	editor.setOptions({
-		autoScrollEditorIntoView: true,
-		maxLines: 8,
-		showPrintMargin: false
-	});
+    editor.setOptions({
+        autoScrollEditorIntoView: true,
+        maxLines: 80,
+        showPrintMargin: false
+    });
 
     editor.renderer.setScrollMargin(10, 10, 10, 10);
 
     editor.session.on('change', function () {
-		$input.value = editor.session.getValue();
+        $input.value = editor.session.getValue();
     });
 </script>
 
 <style>
 
-	.ace_editor {
-		border: 1px solid lightgray;
-		margin: auto;
-		height: 200px;
-		width: 100%;
-	}
+    .ace_editor {
+        border: 1px solid lightgray;
+        margin: auto;
+        height: 200px;
+        width: 100%;
+    }
 
 </style>
 
 <div class="form-group">
-	<label asp-for="Value">@displayName</label>
-	<pre id="@id">@Model.Value</pre>
-	<input asp-for="Value" type="hidden" class="editor-@id" />
+    <label asp-for="Value">@displayName</label>
+    <pre id="@id">@Model.Value</pre>
+    <input asp-for="Value" type="hidden" class="editor-@id" />
 </div>
