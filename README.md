@@ -20,6 +20,12 @@ Alternatively you can [download the source](https://github.com/etchuk/Etch.Orcha
 
 Each content field is packaged as it's own feature that needs to be enabled.
 
+### Code
+
+Content field providing a code editor (using [Ace](https://ace.c9.io/)) to add code as content, perfect for displaying code samples.
+
+![Screen recording of code field](/docs/demo-code-field.gif?raw=true)
+
 ### Dictionary
 
 Provides content field for managing an arbitrary amount of names and associated values. Items will be displayed on the page as an unordered list with name/value.
