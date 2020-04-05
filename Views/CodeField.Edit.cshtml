@@ -10,23 +10,25 @@
 <script asp-src="~/Etch.OrchardCore.Fields/Scripts/code/ace/ace.js" asp-name="ace" at="Foot"></script>
 
 <script at="Foot">
-    var editor = window.ace.edit('@id'),
-        $input = document.querySelector('.editor-@id');
+    (function () {
+        var editor = window.ace.edit('@id'),
+            $input = document.querySelector('.editor-@id');
 
-    editor.setTheme('ace/theme/crimson_editor');
-    editor.session.setMode('ace/mode/javascript');
+        editor.setTheme('ace/theme/crimson_editor');
+        editor.session.setMode('ace/mode/javascript');
 
-    editor.setOptions({
-        autoScrollEditorIntoView: true,
-        maxLines: 80,
-        showPrintMargin: false
-    });
+        editor.setOptions({
+            autoScrollEditorIntoView: true,
+            maxLines: 80,
+            showPrintMargin: false
+        });
 
-    editor.renderer.setScrollMargin(10, 10, 10, 10);
+        editor.renderer.setScrollMargin(10, 10, 10, 10);
 
-    editor.session.on('change', function () {
-        $input.value = editor.session.getValue();
-    });
+        editor.session.on('change', function () {
+            $input.value = editor.session.getValue();
+        });
+    })();
 </script>
 
 <style>
