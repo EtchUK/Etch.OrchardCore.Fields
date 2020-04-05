@@ -27,6 +27,7 @@
 
         editor.session.on('change', function () {
             $input.value = editor.session.getValue();
+            $(document).trigger('contentpreview:render');
         });
     })();
 </script>
