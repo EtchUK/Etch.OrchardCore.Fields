@@ -9,6 +9,7 @@ using OrchardCore.ContentTypes.Editors;
 using OrchardCore.Modules;
 using Etch.OrchardCore.Fields.ResponsiveMedia.Models;
 using Etch.OrchardCore.Fields.ResponsiveMedia.ViewModels;
+using OrchardCore.Data.Migration;
 
 namespace Etch.OrchardCore.Fields.ResponsiveMedia
 {
@@ -24,6 +25,8 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia
 
         public override void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IDataMigration, Migrations>();
+
             services.AddSingleton<ContentField, ResponsiveMediaField>();
             services.AddScoped<IContentFieldDisplayDriver, ResponsiveMediaFieldDisplayDriver>();
             services.AddScoped<IContentPartFieldDefinitionDisplayDriver, ResponsiveMediaFieldSettingsDriver>();
