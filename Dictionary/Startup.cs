@@ -8,6 +8,7 @@ using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentTypes.Editors;
 using OrchardCore.Modules;
 using Etch.OrchardCore.Fields.Dictionary.Models;
+using OrchardCore.Data.Migration;
 
 namespace Etch.OrchardCore.Fields.Dictionary
 {
@@ -22,6 +23,8 @@ namespace Etch.OrchardCore.Fields.Dictionary
 
         public override void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IDataMigration, Migrations>();
+
             services.AddSingleton<ContentField, DictionaryField>();
 
             services.AddScoped<IContentFieldDisplayDriver, DictionaryFieldDisplayDriver>();
