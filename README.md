@@ -8,7 +8,7 @@ Module for [Orchard Core](https://github.com/OrchardCMS/OrchardCore) that provid
 
 ## Orchard Core Reference
 
-This module is referencing the RC1 build of Orchard Core ([`1.0.0-rc1-10004`](https://www.nuget.org/packages/OrchardCore.Module.Targets/1.0.0-rc1-10004)).
+This module is referencing the RC1 build of Orchard Core ([`1.0.0-rc2-13450`](https://www.nuget.org/packages/OrchardCore.Module.Targets/1.0.0-rc2-13450)).
 
 ## Installing
 
@@ -51,8 +51,6 @@ Allows editors to specify a content item by its alias to be rendered in a specif
 ### Responsive Media
 
 Replica of the media field, however the field can have responsive breakpoints configured, which will be used to display a responsive image via the `picture` element. Content editors can define specific images for particular breakpoints, otherwise a [dynamically resized image](https://orchardcore.readthedocs.io/en/latest/OrchardCore.Modules/OrchardCore.Media/README/#resize_url) will be used for the breakpoint.
-
-_This field is still in development._
 
 ### Values
 
