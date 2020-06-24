@@ -23,9 +23,9 @@ namespace Etch.OrchardCore.Fields.Values
         {
             services.AddScoped<IDataMigration, Migrations>();
 
-            services.AddSingleton<ContentField, ValuesField>();
+            services.AddContentField<ValuesField>()
+                .UseDisplayDriver<ValuesFieldDisplayDriver>();
 
-            services.AddScoped<IContentFieldDisplayDriver, ValuesFieldDisplayDriver>();
             services.AddScoped<IContentPartFieldDefinitionDisplayDriver, ValuesFieldSettingsDriver>();
         }
     }

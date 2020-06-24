@@ -25,9 +25,9 @@ namespace Etch.OrchardCore.Fields.MultiSelect
         {
             services.AddScoped<IDataMigration, Migrations>();
 
-            services.AddSingleton<ContentField, MultiSelectField>();
+            services.AddContentField<MultiSelectField>()
+                .UseDisplayDriver<MultiSelectFieldDisplayDriver>();
 
-            services.AddScoped<IContentFieldDisplayDriver, MultiSelectFieldDisplayDriver>();
             services.AddScoped<IContentPartFieldDefinitionDisplayDriver, MultiSelectFieldSettingsDriver>();
         }
     }

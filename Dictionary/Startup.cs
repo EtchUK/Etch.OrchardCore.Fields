@@ -25,9 +25,9 @@ namespace Etch.OrchardCore.Fields.Dictionary
         {
             services.AddScoped<IDataMigration, Migrations>();
 
-            services.AddSingleton<ContentField, DictionaryField>();
+            services.AddContentField<DictionaryField>()
+                .UseDisplayDriver<DictionaryFieldDisplayDriver>();
 
-            services.AddScoped<IContentFieldDisplayDriver, DictionaryFieldDisplayDriver>();
             services.AddScoped<IContentPartFieldDefinitionDisplayDriver, DictionaryFieldSettingsDriver>();
         }
     }
