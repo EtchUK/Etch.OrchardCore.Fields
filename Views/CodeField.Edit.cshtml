@@ -1,10 +1,19 @@
 ﻿@using OrchardCore.ContentManagement.Metadata.Settings
+@using Etch.OrchardCore.Fields.Code
+@using Etch.OrchardCore.Fields.Code.Settings
 
 @model Etch.OrchardCore.Fields.Code.ViewModels.EditCodeFieldViewModel
 
-@{ 
+@{
     var id = Guid.NewGuid();
     var displayName = Model.PartFieldDefinition.GetSettings<ContentPartFieldSettings>().DisplayName;
+
+    var language = Model.PartFieldDefinition.GetSettings<CodeFieldSettings>().Language;
+
+    if (string.IsNullOrEmpty(language))
+    {
+        language = Constants.DefaultLanguage;
+    }
 }
 
 <script asp-src="~/Etch.OrchardCore.Fields/Scripts/code/ace/ace.js" asp-name="ace" at="Foot"></script>
@@ -15,7 +24,7 @@
             $input = document.querySelector('.editor-@id');
 
         editor.setTheme('ace/theme/crimson_editor');
-        editor.session.setMode('ace/mode/javascript');
+        editor.session.setMode('ace/mode/@language');
 
         editor.setOptions({
             autoScrollEditorIntoView: true,
@@ -40,7 +49,6 @@
         height: 200px;
         width: 100%;
     }
-
 </style>
 
 <div class="form-group">
