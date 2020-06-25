@@ -1,10 +1,12 @@
 ﻿using Etch.OrchardCore.Fields.Code.Drivers;
 using Etch.OrchardCore.Fields.Code.Fields;
+using Etch.OrchardCore.Fields.Code.Settings;
 using Etch.OrchardCore.Fields.Code.ViewModels;
 using Fluid;
 using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
+using OrchardCore.ContentTypes.Editors;
 using OrchardCore.Modules;
 
 namespace Etch.OrchardCore.Fields.Code
@@ -23,6 +25,8 @@ namespace Etch.OrchardCore.Fields.Code
             services.AddSingleton<ContentField, CodeField>();
 
             services.AddScoped<IContentFieldDisplayDriver, CodeFieldDisplayDriver>();
+
+            services.AddScoped<IContentPartFieldDefinitionDisplayDriver, CodeFieldSettingsDriver>();
         }
     }
 }
