@@ -30,6 +30,8 @@ stages:
               scannerMode: "MSBuild"
               projectKey: "Etch.OrchardCore.Fields"
               projectName: "Etch.OrchardCore.Fields"
+              extraProperties: 
+                sonar.exclusions=**/wwwroot/Scripts/code/ace/*.js
 
           - task: tmarkovski.projectversionasvariable.versionintovariable.projectversionasvariable@1
             displayName: "Get Project Version as variables from Etch.OrchardCore.Fields.csproj"
