@@ -2,7 +2,6 @@
 using Etch.OrchardCore.Fields.Dictionary.Models;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.ContentTypes.Editors;
 using OrchardCore.DisplayManagement.Views;
@@ -29,20 +28,20 @@ namespace Etch.OrchardCore.Fields.Dictionary.Settings
 
         #endregion Constructor
 
-        #region ContentPartFieldDefinitionDisplayDriver<DictionaryField>
+        #region Overrides
 
         #region Edit
 
-        public override IDisplayResult Edit(ContentPartFieldDefinition partFieldDefinition)
+        public override IDisplayResult Edit(ContentPartFieldDefinition model)
         {
-            return Initialize<DictionaryFieldSettings>("DictionaryFieldSettings_Edit", model =>
+            return Initialize<DictionaryFieldSettings>("DictionaryFieldSettings_Edit", viewModel =>
                 {
-                    partFieldDefinition.PopulateSettings(model);
+                    model.PopulateSettings(viewModel);
                 })
                 .Location("Content");
         }
 
-        public override async Task<IDisplayResult> UpdateAsync(ContentPartFieldDefinition partFieldDefinition, UpdatePartFieldEditorContext context)
+        public override async Task<IDisplayResult> UpdateAsync(ContentPartFieldDefinition model, UpdatePartFieldEditorContext context)
         {
             var settings = new DictionaryFieldSettings();
 
@@ -62,11 +61,11 @@ namespace Etch.OrchardCore.Fields.Dictionary.Settings
                 context.Builder.WithSettings(settings);
             }
 
-            return Edit(partFieldDefinition);
+            return Edit(model);
         }
 
         #endregion Edit
 
-        #endregion ContentPartFieldDefinitionDisplayDriver<DictionaryField>
+        #endregion Overrides
     }
 }

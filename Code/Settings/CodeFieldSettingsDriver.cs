@@ -3,7 +3,6 @@ using Etch.OrchardCore.Fields.Code.ViewModels;
 using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.ContentTypes.Editors;
 using OrchardCore.DisplayManagement.Views;
-using System;
 using System.Threading.Tasks;
 
 namespace Etch.OrchardCore.Fields.Code.Settings
@@ -14,34 +13,33 @@ namespace Etch.OrchardCore.Fields.Code.Settings
 
         #region Edit
 
-        public override IDisplayResult Edit(ContentPartFieldDefinition partFieldDefinition)
+        public override IDisplayResult Edit(ContentPartFieldDefinition model)
         {
-            return Initialize<EditCodeFieldSettingsViewModel>("CodeFieldSettings_Edit", model =>
+            return Initialize<EditCodeFieldSettingsViewModel>("CodeFieldSettings_Edit", viewModel =>
             {
-                model.Language = partFieldDefinition.GetSettings<CodeFieldSettings>().Language;
+                viewModel.Language = model.GetSettings<CodeFieldSettings>().Language;
 
-                if (string.IsNullOrWhiteSpace(model.Language))
+                if (string.IsNullOrWhiteSpace(viewModel.Language))
                 {
-                    model.Language = Constants.DefaultLanguage;
+                    viewModel.Language = Constants.DefaultLanguage;
                 }
             })
             .Location("Content");
-
         }
 
-        public override async Task<IDisplayResult> UpdateAsync(ContentPartFieldDefinition partFieldDefinition, UpdatePartFieldEditorContext context)
+        public override async Task<IDisplayResult> UpdateAsync(ContentPartFieldDefinition model, UpdatePartFieldEditorContext context)
         {
-            var model = new EditCodeFieldSettingsViewModel();
+            var viewModel = new EditCodeFieldSettingsViewModel();
 
-            if (await context.Updater.TryUpdateModelAsync(model, Prefix))
+            if (await context.Updater.TryUpdateModelAsync(viewModel, Prefix))
             {
                 context.Builder.WithSettings(new CodeFieldSettings
                 {
-                    Language = model.Language
+                    Language = viewModel.Language
                 });
             }
 
-            return Edit(partFieldDefinition);
+            return Edit(model);
         }
 
         #endregion

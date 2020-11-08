@@ -24,7 +24,7 @@
         initializeValuesEditor(document.getElementById('@Html.IdFor(m => m)'));
 </script>
 
-<fieldset class="form-group">
+<div class="form-group">
     <label asp-for="Data">@Model.PartFieldDefinition.DisplayName()</label>
 
     @if (!String.IsNullOrWhiteSpace(settings.Hint))
@@ -51,7 +51,7 @@
                     </div>
                     <div class="flex-shrink-1 text-right align-self-center">
                         <button v-on:click="remove(index)" class="btn btn-danger btn-sm" type="button">
-                            <i class="fa fa-trash-alt"></i>
+                            <span class="fa fa-trash-alt"></span>
                         </button>
                     </div>
                 </div>
@@ -60,4 +60,4 @@
 
         <p v-if="!hasValues" class="hint">@T[emptyMessage]</p>
     </div>
-</fieldset>
+</div>

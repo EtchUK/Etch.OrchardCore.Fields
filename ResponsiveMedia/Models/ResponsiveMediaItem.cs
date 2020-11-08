@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
 {
@@ -29,7 +28,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
             ResponsiveMediaSource lastMedia = null;
             for (var i = 0; i < orderedBreakpoints.Count; i++)
             {
-                var media = Sources.Where(x => x.Breakpoint == orderedBreakpoints[i]).FirstOrDefault();
+                var media = Sources.FirstOrDefault(x => x.Breakpoint == orderedBreakpoints[i]);
                 var isLastBreakpoint = i + 1 == orderedBreakpoints.Count;
                 var nextBreakpoint = isLastBreakpoint ? 0 : orderedBreakpoints[i + 1];
 
@@ -40,14 +39,12 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
                     continue;
                 }
 
-                if (!sourceSets.Any())
+                if (!sourceSets.Any() || lastMedia == null)
                 {
                     continue;
                 }
 
-                var sourceSetToResize = sourceSets.Last();
                 sourceSets.Add(new ResponsiveMediaSource { Breakpoint = nextBreakpoint + 1, Url = $"{lastMedia.Url}?width={orderedBreakpoints[i]}" });
-                continue;
             }
 
             if (!sourceSets.Any())

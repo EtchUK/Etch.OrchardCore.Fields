@@ -16,47 +16,47 @@
     </script>
 }
 
-<fieldset class="form-group">
+<div class="form-group">
     <div class="row col-sm-6">
         <label asp-for="Breakpoints">@T["Breakpoints"]</label>
         <input type="text" asp-for="Breakpoints" class="form-control" value="@string.Join(",", Model.Breakpoints)" />
         <span class="hint">@T["Comma separated list of breakpoints (e.g. \"200, 400, 600\")."]</span>
     </div>
-</fieldset>
+</div>
 
 <div class="row">
-    <fieldset class="form-group col-md-6">
+    <div class="form-group col-md-6">
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" asp-for="Required" checked="@Model.Required">
             <label class="custom-control-label" asp-for="Required">@T["Required"]</label>
             <span class="hint">@T["Whether a media is required."]</span>
         </div>
-    </fieldset>
+    </div>
 </div>
 
 <div class="row">
-    <fieldset class="form-group col-md-6">
+    <div class="form-group col-md-6">
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" asp-for="Multiple" checked="@Model.Multiple">
             <label class="custom-control-label" asp-for="Multiple">@T["Multiple"]</label>
             <span class="hint">@T["Whether multiple media can be selected.."]</span>
         </div>
-    </fieldset>
+    </div>
 </div>
 
-<fieldset class="form-group">
+<div class="form-group">
     <div class="row col-sm-6">
         <label asp-for="Hint">@T["Hint"]</label>
         <textarea asp-for="Hint" rows="2" class="form-control"></textarea>
         <span class="hint">@T["The hint text to display for this field on the editor."]</span>
     </div>
-</fieldset>
+</div>
 
 @if (Model.IsConfigured)
 {
     <div class="responsive-media-field-editor" id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.FallbackData)">
         <div class="responsive-media-field">
-            <fieldset class="form-group">
+            <div class="form-group">
                 <label asp-for="FallbackData">Fallback Image</label>
                 <span class="hint">Displayed when image hasn't been defined on content field.</span>
 
@@ -64,7 +64,7 @@
 
                 <nav class="responsive-media-field-toolbar mb-3">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-secondary btn-sm" v-on:click="add" :disabled="!canAdd"><i class="fa fa-plus"></i></button>
+                        <button type="button" class="btn btn-secondary btn-sm" v-on:click="add" :disabled="!canAdd"><span class="fa fa-plus"></span></button>
                     </div>
                 </nav>
 
@@ -73,7 +73,7 @@
                         <responsive-media-item v-bind:media="item" v-bind:breakpoints="breakpoints" v-on:remove="remove" v-on:update="update" />
                     </div>
                 </draggable>
-            </fieldset>
+            </div>
         </div>
     </div>
 

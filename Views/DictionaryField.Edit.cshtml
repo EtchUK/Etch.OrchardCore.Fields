@@ -20,7 +20,7 @@
         initializeDictionaryEditor(document.getElementById('@Html.IdFor(m => m)'));
 </script>
 
-<fieldset class="form-group">
+<div class="form-group">
     <label asp-for="Data">@Model.PartFieldDefinition.DisplayName()</label>
     @if (!String.IsNullOrEmpty(settings.Hint))
     {
@@ -34,7 +34,7 @@
 
         <draggable tag="ul" class="list-group" v-model="dictionaryItems" handle=".handle" @@change="updatePreview">
             <li v-for="(item, index) in dictionaryItems" class="row mb-3">
-                <button type="button" class="btn btn-light handle"><i class="fa fa-align-justify"></i></button>
+                <button type="button" class="btn btn-light handle"><span class="fa fa-align-justify"></span></button>
                 <div class="col">
                     <input class="form-control content-preview-text" asp-validation-class-for="Data" placeholder="Name" type="text" :ref="'name'" v-model="item.name" v-on:keydown.enter.prevent="nextField('name', index)" v-on:keydown.backspace="handleBackspace('name', index, $event)" v-on:keydown.up.prevent="handleUp('name', index)" v-on:keydown.down.prevent="handleDown('name', index)" />
                 </div>
@@ -42,7 +42,7 @@
                     <input class="form-control content-preview-text" asp-validation-class-for="Data" placeholder="Value" type="text" :ref="'value'" v-model="item.value" v-on:keydown.enter.prevent="nextField('value', index)" v-on:keydown.backspace="handleBackspace('value', index, $event)" v-on:keydown.up.prevent="handleUp('value', index)" v-on:keydown.down.prevent="handleDown('value', index)" />
                 </div>
                 <button v-on:click="remove(index)" class="btn btn-danger" type="button">
-                    <i class="fa fa-trash-alt">&nbsp;</i>
+                    <span class="fa fa-trash-alt">&nbsp;</span>
                 </button>
             </li>
         </draggable>
@@ -51,6 +51,6 @@
         <p v-if="!hasMinEntries" class="alert alert-warning">@T["You need at least {0} entries", Model.MinEntries]</p>
         <p v-if="isMaxEntries" class="alert alert-warning">@T["Max number of {0} entries reacted", Model.MaxEntries]</p>
 
-        <button v-on:click="add" class="btn btn-primary" type="button" :disabled="isMaxEntries === true"><i class="fa fa-plus">&nbsp;</i> @T["Add"]</button>
+        <button v-on:click="add" class="btn btn-primary" type="button" :disabled="isMaxEntries === true"><span class="fa fa-plus">&nbsp;</span> @T["Add"]</button>
     </div>
-</fieldset>
+</div>

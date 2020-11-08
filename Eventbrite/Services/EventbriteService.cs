@@ -9,8 +9,8 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Services
     {
         #region Constants
 
-        private string EventsUrl = "https://www.eventbriteapi.com/v3/events";
-        private string VenuesUrl = "https://www.eventbriteapi.com/v3/venues";
+        private const string EventsUrl = "https://www.eventbriteapi.com/v3/events";
+        private const string VenuesUrl = "https://www.eventbriteapi.com/v3/venues";
 
         #endregion
 

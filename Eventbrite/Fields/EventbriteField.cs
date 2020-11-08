@@ -1,6 +1,5 @@
 ﻿using Etch.OrchardCore.Fields.Eventbrite.Models;
 using OrchardCore.ContentManagement;
-using System.Collections.Generic;
 
 namespace Etch.OrchardCore.Fields.Eventbrite.Fields
 {

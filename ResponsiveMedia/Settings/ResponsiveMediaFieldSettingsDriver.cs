@@ -29,29 +29,29 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
 
         #endregion
 
-        public override IDisplayResult Edit(ContentPartFieldDefinition partFieldDefinition)
+        public override IDisplayResult Edit(ContentPartFieldDefinition model)
         {
-            return Initialize<ResponsiveMediaFieldSettings>("ResponsiveMediaFieldSettings_Edit", model => partFieldDefinition.PopulateSettings(model))
+            return Initialize<ResponsiveMediaFieldSettings>("ResponsiveMediaFieldSettings_Edit", viewModel => model.PopulateSettings(viewModel))
                 .Location("Content");
         }
 
-        public override async Task<IDisplayResult> UpdateAsync(ContentPartFieldDefinition partFieldDefinition, UpdatePartFieldEditorContext context)
+        public override async Task<IDisplayResult> UpdateAsync(ContentPartFieldDefinition model, UpdatePartFieldEditorContext context)
         {
-            var model = new UpdateResponsiveMediaFieldSettingsViewModel();
+            var viewModel = new UpdateResponsiveMediaFieldSettingsViewModel();
 
-            await context.Updater.TryUpdateModelAsync(model, Prefix);
+            await context.Updater.TryUpdateModelAsync(viewModel, Prefix);
 
             var settings = new ResponsiveMediaFieldSettings
             {
-                Hint = model.Hint,
-                Multiple = model.Multiple,
-                Required = model.Required,
-                FallbackData = JsonConvert.SerializeObject(ResponsiveMediaUtils.ParseMedia(_mediaFileStore, model.FallbackData))
+                Hint = viewModel.Hint,
+                Multiple = viewModel.Multiple,
+                Required = viewModel.Required,
+                FallbackData = JsonConvert.SerializeObject(ResponsiveMediaUtils.ParseMedia(_mediaFileStore, viewModel.FallbackData))
             };
 
             try
             {
-                settings.Breakpoints = model.Breakpoints;
+                settings.Breakpoints = viewModel.Breakpoints;
                 settings.GetBreakpoints();
             } catch
             {
@@ -60,7 +60,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
 
             context.Builder.WithSettings(settings);
 
-            return Edit(partFieldDefinition);
+            return Edit(model);
         }
     }
 }

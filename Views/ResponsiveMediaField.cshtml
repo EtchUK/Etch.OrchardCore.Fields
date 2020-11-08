@@ -9,7 +9,7 @@
                 <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
             }
 
-            <img src="@Model.Media[0].SmallestImageUrl" />
+            <img src="@Model.Media[0].SmallestImageUrl" alt="@T["Preview of image"]" />
         </picture>
     } else {
         <ul>
@@ -22,7 +22,7 @@
                         <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
                     }
 
-                    <img src="@media.SmallestImageUrl" />
+                    <img src="@media.SmallestImageUrl" alt="@T["Preview of image"]" />
                 </picture>
             </li>
         }
