@@ -21,6 +21,7 @@
         "@types/bootstrap": "^4.3.2",
         "@types/jquery": "^3.3.34",
         "copy-webpack-plugin": "^5.1.1",
+        "serialize-javascript": "^5.0.1",
         "ts-loader": "^6.2.2",
         "typescript": "^3.8.3",
         "webpack": "^4.42.1",
