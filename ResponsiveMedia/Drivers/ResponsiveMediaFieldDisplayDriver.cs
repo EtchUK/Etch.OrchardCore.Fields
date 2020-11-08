@@ -37,16 +37,16 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
 
         #endregion
 
-        public override IDisplayResult Display(ResponsiveMediaField field, BuildFieldDisplayContext context)
+        public override IDisplayResult Display(ResponsiveMediaField field, BuildFieldDisplayContext fieldDisplayContext)
         {
-            var settings = context.PartFieldDefinition.GetSettings<ResponsiveMediaFieldSettings>();
+            var settings = fieldDisplayContext.PartFieldDefinition.GetSettings<ResponsiveMediaFieldSettings>();
             var data = field.HasData ? field.Data : settings.FallbackData;
 
-            return Initialize<DisplayResponsiveMediaFieldViewModel>(GetDisplayShapeType(context), model =>
+            return Initialize<DisplayResponsiveMediaFieldViewModel>(GetDisplayShapeType(fieldDisplayContext), model =>
             {
                 model.Field = field;
-                model.Part = context.ContentPart;
-                model.PartFieldDefinition = context.PartFieldDefinition;
+                model.Part = fieldDisplayContext.ContentPart;
+                model.PartFieldDefinition = fieldDisplayContext.PartFieldDefinition;
                 model.Media = ParseMedia(data, settings.GetBreakpoints());
             })
             .Location("Content")

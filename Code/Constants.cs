@@ -1,6 +1,6 @@
 ﻿namespace Etch.OrchardCore.Fields.Code
 {
-    public class Constants
+    public static class Constants
     {
         public const string DefaultLanguage = "javascript";
     }

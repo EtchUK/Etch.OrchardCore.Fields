@@ -1,5 +1,4 @@
-﻿using Etch.OrchardCore.Fields.Eventbrite.Drivers;
-using Microsoft.Extensions.Localization;
+﻿using Microsoft.Extensions.Localization;
 using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using System;

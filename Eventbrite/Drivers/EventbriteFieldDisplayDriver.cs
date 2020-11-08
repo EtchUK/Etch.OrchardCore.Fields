@@ -48,18 +48,18 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
 
         #region Display
 
-        public override IDisplayResult Display(EventbriteField field, BuildFieldDisplayContext context)
+        public override IDisplayResult Display(EventbriteField field, BuildFieldDisplayContext fieldDisplayContext)
         {
             if (field == null || field.Data == null)
             {
                 return null;
             }
 
-            return Initialize<DisplayEventbriteFieldViewModel>(GetDisplayShapeType(context), model =>
+            return Initialize<DisplayEventbriteFieldViewModel>(GetDisplayShapeType(fieldDisplayContext), model =>
             {
                 model.Field = field;
-                model.Part = context.ContentPart;
-                model.PartFieldDefinition = context.PartFieldDefinition;
+                model.Part = fieldDisplayContext.ContentPart;
+                model.PartFieldDefinition = fieldDisplayContext.PartFieldDefinition;
             })
             .Location("Content")
             .Location("SummaryAdmin", "");
@@ -119,13 +119,15 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
 
                 if (eventbriteEvent == null)
                 {
-                    throw new Exception();
+                    updater.ModelState.AddModelError(Prefix, nameof(field.Value), T[FailedToRetrieveErrorMessage]);
                 }
+                else
+                {
+                    var venue = await _eventbriteService.GetVenueAsync(eventbriteEvent.VenueId);
 
-                var venue = await _eventbriteService.GetVenueAsync(eventbriteEvent.VenueId);
-
-                field.Value = model.Value;
-                field.Data = new EventbriteEvent(eventbriteEvent, venue);
+                    field.Value = model.Value;
+                    field.Data = new EventbriteEvent(eventbriteEvent, venue);
+                }
             }
             catch
             {

@@ -15,33 +15,33 @@ namespace Etch.OrchardCore.Fields.MultiSelect.Settings
 
         #region Edit
 
-        public override IDisplayResult Edit(ContentPartFieldDefinition partFieldDefinition)
+        public override IDisplayResult Edit(ContentPartFieldDefinition model)
         {
-            return Initialize<EditMultiSelectFieldSettingsViewModel>("MultiSelectFieldSettings_Edit", model =>
+            return Initialize<EditMultiSelectFieldSettingsViewModel>("MultiSelectFieldSettings_Edit", viewModel =>
             {
-                var settings = partFieldDefinition.GetSettings<MultiSelectFieldSettings>();
+                var settings = model.GetSettings<MultiSelectFieldSettings>();
 
-                model.Hint = settings.Hint;
-                model.Options = settings.Options;
-                model.OptionsJson = JsonConvert.SerializeObject(settings.Options ?? Array.Empty<string>());
+                viewModel.Hint = settings.Hint;
+                viewModel.Options = settings.Options;
+                viewModel.OptionsJson = JsonConvert.SerializeObject(settings.Options ?? Array.Empty<string>());
             })
             .Location("Content");
 
         }
 
-        public override async Task<IDisplayResult> UpdateAsync(ContentPartFieldDefinition partFieldDefinition, UpdatePartFieldEditorContext context)
+        public override async Task<IDisplayResult> UpdateAsync(ContentPartFieldDefinition model, UpdatePartFieldEditorContext context)
         {
-            var model = new EditMultiSelectFieldSettingsViewModel();
+            var viewModel = new EditMultiSelectFieldSettingsViewModel();
 
-            if (await context.Updater.TryUpdateModelAsync(model, Prefix)) {
+            if (await context.Updater.TryUpdateModelAsync(viewModel, Prefix)) {
                 context.Builder.WithSettings(new MultiSelectFieldSettings
                 {
-                    Hint = model.Hint,
-                    Options = string.IsNullOrWhiteSpace(model.OptionsJson) ? Array.Empty<string>() : JsonConvert.DeserializeObject<string[]>(model.OptionsJson)
+                    Hint = viewModel.Hint,
+                    Options = string.IsNullOrWhiteSpace(viewModel.OptionsJson) ? Array.Empty<string>() : JsonConvert.DeserializeObject<string[]>(viewModel.OptionsJson)
                 });
             }
 
-            return Edit(partFieldDefinition);
+            return Edit(model);
         }
 
         #endregion

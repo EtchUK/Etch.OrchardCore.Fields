@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Etch.OrchardCore.Fields.MultiSelect.Settings
+﻿namespace Etch.OrchardCore.Fields.MultiSelect.Settings
 {
     public class MultiSelectFieldSettings
     {

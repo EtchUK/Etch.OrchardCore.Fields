@@ -2,7 +2,6 @@
 using Etch.OrchardCore.Fields.Eventbrite.Models;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Metadata.Models;
-using System.Collections.Generic;
 
 namespace Etch.OrchardCore.Fields.Eventbrite.ViewModels
 {

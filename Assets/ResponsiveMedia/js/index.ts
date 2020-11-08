@@ -20,13 +20,15 @@ window.mediaApp = window.mediaApp || {};
         return;
     }
 
+    breakpoints.sort((a, b) => {
+        return a - b;
+    });
+
     responsiveMediaEditor(
         el,
         $(rawDataInputElement).data('init'),
         modalBodyElement,
-        breakpoints.sort((a, b) => {
-            return a - b;
-        }),
+        breakpoints,
         isMultiple
     );
 };

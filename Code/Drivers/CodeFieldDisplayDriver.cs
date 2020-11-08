@@ -14,13 +14,13 @@ namespace Etch.OrchardCore.Fields.Code.Drivers
 
         #region Display
 
-        public override IDisplayResult Display(CodeField field, BuildFieldDisplayContext context)
+        public override IDisplayResult Display(CodeField field, BuildFieldDisplayContext fieldDisplayContext)
         {
-            return Initialize<DisplayCodeFieldViewModel>(GetDisplayShapeType(context), model =>
+            return Initialize<DisplayCodeFieldViewModel>(GetDisplayShapeType(fieldDisplayContext), model =>
             {
                 model.Field = field;
-                model.Part = context.ContentPart;
-                model.PartFieldDefinition = context.PartFieldDefinition;
+                model.Part = fieldDisplayContext.ContentPart;
+                model.PartFieldDefinition = fieldDisplayContext.PartFieldDefinition;
             })
             .Location("Content")
             .Location("SummaryAdmin", "");

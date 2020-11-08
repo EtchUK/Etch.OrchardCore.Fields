@@ -14,7 +14,7 @@
         initializeDictionaryEditor(document.getElementById('@Html.IdFor(m => m)'));
 </script>
 
-<fieldset class="form-group">
+<div class="form-group">
     <label asp-for="DefaultData">@T["Default values"]</label>
     <span class="hint">@T["Values that will be present on a new content item"]</span>
 
@@ -23,7 +23,7 @@
 
         <draggable tag="ul" class="list-group" v-model="dictionaryItems" handle=".handle">
             <li v-for="(item, index) in dictionaryItems" class="row mb-3">
-                <button type="button" class="btn btn-light handle"><i class="fa fa-align-justify"></i></button>
+                <button type="button" class="btn btn-light handle"><span class="fa fa-align-justify"></span></button>
                 <div class="col">
                     <input class="form-control" placeholder="Name" type="text" v-model="item.name">
                 </div>
@@ -31,34 +31,34 @@
                     <input class="form-control" placeholder="Value" type="text" v-model="item.value">
                 </div>
                 <button v-on:click="remove(index)" class="btn btn-danger" type="button">
-                    <i class="fa fa-trash-alt">&nbsp;</i>
+                    <span class="fa fa-trash-alt">&nbsp;</span>
                 </button>
             </li>
         </draggable>
 
-        <button v-on:click="add" class="btn btn-primary" type="button"><i class="fa fa-plus">&nbsp;</i> Add</button>
+        <button v-on:click="add" class="btn btn-primary" type="button"><span class="fa fa-plus">&nbsp;</span> Add</button>
     </div>
-</fieldset>
+</div>
 
-<fieldset class="form-group">
+<div class="form-group">
     <div class="row col-sm-6">
         <label asp-for="MinEntries">@T["Minimum Entries"]</label>
         <input type="number" asp-for="MinEntries" class="form-control" value="@Model.MinEntries" />
         <span class="hint">@T["Minimum number of name/values that must be specified."]</span>
     </div>
-</fieldset>
-<fieldset class="form-group">
+</div>
+<div class="form-group">
     <div class="row col-sm-6">
         <label asp-for="MaxEntries">@T["Maximum Entries"]</label>
         <input type="number" asp-for="MaxEntries" class="form-control" value="@Model.MaxEntries" />
         <span class="hint">@T["Maximum number of name/values that can be specified."]</span>
     </div>
-</fieldset>
+</div>
 
-<fieldset class="form-group">
+<div class="form-group">
     <div class="row col-sm-6">
         <label asp-for="Hint">@T["Hint"]</label>
         <textarea asp-for="Hint" rows="2" class="form-control"></textarea>
         <span class="hint">@T["The hint text to display for this field on the editor."]</span>
     </div>
-</fieldset>
+</div>

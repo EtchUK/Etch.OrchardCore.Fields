@@ -30,17 +30,17 @@ namespace Etch.OrchardCore.Fields.Dictionary.Drivers
 
         #endregion Constructor
 
-        #region ContentFieldDisplayDriver<DictionaryField>
+        #region Overrides
 
         #region Display
 
-        public override IDisplayResult Display(DictionaryField field, BuildFieldDisplayContext context)
+        public override IDisplayResult Display(DictionaryField field, BuildFieldDisplayContext fieldDisplayContext)
         {
-            return Initialize<DisplayDictionaryFieldViewModel>(GetDisplayShapeType(context), model =>
+            return Initialize<DisplayDictionaryFieldViewModel>(GetDisplayShapeType(fieldDisplayContext), model =>
             {
                 model.Field = field;
-                model.Part = context.ContentPart;
-                model.PartFieldDefinition = context.PartFieldDefinition;
+                model.Part = fieldDisplayContext.ContentPart;
+                model.PartFieldDefinition = fieldDisplayContext.PartFieldDefinition;
                 model.Data = field.Data;
             })
             .Location("Content")
@@ -92,7 +92,7 @@ namespace Etch.OrchardCore.Fields.Dictionary.Drivers
 
         #endregion Edit
 
-        #endregion ContentFieldDisplayDriver<DictionaryField>
+        #endregion Overrides
 
         #region Helpers
 

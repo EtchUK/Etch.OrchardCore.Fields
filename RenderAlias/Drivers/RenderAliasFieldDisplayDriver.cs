@@ -10,17 +10,17 @@ namespace Etch.OrchardCore.Fields.RenderAlias.Drivers
 {
     public class RenderAliasFieldDisplayDriver : ContentFieldDisplayDriver<RenderAliasField>
     {
-        #region ContentFieldDisplayDriver
+        #region Overrides
 
         #region Display
 
-        public override IDisplayResult Display(RenderAliasField field, BuildFieldDisplayContext context)
+        public override IDisplayResult Display(RenderAliasField field, BuildFieldDisplayContext fieldDisplayContext)
         {
-            return Initialize<DisplayRenderAliasFieldViewModel>(GetDisplayShapeType(context), model =>
+            return Initialize<DisplayRenderAliasFieldViewModel>(GetDisplayShapeType(fieldDisplayContext), model =>
             {
                 model.Field = field;
-                model.Part = context.ContentPart;
-                model.PartFieldDefinition = context.PartFieldDefinition;
+                model.Part = fieldDisplayContext.ContentPart;
+                model.PartFieldDefinition = fieldDisplayContext.PartFieldDefinition;
                 model.Alias = field.Alias;
                 model.DisplayType = field.DisplayType;
             })
@@ -55,6 +55,6 @@ namespace Etch.OrchardCore.Fields.RenderAlias.Drivers
 
         #endregion Edit
 
-        #endregion ContentFieldDisplayDriver
+        #endregion Overrides
     }
 }

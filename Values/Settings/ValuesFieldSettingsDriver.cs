@@ -12,16 +12,16 @@ namespace Etch.OrchardCore.Fields.Values.Settings
 
         #region Edit
 
-        public override IDisplayResult Edit(ContentPartFieldDefinition partFieldDefinition)
+        public override IDisplayResult Edit(ContentPartFieldDefinition model)
         {
-            return Initialize<ValuesFieldSettings>("ValuesFieldSettings_Edit", model =>
+            return Initialize<ValuesFieldSettings>("ValuesFieldSettings_Edit", viewModel =>
             {
-                partFieldDefinition.PopulateSettings(model);
+                model.PopulateSettings(viewModel);
             })
             .Location("Content");
         }
 
-        public override async Task<IDisplayResult> UpdateAsync(ContentPartFieldDefinition partFieldDefinition, UpdatePartFieldEditorContext context)
+        public override async Task<IDisplayResult> UpdateAsync(ContentPartFieldDefinition model, UpdatePartFieldEditorContext context)
         {
             var settings = new ValuesFieldSettings();
 
@@ -30,7 +30,7 @@ namespace Etch.OrchardCore.Fields.Values.Settings
                 context.Builder.WithSettings(settings);
             }
 
-            return Edit(partFieldDefinition);
+            return Edit(model);
         }
 
         #endregion

@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Etch.OrchardCore.Fields.ResponsiveMedia.Utils
 {
-    public class ResponsiveMediaUtils
+    public static class ResponsiveMediaUtils
     {
         public static IList<ResponsiveMediaItem> ParseMedia(IMediaFileStore mediaFileStore, string data)
         {

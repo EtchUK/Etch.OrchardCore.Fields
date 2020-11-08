@@ -30,13 +30,13 @@ namespace Etch.OrchardCore.Fields.MultiSelect.Drivers
 
         #region Display
 
-        public override IDisplayResult Display(MultiSelectField field, BuildFieldDisplayContext context)
+        public override IDisplayResult Display(MultiSelectField field, BuildFieldDisplayContext fieldDisplayContext)
         {
-            return Initialize<DisplayMultiSelectFieldViewModel>(GetDisplayShapeType(context), model =>
+            return Initialize<DisplayMultiSelectFieldViewModel>(GetDisplayShapeType(fieldDisplayContext), model =>
             {
                 model.Field = field;
-                model.Part = context.ContentPart;
-                model.PartFieldDefinition = context.PartFieldDefinition;
+                model.Part = fieldDisplayContext.ContentPart;
+                model.PartFieldDefinition = fieldDisplayContext.PartFieldDefinition;
                 model.SelectedValues = field.SelectedValues;
             })
             .Location("Content")

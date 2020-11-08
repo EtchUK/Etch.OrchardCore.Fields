@@ -1,6 +1,6 @@
 ﻿namespace Etch.OrchardCore.Fields.Eventbrite
 {
-    public class Constants
+    public static class Constants
     {
         public const string SettingsGroupId = "Eventbrite";
     }
