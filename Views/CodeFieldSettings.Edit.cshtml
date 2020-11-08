@@ -3,6 +3,7 @@
 @{ 
     var items = new List<SelectListItem>
     {
+        new SelectListItem { Value = "css", Text = "CSS" },
         new SelectListItem { Value = "html", Text = "HTML" },
         new SelectListItem { Value = "javascript", Text = "JavaScript" }
     };
@@ -13,5 +14,4 @@
     <p class="hint">Select which language will be used in editor.</p>
 
     <select class="form-control col-sm-3" asp-for="Language" asp-items="@items"></select>
-
 </fieldset>
