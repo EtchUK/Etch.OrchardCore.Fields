@@ -22,9 +22,8 @@ namespace Etch.OrchardCore.Fields.Code
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ContentField, CodeField>();
-
-            services.AddScoped<IContentFieldDisplayDriver, CodeFieldDisplayDriver>();
+            services.AddContentField<CodeField>()
+                .UseDisplayDriver<CodeFieldDisplayDriver>();
 
             services.AddScoped<IContentPartFieldDefinitionDisplayDriver, CodeFieldSettingsDriver>();
         }
