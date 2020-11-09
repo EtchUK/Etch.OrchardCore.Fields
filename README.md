@@ -32,7 +32,7 @@ Provides content field for managing an arbitrary amount of names and associated 
 
 ![Screen recording of dictionary field](/docs/demo-dictionary-field.gif?raw=true)
 
-### Eventbrite field
+### Eventbrite
 
 Provides a content field that will fetch event data from Eventbrite and display it as an unordered list.
 
@@ -41,6 +41,10 @@ Provides a content field that will fetch event data from Eventbrite and display 
 Content field that has a collection of pre-configured options where content editors can choose multiple options that will be rendered in an unordered list.
 
 ![Screen recording of multi select field](/docs/demo-multi-select-field.gif?raw=true)
+
+### Query
+
+Editors can choose from a drop down list of [queries](https://docs.orchardcore.net/en/dev/docs/reference/modules/Queries/).
 
 ### Render Alias
 
