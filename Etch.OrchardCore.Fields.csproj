@@ -28,6 +28,7 @@
     <PackageReference Include="OrchardCore.Media" Version="1.0.0-rc2-13450" />
     <PackageReference Include="OrchardCore.Media.Abstractions" Version="1.0.0-rc2-13450" />
     <PackageReference Include="OrchardCore.Module.Targets" Version="1.0.0-rc2-13450" />
+    <PackageReference Include="OrchardCore.Queries.Abstractions" Version="1.0.0-rc2-13450" />
     <PackageReference Include="OrchardCore.ResourceManagement" Version="1.0.0-rc2-13450" />
     <PackageReference Include="OrchardCore.Taxonomies" Version="1.0.0-rc2-13450" />
   </ItemGroup>

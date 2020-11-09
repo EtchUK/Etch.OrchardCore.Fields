@@ -8,10 +8,9 @@ using OrchardCore.Modules.Manifest;
 )]
 
 [assembly: Feature(
-    Id = "Etch.OrchardCore.Fields.ResponsiveMedia",
-    Name = "Responsive Media Field",
-    Dependencies = new[] { "OrchardCore.Media" },
-    Description = "Field for managing responsive media content.",
+    Id = "Etch.OrchardCore.Fields.Code",
+    Name = "Code Field",
+    Description = "Field for defining code.",
     Category = "Content"
 )]
 
@@ -30,10 +29,18 @@ using OrchardCore.Modules.Manifest;
 )]
 
 [assembly: Feature(
-    Id = "Etch.OrchardCore.Fields.Values",
-    Name = "Values Field",
-    Description = "Field for managing an arbitrary list of values.",
+    Id = "Etch.OrchardCore.Fields.MultiSelect",
+    Name = "Multi Select Field",
+    Description = "Field for choosing multiple values from collection of configured options.",
     Category = "Content"
+)]
+
+[assembly: Feature(
+    Id = "Etch.OrchardCore.Fields.Query",
+    Name = "Query Field",
+    Description = "Field for selecting a query.",
+    Category = "Content",
+    Dependencies = new[] { "OrchardCore.Queries" }
 )]
 
 [assembly: Feature(
@@ -45,15 +52,16 @@ using OrchardCore.Modules.Manifest;
 )]
 
 [assembly: Feature(
-    Id = "Etch.OrchardCore.Fields.MultiSelect",
-    Name = "Multi Select Field",
-    Description = "Field for choosing multiple values from collection of configured options.",
+    Id = "Etch.OrchardCore.Fields.ResponsiveMedia",
+    Name = "Responsive Media Field",
+    Dependencies = new[] { "OrchardCore.Media" },
+    Description = "Field for managing responsive media content.",
     Category = "Content"
 )]
 
 [assembly: Feature(
-    Id = "Etch.OrchardCore.Fields.Code",
-    Name = "Code Field",
-    Description = "Field for defining code.",
+    Id = "Etch.OrchardCore.Fields.Values",
+    Name = "Values Field",
+    Description = "Field for managing an arbitrary list of values.",
     Category = "Content"
 )]

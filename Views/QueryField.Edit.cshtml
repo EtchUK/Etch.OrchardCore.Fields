@@ -1,0 +1,19 @@
+﻿@model Etch.OrchardCore.Fields.Query.ViewModels.EditQueryFieldViewModel
+
+@{ 
+    var options = new List<SelectListItem>();
+    options.Add(new SelectListItem { Text = T["- Select query -"].Value, Value = "", Selected = string.IsNullOrEmpty(Model.Value) });
+
+    foreach (var option in Model.Queries)
+    {
+        var isSelected = option == Model.Value
+            || (String.IsNullOrEmpty(option) && String.IsNullOrEmpty(Model.Value));
+
+        options.Add(new SelectListItem { Text = option, Value = option, Selected = isSelected });
+    }
+}
+
+<div class="form-group">
+    <label asp-for="Value">@Model.PartFieldDefinition.DisplayName()</label>
+    <select class="form-control" asp-for="Value" asp-items="options"></select>
+</div>
