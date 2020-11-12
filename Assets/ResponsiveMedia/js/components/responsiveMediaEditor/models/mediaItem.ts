@@ -23,7 +23,7 @@ export default class MediaItem {
 
         if (existingSource !== null) {
             existingSource.name = media.name;
-            existingSource.path = media.path;
+            existingSource.path = media.mediaPath;
             existingSource.url = media.url;
             return;
         }
