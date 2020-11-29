@@ -23,8 +23,8 @@ namespace Etch.OrchardCore.Fields.Values
         {
             services.AddScoped<IDataMigration, Migrations>();
 
-            services.AddContentField<ValuesField>()
-                .UseDisplayDriver<ValuesFieldDisplayDriver>();
+            services.AddSingleton<ContentField, ValuesField>();
+            services.AddScoped<IContentFieldDisplayDriver, ValuesFieldDisplayDriver>();
 
             services.AddScoped<IContentPartFieldDefinitionDisplayDriver, ValuesFieldSettingsDriver>();
         }

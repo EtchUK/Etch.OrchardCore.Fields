@@ -27,8 +27,8 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia
         {
             services.AddScoped<IDataMigration, Migrations>();
 
-            services.AddContentField<ResponsiveMediaField>()
-                .UseDisplayDriver<ResponsiveMediaFieldDisplayDriver>();
+            services.AddSingleton<ContentField, ResponsiveMediaField>();
+            services.AddScoped<IContentFieldDisplayDriver, ResponsiveMediaFieldDisplayDriver>();
 
             services.AddScoped<IContentPartFieldDefinitionDisplayDriver, ResponsiveMediaFieldSettingsDriver>();
         }

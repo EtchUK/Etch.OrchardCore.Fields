@@ -18,8 +18,9 @@ namespace Etch.OrchardCore.Fields.Query
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddContentField<QueryField>()
-                .UseDisplayDriver<QueryFieldDisplayDriver>();
+            services.AddSingleton<ContentField, QueryField>();
+
+            services.AddScoped<IContentFieldDisplayDriver, QueryFieldDisplayDriver>();
         }
     }
 }

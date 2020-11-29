@@ -12,8 +12,9 @@ namespace Etch.OrchardCore.Fields.RenderAlias
     {
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddContentField<RenderAliasField>()
-                .UseDisplayDriver<RenderAliasFieldDisplayDriver>();
+            services.AddSingleton<ContentField, RenderAliasField>();
+
+            services.AddScoped<IContentFieldDisplayDriver, RenderAliasFieldDisplayDriver>();
         }
     }
 }

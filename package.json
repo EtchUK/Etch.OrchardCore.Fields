@@ -1,6 +1,6 @@
 {
     "name": "etch.orchardcore.fields",
-    "version": "0.10.1",
+    "version": "0.10.1-rc1",
     "description": "Module for Orchard Core that provides useful content fields.",
     "scripts": {
         "build": "webpack",

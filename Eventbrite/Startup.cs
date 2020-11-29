@@ -24,8 +24,9 @@ namespace Etch.OrchardCore.Fields.Eventbrite
 
         public override void ConfigureServices(IServiceCollection services)
         {
-            services.AddContentField<EventbriteField>()
-                .UseDisplayDriver<EventbriteFieldDisplayDriver>();
+            services.AddSingleton<ContentField, EventbriteField>();
+
+            services.AddScoped<IContentFieldDisplayDriver, EventbriteFieldDisplayDriver>();
 
             services.AddScoped<IDisplayDriver<ISite>, EventbriteSettingsDisplayDriver>();
 
