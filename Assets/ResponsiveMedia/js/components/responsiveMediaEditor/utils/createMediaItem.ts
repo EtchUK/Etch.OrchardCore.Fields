@@ -8,7 +8,7 @@ export default async function createMediaItem(
 ): Promise<MediaItem> {
     const orderedBreakpoints = sortNumbers(breakpoints).reverse();
 
-    let mediaItem = new MediaItem([]);
+    let mediaItem = new MediaItem('', []);
 
     return new Promise((resolve) => {
         let processedCount = 0;

@@ -1,17 +1,27 @@
 import MediaSource from './mediaSource';
 import { sortNumbers } from '../utils/sortUtils';
 
-export default class MediaItem {
+export interface IMediaItem {
+    mediaText: string;
     sources: MediaSource[];
 
-    constructor(source: MediaSource[] | undefined) {
+    addSource(breakpoint: number, media: any): void;
+    getSourceAt(breakpoint: number): MediaSource | null;
+}
+
+export default class MediaItem {
+    mediaText: string;
+    sources: MediaSource[];
+
+    constructor(mediaText: string, source: MediaSource[] | undefined) {
+        this.mediaText = mediaText;
         this.sources = source || new Array<MediaSource>();
     }
 
     /**
      * Adds a new image source for a breakpoint.
      */
-    addSource(breakpoint: number, media: any) {
+    addSource(breakpoint: number, media: any): void {
         let existingSource: MediaSource | null = null;
 
         for (let i: number = 0; i < this.sources.length; i++) {
@@ -37,7 +47,7 @@ export default class MediaItem {
      * Returns list of breakpoints associated to sources.
      */
     getBreakpoints(): number[] {
-        return this.sources.map(x => x.breakpoint);
+        return this.sources.map((x) => x.breakpoint);
     }
 
     /**
@@ -65,7 +75,7 @@ export default class MediaItem {
         }
 
         let matchingSource: MediaSource | undefined = this.sources.find(
-            value => {
+            (value) => {
                 return value.breakpoint === breakpoint;
             }
         );

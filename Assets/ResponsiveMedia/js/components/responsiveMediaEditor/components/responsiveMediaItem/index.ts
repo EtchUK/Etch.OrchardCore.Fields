@@ -6,6 +6,7 @@ export default Vue.extend({
     name: 'responsiveMediaItem',
 
     props: {
+        allowMediaText: Boolean,
         breakpoints: Array,
         media: MediaItem,
     },
@@ -67,6 +68,12 @@ export default Vue.extend({
             }
         },
 
+        showMediaText(): void {
+            this.$emit('showmediatext', {
+                media: (this as any).media,
+            });
+        },
+
         update(): void {
             this.$emit('update', {
                 media: (this as any).media,
@@ -78,7 +85,7 @@ export default Vue.extend({
     template: `<div class="card">
         <img :src="url" class="card-img-top" alt="" />
         <div class="card-body flex-column">
-            <p class="small">{{ activeName }}</p>
+            <p class="small mb-2">{{ activeName }}</p>
 
             <div class="d-flex flex-row flex-wrap mb-1">
                 <button 
@@ -95,13 +102,20 @@ export default Vue.extend({
                 <a href="#" class="mr-3" v-on:click.prevent="update">Change image at {{ activeBreakpoint }}</a>
             </div>
 
-            <div class="btn-group">
-                <button type="button" title="Remove Options" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <svg class="svg-inline--fa fa-trash-alt fa-w-14" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="trash-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"></path></svg>
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item btn-sm" v-on:click.prevent="removeBreakpoint">Remove at {{ activeBreakpoint }}</a>
-                    <a class="dropdown-item btn-sm" v-on:click.prevent="remove">Remove</a>
+            <div class="btn-toolbar">
+                <div class="btn-group mr-2">
+                    <button type="button" title="Remove Options" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg class="svg-inline--fa fa-trash-alt fa-w-14" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="trash-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"></path></svg>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item btn-sm" v-on:click.prevent="removeBreakpoint">Remove at {{ activeBreakpoint }}</a>
+                        <a class="dropdown-item btn-sm" v-on:click.prevent="remove">Remove</a>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" title="Manage Media Text" class="btn btn-sm btn-secondary" v-show="allowMediaText" v-on:click.prevent="showMediaText">
+                        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="comment" class="svg-inline--fa fa-comment fa-w-14" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7S4.8 480 8 480c66.3 0 116-31.8 140.6-51.4 32.7 12.3 69 19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32z"/></svg>
+                    </button>
                 </div>
             </div>
         </div>

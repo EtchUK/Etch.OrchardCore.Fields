@@ -7,6 +7,9 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
 {
     public class ResponsiveMediaItem
     {
+        [JsonProperty("mediaText")]
+        public string MediaText { get; set; }
+
         [JsonProperty("sources")]
         public IList<ResponsiveMediaSource> Sources { get; set; }
 

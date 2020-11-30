@@ -2,7 +2,7 @@ import 'bootstrap';
 import $ from 'jquery';
 import Vue from 'vue';
 import MediaSource from './models/mediaSource';
-import MediaItem from './models/mediaItem';
+import { IMediaItem } from './models/mediaItem';
 import ResponsiveMediaItem from './components/responsiveMediaItem';
 import createMediaItem from './utils/createMediaItem';
 import parseFieldValue from './utils/parseFieldValue';
@@ -15,7 +15,7 @@ const selectors = {
 
 interface IMediaItemEventArgs {
     breakpoint: number;
-    media: MediaItem;
+    media: IMediaItem;
 }
 
 export default (
@@ -23,15 +23,21 @@ export default (
     initialData: any,
     modalBodyElement: HTMLElement,
     breakpoints: number[],
-    isMultiple: boolean
+    isMultiple: boolean,
+    allowMediaText: boolean
 ) => {
     return new Vue({
         el,
 
         data: {
+            allowMediaText,
+            backupMediaText: '',
             breakpoints,
             isMultiple,
-            mediaItems: [] as MediaItem[],
+            mediaItems: [] as IMediaItem[],
+            selectedMedia: {
+                mediaText: '',
+            },
         },
 
         components: {
@@ -47,8 +53,9 @@ export default (
             },
             value(): string {
                 return JSON.stringify(
-                    this.mediaItems.map((x: MediaItem) => {
+                    this.mediaItems.map((x: IMediaItem) => {
                         return {
+                            mediaText: x.mediaText,
                             sources: x.sources.map((source: MediaSource) => {
                                 return {
                                     breakpoint: source.breakpoint,
@@ -61,12 +68,12 @@ export default (
             },
         },
 
-        mounted: function() {
+        mounted: function () {
             this.mediaItems = parseFieldValue(initialData);
         },
 
         methods: {
-            add: function(): void {
+            add: function (): void {
                 const self = this;
 
                 $(selectors.mediaApp)
@@ -80,7 +87,7 @@ export default (
                 $(modalBodyElement)
                     .find(selectors.mediaFieldSelectButton)
                     .off('click')
-                    .on('click', async function() {
+                    .on('click', async function () {
                         if (window.mediaApp.selectedMedias.length) {
                             self.mediaItems.push(
                                 await createMediaItem(
@@ -97,11 +104,22 @@ export default (
                     });
             },
 
-            remove: function(args: IMediaItemEventArgs): void {
+            cancelMediaTextModal: function (): void {
+                $(this.$refs.mediaTextModal).modal('hide');
+                this.selectedMedia.mediaText = this.backupMediaText;
+            },
+
+            remove: function (args: IMediaItemEventArgs): void {
                 this.mediaItems.splice(this.mediaItems.indexOf(args.media), 1);
             },
 
-            update: function(args: IMediaItemEventArgs): void {
+            showMediaText: function (args: IMediaItemEventArgs): void {
+                this.selectedMedia = args.media;
+                $(this.$refs.mediaTextModal).modal();
+                this.backupMediaText = this.selectedMedia.mediaText;
+            },
+
+            update: function (args: IMediaItemEventArgs): void {
                 $(selectors.mediaApp)
                     .detach()
                     .appendTo($(modalBodyElement).find(selectors.modalBody));
@@ -113,7 +131,7 @@ export default (
                 $(modalBodyElement)
                     .find(selectors.mediaFieldSelectButton)
                     .off('click')
-                    .on('click', async function() {
+                    .on('click', async function () {
                         if (window.mediaApp.selectedMedias.length) {
                             args.media.addSource(
                                 args.breakpoint,
@@ -128,7 +146,7 @@ export default (
                     });
             },
 
-            updatePreview: function() {
+            updatePreview: function () {
                 this.$nextTick(() => {
                     $(document).trigger('contentpreview:render');
                 });
@@ -136,7 +154,7 @@ export default (
         },
 
         watch: {
-            mediaItems: function() {
+            mediaItems: function () {
                 this.updatePreview();
             },
         },
