@@ -3,8 +3,8 @@
 @using OrchardCore.ContentManagement.Metadata.Models
 @using Etch.OrchardCore.Fields.ResponsiveMedia.Settings
 
-@{
-    var settings = Model.PartFieldDefinition.GetSettings<ResponsiveMediaFieldSettings>();
+@{ 
+    var settings = Model.PartFieldDefinition.GetSettings<ResponsiveMediaFieldSettings>(); 
 }
 
 <script asp-src="~/OrchardCore.Media/Scripts/media.js" asp-name="media" at="Foot" depends-on="admin, vuejs, sortable, vuedraggable"></script>
@@ -17,7 +17,7 @@
 
 <script at="Foot">
     initializeMediaApplication(false, '@Url.Action("MediaApplication", "Admin", new { area = "OrchardCore.Media" })');
-    initializeResponsiveMediaEditor(document.getElementById('@Html.IdFor(m => m)'), document.getElementById('@Html.IdFor(m => m)-ModalBody'), @(Newtonsoft.Json.JsonConvert.SerializeObject(settings.GetBreakpoints())), @(settings.Multiple ? "true" : "false"));
+    initializeResponsiveMediaEditor(document.getElementById('@Html.IdFor(m => m)'), document.getElementById('@Html.IdFor(m => m)-ModalBody'), @(Newtonsoft.Json.JsonConvert.SerializeObject(settings.GetBreakpoints())), @(settings.Multiple ? "true" : "false"), @(settings.AllowMediaText ? "true" : "false"));
 </script>
 
 <div class="responsive-media-field-editor" id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.Data)">
@@ -39,9 +39,31 @@
 
             <draggable :list="mediaItems" element="ol" class="row media-items-grid" v-if="hasMedia">
                 <div class="col-sm-3" v-for="(item, index) in mediaItems">
-                    <responsive-media-item v-bind:media="item" v-bind:breakpoints="breakpoints" v-on:remove="remove" v-on:update="update" />
+                    <responsive-media-item v-bind:allow-media-text="allowMediaText" v-bind:media="item" v-bind:breakpoints="breakpoints" v-on:remove="remove" v-on:showmediatext="showMediaText" v-on:update="update" />
                 </div>
             </draggable>
+        </div>
+    </div>
+
+    <div class="modal" ref="mediaTextModal">
+        <div v-if="selectedMedia" class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">@T["Enter media text"]</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input class="form-control" v-if="selectedMedia" v-model="selectedMedia.mediaText" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">@T["OK"]</button>
+                    <button type="button" class="btn btn-secondary" v-on:click="cancelMediaTextModal">@T["Cancel"]</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

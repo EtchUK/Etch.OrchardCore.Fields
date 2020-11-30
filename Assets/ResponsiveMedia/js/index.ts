@@ -12,7 +12,8 @@ window.mediaApp = window.mediaApp || {};
     el: HTMLElement,
     modalBodyElement: HTMLElement,
     breakpoints: number[],
-    isMultiple: boolean
+    isMultiple: boolean,
+    allowMediaText: boolean
 ): void => {
     const rawDataInputElement = document.getElementById($(el).data('for'));
 
@@ -29,6 +30,7 @@ window.mediaApp = window.mediaApp || {};
         $(rawDataInputElement).data('init'),
         modalBodyElement,
         breakpoints,
-        isMultiple
+        isMultiple,
+        allowMediaText
     );
 };
