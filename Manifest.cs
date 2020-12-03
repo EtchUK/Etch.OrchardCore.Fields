@@ -15,6 +15,13 @@ using OrchardCore.Modules.Manifest;
 )]
 
 [assembly: Feature(
+    Id = "Etch.OrchardCore.Fields.Colour",
+    Name = "Colour Field",
+    Description = "Field for choosing a colour.",
+    Category = "Content"
+)]
+
+[assembly: Feature(
     Id = "Etch.OrchardCore.Fields.Dictionary",
     Name = "Dictionary Field",
     Description = "Field for managing an arbitrary amount of names and associated values.",

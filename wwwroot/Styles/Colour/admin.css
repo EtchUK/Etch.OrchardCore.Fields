@@ -1,0 +1,16 @@
+﻿.swatch {
+    height: 75px;
+    width: 75px;
+
+    background-position: center center;
+    background-repeat: repeat;
+    box-shadow: none !important;
+}
+
+input.swatch {
+    border-color: #ccc;
+}
+
+.swatch.is-selected {
+    border: 3px solid #007bff !important;
+}

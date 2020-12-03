@@ -26,6 +26,10 @@ Content field providing a code editor (using [Ace](https://ace.c9.io/)) to add c
 
 ![Screen recording of code field](/docs/demo-code-field.gif?raw=true)
 
+### Colour
+
+Colour field introduces an alternative to the `TextField` for ditors to define a colour. This field can be configured with a colour palette, transparent or the ability to choose a custom colour.
+
 ### Dictionary
 
 Provides content field for managing an arbitrary amount of names and associated values. Items will be displayed on the page as an unordered list with name/value.
