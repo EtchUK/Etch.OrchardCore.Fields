@@ -41,6 +41,8 @@ const CSSClasses = {
 
         $selected = $el;
         $selected.classList.add(CSSClasses.selected);
+
+        $(document).trigger('contentpreview:render')
     };
 
     const $colourBtns = el.querySelectorAll('.js-colour-btn');
