@@ -1,5 +1,6 @@
 ﻿using Etch.OrchardCore.Fields.Code.ViewModels;
 using Etch.OrchardCore.Fields.Colour.Fields;
+using Etch.OrchardCore.Fields.Colour.Settings;
 using Etch.OrchardCore.Fields.Colour.ViewModels;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
@@ -17,12 +18,14 @@ namespace Etch.OrchardCore.Fields.Colour.Drivers
 
         public override IDisplayResult Edit(ColourField field, BuildFieldEditorContext context)
         {
+            var settings = context.PartFieldDefinition.GetSettings<ColourFieldSettings>();
+
             return Initialize<EditColourFieldViewModel>(GetEditorShapeType(context), model =>
             {
                 model.Field = field;
                 model.Part = context.ContentPart;
                 model.PartFieldDefinition = context.PartFieldDefinition;
-                model.Value = field.Value;
+                model.Value = string.IsNullOrWhiteSpace(field.Value) ? settings.DefaultValue : field.Value;
             });
         }
 
