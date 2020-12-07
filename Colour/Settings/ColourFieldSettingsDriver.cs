@@ -1,9 +1,11 @@
 ﻿using Etch.OrchardCore.Fields.Colour.Fields;
 using Etch.OrchardCore.Fields.Colour.ViewModels;
+using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.ContentTypes.Editors;
 using OrchardCore.DisplayManagement.Views;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,7 +25,7 @@ namespace Etch.OrchardCore.Fields.Colour.Settings
 
                 viewModel.AllowCustom = settings.AllowCustom;
                 viewModel.AllowTransparent = settings.AllowTransparent;
-                viewModel.Colours = string.Join(",", settings.Colours);
+                viewModel.Colours = JsonConvert.SerializeObject(settings.Colours);
                 viewModel.Hint = settings.Hint;
             })
             .Location("Content");
@@ -39,7 +41,7 @@ namespace Etch.OrchardCore.Fields.Colour.Settings
                 {
                     AllowCustom = viewModel.AllowCustom,
                     AllowTransparent = viewModel.AllowTransparent,
-                    Colours = viewModel.Colours.Split(",", StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray(),
+                    Colours = JsonConvert.DeserializeObject<ColourItem[]>(viewModel.Colours),
                     Hint = viewModel.Hint
                 });
             }

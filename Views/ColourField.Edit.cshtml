@@ -25,7 +25,8 @@
     @foreach (var color in settings.Colours)
     {
         <div class="col-md-auto">
-            <button type="button" class="btn rounded-lg swatch @(color == Model.Value ? "is-selected" : "") js-colour-btn" data-colour="@color" style="background-color: @color;"></button>
+            <button type="button" class="btn rounded-lg mb-1 swatch @(color.Value == Model.Value ? "is-selected" : "") js-colour-btn" data-colour="@color.Value" style="background-color: @color.Value;"></button>
+            <p class="hint">@color.Name</p>
         </div>
     }
 

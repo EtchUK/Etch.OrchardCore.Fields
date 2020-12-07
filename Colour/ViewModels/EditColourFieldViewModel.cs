@@ -18,7 +18,7 @@ namespace Etch.OrchardCore.Fields.Colour.ViewModels
         {
             get
             {
-                return !string.IsNullOrWhiteSpace(Value) && Value != "transparent" && !PartFieldDefinition.GetSettings<ColourFieldSettings>().Colours.Any(x => x == Value);
+                return !string.IsNullOrWhiteSpace(Value) && Value != "transparent" && !PartFieldDefinition.GetSettings<ColourFieldSettings>().Colours.Any(x => x.Value == Value);
             }
         }
 
