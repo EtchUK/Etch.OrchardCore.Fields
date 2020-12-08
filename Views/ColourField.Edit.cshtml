@@ -41,7 +41,7 @@
     @if (settings.AllowCustom)
     {
         <div class="col-md-auto">
-            <input class="mb-1 swatch @(Model.IsCustomColour ? "is-selected" : "") js-colour-input" type="color" />
+            <input class="mb-1 swatch @(Model.IsCustomColour ? "is-selected" : "") js-colour-input" type="color" value="@(Model.IsCustomColour ? Model.Value : string.Empty)" />
             <p class="hint">@T["Specify custom"]</p>
         </div>
     }
