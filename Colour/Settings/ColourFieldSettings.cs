@@ -9,5 +9,6 @@ namespace Etch.OrchardCore.Fields.Colour.Settings
         public ColourItem[] Colours { get; set; } = Array.Empty<ColourItem>();
         public string DefaultValue { get; set; }
         public string Hint { get; set; }
+        public bool UseGlobalColours { get; set; } = false;
     }
 }

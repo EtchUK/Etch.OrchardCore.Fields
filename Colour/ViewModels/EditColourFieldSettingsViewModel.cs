@@ -7,5 +7,6 @@
         public string Colours { get; set; }
         public string DefaultValue { get; set; }
         public string Hint { get; set; }
+        public bool UseGlobalColours { get; set; }
     }
 }

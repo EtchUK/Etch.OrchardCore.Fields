@@ -1,10 +1,17 @@
 ﻿@model Etch.OrchardCore.Fields.Colour.ViewModels.EditColourFieldViewModel
 
 @using Etch.OrchardCore.Fields.Colour.Settings
+@using OrchardCore.Settings
+@using OrchardCore.Entities
+
+@inject ISiteService _siteService
 
 @{
+    var globalSettings = (await _siteService.GetSiteSettingsAsync()).As<ColourSettings>();
     var settings = Model.PartFieldDefinition.GetSettings<ColourFieldSettings>();
     var placeholder = Guid.NewGuid().ToString().ToLower();
+
+    var colourPalette = settings.UseGlobalColours ? globalSettings.Colours : settings.Colours;
 }
 
 <style asp-src="~/Etch.OrchardCore.Fields/Styles/colour/admin.css" at="Head" asp-append-version="true"></style>
@@ -22,29 +29,29 @@
     }
 
     <div class="row">
-    @foreach (var color in settings.Colours)
-    {
-        <div class="col-md-auto">
-            <button type="button" class="btn rounded-lg mb-1 swatch @(color.Value == Model.Value ? "is-selected" : "") js-colour-btn" data-colour="@color.Value" style="background-color: @color.Value;"></button>
-            <p class="hint">@color.Name</p>
-        </div>
-    }
+        @foreach (var color in colourPalette)
+        {
+            <div class="col-md-auto">
+                <button type="button" class="btn rounded-lg mb-1 swatch @(color.Value == Model.Value ? "is-selected" : "") js-colour-btn" data-colour="@color.Value" style="background-color: @color.Value;"></button>
+                <p class="hint">@color.Name</p>
+            </div>
+        }
 
-    @if (settings.AllowTransparent)
-    {
-    <div class="col-md-auto">
-        <button type="button" class="btn rounded-lg mb-1 swatch @(Model.IsTransparent ? "is-selected" : "") js-transparent-btn" style="background-image: url('@Context.Request.PathBase/Etch.OrchardCore.Fields/Content/background-transparent.png');"></button>
-        <p class="hint">@T["Transparent"]</p>
-    </div>
-    }
+        @if (settings.AllowTransparent)
+        {
+            <div class="col-md-auto">
+                <button type="button" class="btn rounded-lg mb-1 swatch @(Model.IsTransparent ? "is-selected" : "") js-transparent-btn" style="background-image: url('@Context.Request.PathBase/Etch.OrchardCore.Fields/Content/background-transparent.png');"></button>
+                <p class="hint">@T["Transparent"]</p>
+            </div>
+        }
 
-    @if (settings.AllowCustom)
-    {
-        <div class="col-md-auto">
-            <input class="mb-1 swatch @(Model.IsCustomColour ? "is-selected" : "") js-colour-input" type="color" value="@(Model.IsCustomColour ? Model.Value : string.Empty)" />
-            <p class="hint">@T["Specify custom"]</p>
-        </div>
-    }
+        @if (settings.AllowCustom)
+        {
+            <div class="col-md-auto">
+                <input class="mb-1 swatch @(Model.IsCustomColour ? "is-selected" : "") js-colour-input" type="color" value="@(Model.IsCustomColour ? Model.Value : string.Empty)" />
+                <p class="hint">@T["Specify custom"]</p>
+            </div>
+        }
     </div>
 
     <input type="hidden" asp-for="Value" class="js-colour-hidden" />
