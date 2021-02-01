@@ -25,6 +25,7 @@ namespace Etch.OrchardCore.Fields.Colour.Settings
                 viewModel.Colours = JsonConvert.SerializeObject(settings.Colours);
                 viewModel.DefaultValue = settings.DefaultValue;
                 viewModel.Hint = settings.Hint;
+                viewModel.UseGlobalColours = settings.UseGlobalColours;
             })
             .Location("Content");
         }
@@ -41,7 +42,8 @@ namespace Etch.OrchardCore.Fields.Colour.Settings
                     AllowTransparent = viewModel.AllowTransparent,
                     Colours = JsonConvert.DeserializeObject<ColourItem[]>(viewModel.Colours),
                     DefaultValue = viewModel.DefaultValue,
-                    Hint = viewModel.Hint
+                    Hint = viewModel.Hint,
+                    UseGlobalColours = viewModel.UseGlobalColours
                 });
             }
 

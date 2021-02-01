@@ -6,7 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentTypes.Editors;
+using OrchardCore.DisplayManagement.Handlers;
 using OrchardCore.Modules;
+using OrchardCore.Navigation;
+using OrchardCore.Settings;
 
 namespace Etch.OrchardCore.Fields.Colour
 {
@@ -24,6 +27,9 @@ namespace Etch.OrchardCore.Fields.Colour
                 .UseDisplayDriver<ColourFieldDisplayDriver>();
 
             services.AddScoped<IContentPartFieldDefinitionDisplayDriver, ColourFieldSettingsDriver>();
+
+            services.AddScoped<INavigationProvider, AdminMenu>();
+            services.AddScoped<IDisplayDriver<ISite>, ColourSettingsDisplayDriver>();
         }
     }
 }

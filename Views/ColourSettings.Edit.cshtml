@@ -1,4 +1,4 @@
-﻿@model Etch.OrchardCore.Fields.Colour.ViewModels.EditColourFieldSettingsViewModel
+﻿@model Etch.OrchardCore.Fields.Colour.ViewModels.ColourSettingsViewModel
 
 <script asp-src="https://vuejs.org/js/vue.min.js" debug-src="https://vuejs.org/js/vue.js" asp-name="vuejs"
         at="Foot"></script>
@@ -14,19 +14,13 @@
         initializeDictionaryEditor(document.getElementById('@Html.IdFor(m => m)'));
 </script>
 
-<div class="row">
-    <div class="form-group col-md-6">
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" asp-for="UseGlobalColours" checked="@Model.UseGlobalColours">
-            <label class="custom-control-label" asp-for="UseGlobalColours">@T["Use Site Colour Palette"]</label>
-            <span class="hint">@T["Use colours defined within site settings."]</span>
-        </div>
-    </div>
-</div>
-
 <div class="form-group">
     <div class="row col-sm-6">
         <label asp-for="Colours">@T["Colours"]</label>
+    </div>
+
+    <div class="row col-xs-12">
+        <p class="hint">@T["Define colour palette used by colour fields configured to use global settings."]</p>
     </div>
 
     <div class="row col-sm-6">
@@ -56,41 +50,5 @@
 
             <button v-on:click="add" class="btn btn-secondary btn-sm" type="button" :disabled="false"><span class="fa fa-plus">&nbsp;</span> @T["Add Colour"]</button>
         </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="form-group col-md-6">
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" asp-for="AllowTransparent" checked="@Model.AllowTransparent">
-            <label class="custom-control-label" asp-for="AllowTransparent">@T["Allow Transparent"]</label>
-            <span class="hint">@T["Include option for choosing transparent as a colour."]</span>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="form-group col-md-6">
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" asp-for="AllowCustom" checked="@Model.AllowCustom">
-            <label class="custom-control-label" asp-for="AllowCustom">@T["Allow Custom"]</label>
-            <span class="hint">@T["Include ability to specify custom colour."]</span>
-        </div>
-    </div>
-</div>
-
-<div class="form-group">
-    <div class="row col-sm-6">
-        <label asp-for="DefaultValue">@T["Default Value"]</label>
-        <input asp-for="DefaultValue" class="form-control" />
-        <span class="hint">@T["Default value when no colour has been defined."]</span>
-    </div>
-</div>
-
-<div class="form-group">
-    <div class="row col-sm-6">
-        <label asp-for="Hint">@T["Hint"]</label>
-        <textarea asp-for="Hint" rows="2" class="form-control"></textarea>
-        <span class="hint">@T["The hint text to display for this field on the editor."]</span>
     </div>
 </div>
