@@ -1,0 +1,48 @@
+﻿@model Etch.OrchardCore.Fields.Colour.ViewModels.ColoursFieldViewModel
+
+@{ 
+    var uid = Guid.NewGuid();
+}
+
+<script asp-src="https://vuejs.org/js/vue.min.js" debug-src="https://vuejs.org/js/vue.js" asp-name="vuejs"
+        at="Foot"></script>
+<script asp-src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.min.js"
+        debug-src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.js" asp-name="sortable" at="Foot"></script>
+<script asp-src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.min.js"
+        debug-src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.js" asp-name="vuedraggable"
+        depends-on="vuejs, sortable" at="Foot"></script>
+
+<script asp-src="~/Etch.OrchardCore.Fields/Scripts/dictionary/admin.js" asp-name="dictionary" depends-on="jquery"
+        at="Foot"></script>
+<script at="Foot">
+        initializeDictionaryEditor(document.getElementById('@uid'));
+</script>
+
+<div class="row col-sm-6">
+    <div id="@uid" data-for="@Model.FieldId" asp-validation-class-for="Colours">
+        <input type="hidden" asp-for="Colours" :value="value" data-init="@Model.Colours">
+
+        <draggable tag="ul" class="list-group" v-model="dictionaryItems" handle=".handle">
+            <li v-for="(item, index) in dictionaryItems" class="row no-gutters align-items-center mb-3">
+                <div class="col col-md-auto ml-2 mr-2">
+                    <button type="button" class="btn btn-light btn-sm handle"><span class="fa fa-align-justify"></span></button>
+                </div>
+                <div class="col ml-2 mr-2">
+                    <input class="form-control" asp-validation-class-for="Colours" placeholder="Name" type="text" :ref="'name'" v-model="item.name" v-on:keydown.enter.prevent="nextField('name', index)" v-on:keydown.backspace="handleBackspace('name', index, $event)" v-on:keydown.up.prevent="handleUp('name', index)" v-on:keydown.down.prevent="handleDown('name', index)" />
+                </div>
+                <div class="col ml-2 mr-2">
+                    <input class="form-control" asp-validation-class-for="Colours" placeholder="Value" type="text" :ref="'value'" v-model="item.value" v-on:keydown.enter.prevent="nextField('value', index)" v-on:keydown.backspace="handleBackspace('value', index, $event)" v-on:keydown.up.prevent="handleUp('value', index)" v-on:keydown.down.prevent="handleDown('value', index)" />
+                </div>
+                <div class="col col-md-auto ml-2 mr-2">
+                    <button v-on:click="remove(index)" class="btn btn-danger btn-sm" type="button">
+                        <span class="fa fa-trash-alt">&nbsp;</span>
+                    </button>
+                </div>
+            </li>
+        </draggable>
+
+        <p v-if="!hasEntries" class="hint">@T["No colours yet, add one below."]</p>
+
+        <button v-on:click="add" class="btn btn-secondary btn-sm" type="button" :disabled="false"><span class="fa fa-plus">&nbsp;</span> @T["Add Colour"]</button>
+    </div>
+</div>
