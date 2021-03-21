@@ -18,12 +18,6 @@ namespace Etch.OrchardCore.Fields.Eventbrite
     [Feature("Etch.OrchardCore.Fields.Eventbrite")]
     public class Startup : StartupBase
     {
-        public Startup()
-        {
-            TemplateContext.GlobalMemberAccessStrategy.Register<EventbriteField>();
-            TemplateContext.GlobalMemberAccessStrategy.Register<EventbriteEvent>();
-        }
-
         public override void ConfigureServices(IServiceCollection services)
         {
             services.AddContentField<EventbriteField>()
@@ -39,6 +33,12 @@ namespace Etch.OrchardCore.Fields.Eventbrite
             services.AddScoped<IContentFieldIndexHandler, EventbriteFieldIndexHandler>();
 
             services.AddHttpClient();
+
+            services.Configure<TemplateOptions>(o =>
+            {
+                o.MemberAccessStrategy.Register<EventbriteField>();
+                o.MemberAccessStrategy.Register<EventbriteEvent>();
+            });
         }
     }
 }
