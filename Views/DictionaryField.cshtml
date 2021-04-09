@@ -7,10 +7,17 @@
 
 @if (Model.Data != null)
 {
-    <ul class="field field-type-dictionary field-name-@name">
+    <ul class="dictionary list field field--@name">
         @foreach (var dictionaryItem in Model.Data)
         {
-            <li><em>@dictionaryItem.Name</em>: @dictionaryItem.Value</li>
+            <li class="dictionary__item">
+                <span class="dictionary__key">
+                    @dictionaryItem.Name
+                </span>
+                <span class="dictionary__value">
+                    @dictionaryItem.Value
+                </span>
+            </li>
         }
     </ul>
 }
