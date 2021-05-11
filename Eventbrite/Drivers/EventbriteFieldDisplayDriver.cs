@@ -127,6 +127,8 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
 
                     field.Value = model.Value;
                     field.Data = new EventbriteEvent(eventbriteEvent, venue);
+                    field.StartDate = field.Data.StartUtc;
+                    field.EndDate = field.Data.EndUtc;
                 }
             }
             catch
