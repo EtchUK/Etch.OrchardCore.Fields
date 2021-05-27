@@ -1,9 +1,13 @@
 ﻿@model Etch.OrchardCore.Fields.ResponsiveMedia.ViewModels.DisplayResponsiveMediaFieldViewModel
 
+@{
+    var cssClass = string.Format("{0}__media--{1}", Model.PartFieldDefinition.PartDefinition.Name, Model.PartFieldDefinition.Name);
+}
+
 @if (Model.HasMedia)
 {
     if (Model.Media.Count == 1) {
-        <picture>
+        <picture class="@cssClass">
             @foreach (var sourceSet in Model.Media[0].Sources)
             {
                 <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
@@ -12,20 +16,21 @@
             <img src="@Model.Media[0].SmallestImageUrl" loading="lazy" alt="@Model.Media[0].MediaText" />
         </picture>
     } else {
-        <ul>
-        @foreach (var media in Model.Media)
-        {
-            <li>
-                <picture>
-                    @foreach (var sourceSet in media.Sources)
-                    {
-                        <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
-                    }
+        var listClass = string.Format("{0}__media-list--{1}", Model.PartFieldDefinition.PartDefinition.Name, Model.PartFieldDefinition.Name);
+        <ul class="@listClass">
+            @foreach (var media in Model.Media)
+            {
+                <li>
+                    <picture class="@cssClass">
+                        @foreach (var sourceSet in media.Sources)
+                        {
+                            <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
+                        }
 
-                    <img src="@media.SmallestImageUrl" loading="lazy" alt="@media.MediaText" />
-                </picture>
-            </li>
-        }
+                        <img src="@media.SmallestImageUrl" loading="lazy" alt="@media.MediaText" />
+                    </picture>
+                </li>
+            }
         </ul>
     }
 }
