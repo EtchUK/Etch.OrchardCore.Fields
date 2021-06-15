@@ -1,8 +1,11 @@
 ﻿using OrchardCore.ContentFields.Fields;
 using OrchardCore.ContentManagement;
+using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.Media.Fields;
 using OrchardCore.Taxonomies.Fields;
 using System;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Etch.OrchardCore.Fields.Extensions
 {
@@ -133,6 +136,26 @@ namespace Etch.OrchardCore.Fields.Extensions
             var field = part.GetOrCreate<TextField>(name);
             field.Text = value;
             part.Apply(name, field);
+        }
+
+        #endregion
+
+        #region Generic
+
+        public static string HtmlClassify(this ContentPartFieldDefinition contentPartFieldDefinition)
+        {
+            var stringBuilder = new StringBuilder();
+
+            stringBuilder.Append($"{ToHyphenCase(contentPartFieldDefinition.PartDefinition.Name)}-");
+            stringBuilder.Append($"{ToHyphenCase(contentPartFieldDefinition.FieldDefinition.Name.Replace("Field", string.Empty))}");
+            stringBuilder.Append($" {stringBuilder}--{ToHyphenCase(contentPartFieldDefinition.Name)}");
+
+            return stringBuilder.ToString();
+        }
+
+        private static string ToHyphenCase(string value)
+        {
+            return Regex.Replace(value, @"([a-z])([A-Z])", "$1-$2").ToLower();
         }
 
         #endregion

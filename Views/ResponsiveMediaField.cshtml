@@ -1,14 +1,9 @@
 ﻿@model Etch.OrchardCore.Fields.ResponsiveMedia.ViewModels.DisplayResponsiveMediaFieldViewModel
 
-@{
-    var cssClass = $"{Model.PartFieldDefinition.PartDefinition.Name.ToLower()}__media--{Model.PartFieldDefinition.Name.ToLower()}";
-    var listClass = $"{Model.PartFieldDefinition.PartDefinition.Name.ToLower()}__media-list--{Model.PartFieldDefinition.Name.ToLower()}";
-}
-
 @if (Model.HasMedia)
 {
     if (Model.Media.Count == 1) {
-        <picture class="@cssClass">
+        <picture class="@Model.PartFieldDefinition.HtmlClassify()">
             @foreach (var sourceSet in Model.Media[0].Sources)
             {
                 <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
@@ -17,11 +12,11 @@
             <img src="@Model.Media[0].SmallestImageUrl" loading="lazy" alt="@Model.Media[0].MediaText" />
         </picture>
     } else {
-        <ul class="@listClass">
+        <ul class="@Model.PartFieldDefinition.HtmlClassify()--list">
             @foreach (var media in Model.Media)
             {
                 <li>
-                    <picture class="@cssClass">
+                    <picture class="@Model.PartFieldDefinition.HtmlClassify()">
                         @foreach (var sourceSet in media.Sources)
                         {
                             <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />

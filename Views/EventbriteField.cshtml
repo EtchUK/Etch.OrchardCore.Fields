@@ -1,11 +1,6 @@
 ﻿@model Etch.OrchardCore.Fields.Eventbrite.ViewModels.DisplayEventbriteFieldViewModel
-@using OrchardCore.Mvc.Utilities;
 
-@{
-    var name = (Model.PartFieldDefinition.PartDefinition.Name + "-" + Model.PartFieldDefinition.Name).HtmlClassify();
-}
-
-<ul class="field field-type-eventbrite field-name-@name">
+<ul class="@Model.PartFieldDefinition.HtmlClassify()">
     <li><em>Event Name:</em> @Model.Data.Name</li>
     <li><em>Start:</em> @Model.Data.StartUtc</li>
     <li><em>End:</em> @Model.Data.EndUtc</li>
