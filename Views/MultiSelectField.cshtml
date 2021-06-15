@@ -2,7 +2,7 @@
 
 @if (Model.HasValues)
 {
-    <ul>
+    <ul class="@Model.PartFieldDefinition.HtmlClassify()">
         @foreach (var value in Model.SelectedValues)
         {
             <li>@value</li>

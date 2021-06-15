@@ -1,13 +1,9 @@
 @model Etch.OrchardCore.Fields.Dictionary.ViewModels.DisplayDictionaryFieldViewModel
-@using OrchardCore.Mvc.Utilities;
 
-@{
-    var name = (Model.PartFieldDefinition.PartDefinition.Name + "-" + Model.PartFieldDefinition.Name).HtmlClassify();
-}
 
 @if (Model.Data != null)
 {
-    <ul class="dictionary list field field--@name">
+    <ul class="dictionary list @Model.PartFieldDefinition.HtmlClassify()">
         @foreach (var dictionaryItem in Model.Data)
         {
             <li class="dictionary__item">
