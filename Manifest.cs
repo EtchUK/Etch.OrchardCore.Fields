@@ -4,7 +4,7 @@ using OrchardCore.Modules.Manifest;
     Name = "Useful Fields",
     Author = "Etch UK",
     Website = "https://etchuk.com",
-    Version = "0.11.6"
+    Version = "0.11.7"
 )]
 
 [assembly: Feature(
