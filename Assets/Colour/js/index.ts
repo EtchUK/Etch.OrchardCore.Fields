@@ -3,6 +3,10 @@ const CSSClasses = {
 };
 
 (window as any).initializeColourEditor = (el: HTMLElement): void => {
+    if (!el) {
+        return;
+    }
+    
     const $hiddenField: HTMLInputElement = el.querySelector(
         '.js-colour-hidden'
     ) as HTMLInputElement;
