@@ -20,6 +20,10 @@
 
 <script at="Foot">
     (function () {
+        if (!document.getElementById('@id')) {
+            return;
+        }
+
         var editor = window.ace.edit('@id'),
             $input = document.querySelector('.editor-@id');
 
