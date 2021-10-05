@@ -9,6 +9,7 @@ using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
 using OrchardCore.Mvc.ModelBinding;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -141,6 +142,13 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Drivers
 
         private string GetEventbriteId(string value)
         {
+            var uri = new Uri(value);
+
+            if (uri.Host == "www.eventbrite.co.uk")
+            {
+                return uri.AbsolutePath.Split("-").LastOrDefault();
+            }
+
             try
             {
                 return HttpUtility.ParseQueryString(new Uri(value).Query)["eid"];
