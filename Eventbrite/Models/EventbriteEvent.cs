@@ -24,7 +24,7 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Models
 
         #region Event Fields
 
-        public int Capacity { get; set; }
+        public int? Capacity { get; set; }
         public Description Description { get; set; }
         public DateTime EndUtc { get; set; }
         public bool HideEndDate { get; set; }
