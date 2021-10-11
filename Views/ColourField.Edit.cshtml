@@ -1,4 +1,4 @@
-﻿@model Etch.OrchardCore.Fields.Colour.ViewModels.EditColourFieldViewModel
+@model Etch.OrchardCore.Fields.Colour.ViewModels.EditColourFieldViewModel
 
 @using Etch.OrchardCore.Fields.Colour.Settings
 @using OrchardCore.Settings
@@ -48,7 +48,7 @@
         @if (settings.AllowCustom)
         {
             <div class="col-md-auto">
-                <input class="mb-1 swatch @(Model.IsCustomColour ? "is-selected" : "") js-colour-input" type="color" value="@(Model.IsCustomColour ? Model.Value : string.Empty)" />
+                <input class="mb-1 swatch @(Model.IsCustomColour ? "is-selected" : "") js-colour-input" type="color" value="@(Model.IsCustomColour ? Model.Value : "#ffffff")" />
                 <p class="hint">@T["Specify custom"]</p>
             </div>
         }
