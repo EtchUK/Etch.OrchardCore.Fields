@@ -11,8 +11,6 @@
     <PackageTags>orchardcore;etch;fields</PackageTags>
     <RepositoryUrl>https://github.com/etchuk/Etch.OrchardCore.Fields</RepositoryUrl>
     <PackageProjectUrl>https://github.com/etchuk/Etch.OrchardCore.Fields</PackageProjectUrl>
-    <EnableNETAnalyzers>false</EnableNETAnalyzers>
-    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
   </PropertyGroup>
 
   <ItemGroup>
