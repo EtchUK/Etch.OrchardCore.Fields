@@ -37,7 +37,7 @@ namespace Etch.OrchardCore.Fields.Dictionary.Settings
         {
             return Initialize<DictionaryFieldSettings>("DictionaryFieldSettings_Edit", model =>
                 {
-                    partFieldDefinition.PopulateSettings(model);
+                    partFieldDefinition.Settings.Populate(model);
                 })
                 .Location("Content");
         }

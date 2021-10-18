@@ -1,7 +1,6 @@
 ﻿using OrchardCore.Security.Permissions;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Etch.OrchardCore.Fields.Eventbrite
 {
@@ -9,9 +8,9 @@ namespace Etch.OrchardCore.Fields.Eventbrite
     {
         public static readonly Permission ManageEventbriteAPI = new Permission("EventbriteAPI", "Manage Eventbrite API Details");
 
-        public Task<IEnumerable<Permission>> GetPermissionsAsync()
+        public IEnumerable<Permission> GetPermissions()
         {
-            return Task.FromResult(new[] { ManageEventbriteAPI }.AsEnumerable());
+            return new[] { ManageEventbriteAPI }.AsEnumerable();
         }
 
         public IEnumerable<PermissionStereotype> GetDefaultStereotypes()

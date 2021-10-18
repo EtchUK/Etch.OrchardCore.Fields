@@ -31,7 +31,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
 
         public override IDisplayResult Edit(ContentPartFieldDefinition partFieldDefinition)
         {
-            return Initialize<ResponsiveMediaFieldSettings>("ResponsiveMediaFieldSettings_Edit", model => partFieldDefinition.PopulateSettings(model))
+            return Initialize<ResponsiveMediaFieldSettings>("ResponsiveMediaFieldSettings_Edit", model => partFieldDefinition.Settings.Populate(model))
                 .Location("Content");
         }
 
