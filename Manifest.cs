@@ -4,7 +4,7 @@ using OrchardCore.Modules.Manifest;
     Name = "Useful Fields",
     Author = "Etch UK",
     Website = "https://etchuk.com",
-    Version = "0.6.1"
+    Version = "0.7.0"
 )]
 [assembly: Feature(
     Id = "Etch.OrchardCore.Fields.ResponsiveMedia",
