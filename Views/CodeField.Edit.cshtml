@@ -1,0 +1,49 @@
+@using OrchardCore.ContentManagement.Metadata.Settings
+
+@model Etch.OrchardCore.Fields.Code.ViewModels.EditCodeFieldViewModel
+
+@{ 
+    var id = Guid.NewGuid();
+	var displayName = Model.PartFieldDefinition.GetSettings<ContentPartFieldSettings>().DisplayName;
+}
+
+<script asp-src="~/Etch.OrchardCore.Fields/Scripts/code/ace/ace.js" asp-name="ace" at="Foot"></script>
+
+<script at="Foot">
+    (function () {
+        if (!document.getElementById('@id')) {
+            return;
+        }
+
+        var editor = window.ace.edit('@id'),
+            $input = document.querySelector('.editor-@id');
+
+        editor.setTheme('ace/theme/crimson_editor');
+        editor.session.setMode('ace/mode/javascript');
+        editor.setOptions({
+            autoScrollEditorIntoView: true,
+            maxLines: 80,
+            showPrintMargin: false
+        });
+        editor.renderer.setScrollMargin(10, 10, 10, 10);
+        editor.session.on('change', function () {
+            $input.value = editor.session.getValue();
+            $(document).trigger('contentpreview:render');
+        });
+    })();
+</script>
+
+<style>
+	.ace_editor {
+		border: 1px solid lightgray;
+		margin: auto;
+		height: 200px;
+		width: 100%;
+	}
+</style>
+
+<div class="form-group">
+	<label asp-for="Value">@displayName</label>
+	<pre id="@id">@Model.Value</pre>
+	<input asp-for="Value" type="hidden" class="editor-@id" />
+</div> 

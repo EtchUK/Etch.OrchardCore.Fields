@@ -45,3 +45,10 @@ using OrchardCore.Modules.Manifest;
     Description = "Field for choosing multiple values from collection of configured options.",
     Category = "Content"
 )]
+
+[assembly: Feature(
+    Id = "Etch.OrchardCore.Fields.Code",
+    Name = "Code Field",
+    Description = "Field for defining code.",
+    Category = "Content"
+)]
