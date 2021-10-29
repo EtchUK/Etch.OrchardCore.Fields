@@ -58,7 +58,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
                 context.Updater.ModelState.AddModelError(Prefix, T["Failed to parse breakpoints, make sure it only contains numeric values."]);
             }
 
-            context.Builder.WithSettings(settings);
+            context.Builder.MergeSettings(settings);
 
             return Edit(partFieldDefinition);
         }

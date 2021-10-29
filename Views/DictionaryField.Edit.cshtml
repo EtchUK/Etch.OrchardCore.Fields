@@ -4,7 +4,7 @@
 @using Etch.OrchardCore.Fields.Dictionary.Settings
 
 @{
-    var settings = Model.PartFieldDefinition.GetSettings<DictionaryFieldSettings>();
+    var settings = Model.PartFieldDefinition.Settings.ToObject<DictionaryFieldSettings>();
 }
 <script asp-src="https://vuejs.org/js/vue.min.js" debug-src="https://vuejs.org/js/vue.js" asp-name="vuejs"
         at="Foot"></script>

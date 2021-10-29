@@ -27,7 +27,7 @@ namespace Etch.OrchardCore.Fields.Values.Settings
 
             if (await context.Updater.TryUpdateModelAsync(settings, Prefix))
             {
-                context.Builder.WithSettings(settings);
+                context.Builder.MergeSettings(settings);
             }
 
             return Edit(partFieldDefinition);

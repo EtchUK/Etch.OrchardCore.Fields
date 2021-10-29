@@ -34,7 +34,7 @@ namespace Etch.OrchardCore.Fields.MultiSelect.Settings
             var model = new EditMultiSelectFieldSettingsViewModel();
 
             if (await context.Updater.TryUpdateModelAsync(model, Prefix)) {
-                context.Builder.WithSettings(new MultiSelectFieldSettings
+                context.Builder.MergeSettings(new MultiSelectFieldSettings
                 {
                     Hint = model.Hint,
                     Options = string.IsNullOrWhiteSpace(model.OptionsJson) ? Array.Empty<string>() : JsonConvert.DeserializeObject<string[]>(model.OptionsJson)

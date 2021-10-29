@@ -59,7 +59,7 @@ namespace Etch.OrchardCore.Fields.Dictionary.Settings
                     _logger.LogError(e, "Error parsing DefaultData for DictionaryFieldSettings");
                 }
 
-                context.Builder.WithSettings(settings);
+                context.Builder.MergeSettings(settings);
             }
 
             return Edit(partFieldDefinition);
