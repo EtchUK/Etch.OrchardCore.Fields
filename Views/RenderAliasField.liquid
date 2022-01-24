@@ -1,3 +1,4 @@
-﻿{% assign contentItem = Content.Alias[Model.Alias] %}
+﻿{% assign alias = Model.Alias | prepend: "alias:" %}
+{% assign contentItem = Content[alias] %}
 
 {{ contentItem | shape_build_display: Model.DisplayType | shape_render }}
