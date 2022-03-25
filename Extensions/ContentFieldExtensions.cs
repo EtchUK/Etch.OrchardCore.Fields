@@ -148,10 +148,12 @@ namespace Etch.OrchardCore.Fields.Extensions
             var fieldName = contentPartFieldDefinition.FieldDefinition.Name;
 
             var stringBuilder = new StringBuilder();
-
             stringBuilder.Append($"{ToHyphenCase(partName.EndsWith("Part") ? partName.Substring(0, partName.Length - 4) : partName)}-");
             stringBuilder.Append($"{ToHyphenCase(fieldName.EndsWith("Field") ? fieldName.Substring(0, fieldName.Length - 5) : fieldName)}");
-            stringBuilder.Append($" {stringBuilder}--{ToHyphenCase(contentPartFieldDefinition.Name)}");
+
+            var cssClass = stringBuilder.ToString();
+
+            stringBuilder.Append($" {cssClass}--{ToHyphenCase(contentPartFieldDefinition.Name)}");
 
             return stringBuilder.ToString();
         }
