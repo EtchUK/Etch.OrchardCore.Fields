@@ -8,7 +8,7 @@ Module for [Orchard Core](https://github.com/OrchardCMS/OrchardCore) that provid
 
 ## Orchard Core Reference
 
-This module is referencing a stable build of Orchard Core ([`1.3.0`](https://www.nuget.org/packages/OrchardCore.Module.Targets/1.3.0)).
+This module is referencing a stable build of Orchard Core ([`1.4.0`](https://www.nuget.org/packages/OrchardCore.Module.Targets/1.4.0)).
 
 ## Installing
 
@@ -28,7 +28,7 @@ Content field providing a code editor (using [Ace](https://ace.c9.io/)) to add c
 
 ### Colour
 
-Colour field introduces an alternative to the `TextField` for ditors to define a colour. This field can be configured with a colour palette, transparent or the ability to choose a custom colour.
+Colour field introduces an alternative to the `TextField` for editors to define a colour. This field can be configured with a colour palette, transparent or the ability to choose a custom colour.
 
 ### Dictionary
 
