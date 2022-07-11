@@ -39,6 +39,11 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
 
         public override IDisplayResult Display(ResponsiveMediaField field, BuildFieldDisplayContext fieldDisplayContext)
         {
+            if (new string[] { "SummaryAdmin", "DetailAdmin" }.Contains(fieldDisplayContext.DisplayType))
+            {
+                return null;
+            }
+
             var settings = fieldDisplayContext.PartFieldDefinition.GetSettings<ResponsiveMediaFieldSettings>();
             var data = field.HasData ? field.Data : settings.FallbackData;
 
@@ -49,9 +54,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Drivers
                 model.PartFieldDefinition = fieldDisplayContext.PartFieldDefinition;
                 model.Media = ParseMedia(data, settings.GetBreakpoints());
             })
-            .Location("Content")
-            .Location("SummaryAdmin", "")
-            .Location("DetailAdmin", ""); 
+            .Location("Content");
         }
 
         public override IDisplayResult Edit(ResponsiveMediaField field, BuildFieldEditorContext context)
