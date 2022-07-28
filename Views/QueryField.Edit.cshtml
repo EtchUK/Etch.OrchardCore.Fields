@@ -1,6 +1,10 @@
 ﻿@model Etch.OrchardCore.Fields.Query.ViewModels.EditQueryFieldViewModel
 
-@{ 
+@using Etch.OrchardCore.Fields.Query.Settings
+
+@{
+    var settings = Model.PartFieldDefinition.GetSettings<QueryFieldSettings>();
+
     var options = new List<SelectListItem>();
     options.Add(new SelectListItem { Text = T["- Select query -"].Value, Value = "", Selected = string.IsNullOrEmpty(Model.Value) });
 
@@ -16,4 +20,10 @@
 <div class="form-group">
     <label asp-for="Value">@Model.PartFieldDefinition.DisplayName()</label>
     <select class="form-control" asp-for="Value" asp-items="options"></select>
+
+    @if (!String.IsNullOrEmpty(settings.Hint))
+    {
+        <p class="hint">@settings.Hint</p>
+    }
+
 </div>
