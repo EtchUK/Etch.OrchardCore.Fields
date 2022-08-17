@@ -52,6 +52,24 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Services
             return null;
         }
 
+        public async Task<EventbriteDescriptionDto> GetDescriptionAsync(string eventId)
+        {
+            var settings = await _eventbriteSettingsService.GetSettingsAsync();
+            var request = new HttpRequestMessage(HttpMethod.Get, $"{EventsUrl}/{eventId}/description/");
+            var client = _clientFactory.CreateClient();
+
+            request.Headers.Add("Authorization", $"Bearer {settings.PrivateToken}");
+
+            var response = await client.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<EventbriteDescriptionDto>(await response.Content.ReadAsStringAsync());
+            }
+
+            return null;
+        }
+
         public async Task<EventbriteVenueDto> GetVenueAsync(string venueId)
         {
             if (string.IsNullOrWhiteSpace(venueId))
@@ -82,5 +100,7 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Services
     {
         Task<EventbriteEventDto> GetEventAsync(string eventId);
         Task<EventbriteVenueDto> GetVenueAsync(string venueId);
+        Task<EventbriteDescriptionDto> GetDescriptionAsync(string eventId);
+
     }
 }

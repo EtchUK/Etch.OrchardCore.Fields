@@ -7,11 +7,16 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Models
     {
         #region Constructors
 
-        public EventbriteEvent(EventbriteEventDto eventDto = null, EventbriteVenueDto venueDto = null)
+        public EventbriteEvent(EventbriteEventDto eventDto = null, EventbriteVenueDto venueDto = null, EventbriteDescriptionDto description = null)
         {
             if (eventDto != null)
             {
                 UpdateEventFields(eventDto);
+            }
+
+            if (description != null)
+            {
+                UpdateDescriptionField(description);
             }
 
             if (venueDto != null)
@@ -62,6 +67,11 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Models
             Summary = eventBriteEventDto.Summary;
             Url = eventBriteEventDto.Url;
             VanityUrl = eventBriteEventDto.VanityUrl;
+        }
+
+        private void UpdateDescriptionField(EventbriteDescriptionDto descriptionDto)
+        {
+            Description = new Description { Html = descriptionDto.Description };
         }
 
         private void UpdateVenueFields(EventbriteVenueDto eventBriteVenueDto)
