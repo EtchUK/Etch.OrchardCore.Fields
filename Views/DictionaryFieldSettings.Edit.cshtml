@@ -14,7 +14,7 @@
         initializeDictionaryEditor(document.getElementById('@Html.IdFor(m => m)'));
 </script>
 
-<div class="form-group">
+<div class="mb-3 w-md-50 pe-md-3">
     <label asp-for="DefaultData">@T["Default values"]</label>
     <span class="hint">@T["Values that will be present on a new content item"]</span>
 
@@ -22,17 +22,21 @@
         <input type="hidden" asp-for="DefaultData" :value="value" data-init="@Model.DefaultData">
 
         <draggable tag="ul" class="list-group" v-model="dictionaryItems" handle=".handle">
-            <li v-for="(item, index) in dictionaryItems" class="row mb-3">
-                <button type="button" class="btn btn-light handle"><span class="fa fa-align-justify"></span></button>
-                <div class="col">
+            <li v-for="(item, index) in dictionaryItems" class="row no-gutters align-items-center mb-3">
+                <div class="col col-md-auto ml-2 me-2">
+                    <button type="button" class="btn btn-light handle"><span class="fa fa-align-justify"></span></button>
+                </div>
+                <div class="col ml-2 me-2">
                     <input class="form-control" placeholder="Name" type="text" v-model="item.name">
                 </div>
-                <div class="col">
+                <div class="col ml-2 me-2">
                     <input class="form-control" placeholder="Value" type="text" v-model="item.value">
                 </div>
-                <button v-on:click="remove(index)" class="btn btn-danger" type="button">
-                    <span class="fa fa-trash-alt">&nbsp;</span>
-                </button>
+                <div class="col col-md-auto ml-2 me-2">
+                    <button v-on:click="remove(index)" class="btn btn-danger" type="button">
+                        <span class="fa fa-trash-alt">&nbsp;</span>
+                    </button>
+                </div>
             </li>
         </draggable>
 
@@ -40,23 +44,23 @@
     </div>
 </div>
 
-<div class="form-group">
-    <div class="row col-sm-6">
+<div class="mb-3">
+    <div class="w-md-50 pe-md-3">
         <label asp-for="MinEntries">@T["Minimum Entries"]</label>
         <input type="number" asp-for="MinEntries" class="form-control" value="@Model.MinEntries" />
         <span class="hint">@T["Minimum number of name/values that must be specified."]</span>
     </div>
 </div>
-<div class="form-group">
-    <div class="row col-sm-6">
+<div class="mb-3">
+    <div class="w-md-50 pe-md-3">
         <label asp-for="MaxEntries">@T["Maximum Entries"]</label>
         <input type="number" asp-for="MaxEntries" class="form-control" value="@Model.MaxEntries" />
         <span class="hint">@T["Maximum number of name/values that can be specified."]</span>
     </div>
 </div>
 
-<div class="form-group">
-    <div class="row col-sm-6">
+<div class="mb-3">
+    <div class="w-md-50 pe-md-3">
         <label asp-for="Hint">@T["Hint"]</label>
         <textarea asp-for="Hint" rows="2" class="form-control"></textarea>
         <span class="hint">@T["The hint text to display for this field on the editor."]</span>

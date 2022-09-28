@@ -2,54 +2,49 @@
 
 @using Etch.OrchardCore.Fields.Colour.ViewModels 
 
-<div class="row">
-    <div class="form-group col-md-6">
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" asp-for="UseGlobalColours" checked="@Model.UseGlobalColours">
-            <label class="custom-control-label" asp-for="UseGlobalColours">@T["Use Site Colour Palette"]</label>
-            <span class="hint">@T["Use colours defined within site settings."]</span>
-        </div>
+
+<div class="mb-3">
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" asp-for="UseGlobalColours" checked="@Model.UseGlobalColours">
+        <label class="form-check-label" asp-for="UseGlobalColours">@T["Use Site Colour Palette"]</label>
+        <span class="hint">@T["Use colours defined within site settings."]</span>
     </div>
 </div>
 
-<div class="form-group">
-    <div class="row col-sm-6">
+<div class="mb-3">
+    <div class="w-md-50 pe-md-3">
         <label asp-for="Colours">@T["Colours"]</label>
     </div>
 
     <partial name="./Shared/ColoursEditor.cshtml" model="@(new ColoursFieldViewModel { Colours = Model.Colours, FieldId = Html.IdFor(x => x.Colours) })" />
 </div>
 
-<div class="row">
-    <div class="form-group col-md-6">
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" asp-for="AllowTransparent" checked="@Model.AllowTransparent">
-            <label class="custom-control-label" asp-for="AllowTransparent">@T["Allow Transparent"]</label>
-            <span class="hint">@T["Include option for choosing transparent as a colour."]</span>
-        </div>
+<div class="mb-3">
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" asp-for="AllowTransparent" checked="@Model.AllowTransparent">
+        <label class="form-check-label" asp-for="AllowTransparent">@T["Allow Transparent"]</label>
+        <span class="hint">@T["Include option for choosing transparent as a colour."]</span>
     </div>
 </div>
 
-<div class="row">
-    <div class="form-group col-md-6">
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" asp-for="AllowCustom" checked="@Model.AllowCustom">
-            <label class="custom-control-label" asp-for="AllowCustom">@T["Allow Custom"]</label>
-            <span class="hint">@T["Include ability to specify custom colour."]</span>
-        </div>
+<div class="mb-3">
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" asp-for="AllowCustom" checked="@Model.AllowCustom">
+        <label class="form-check-label" asp-for="AllowCustom">@T["Allow Custom"]</label>
+        <span class="hint">@T["Include ability to specify custom colour."]</span>
     </div>
 </div>
 
-<div class="form-group">
-    <div class="row col-sm-6">
+<div class="mb-3">
+    <div class="w-md-50 pe-md-3">
         <label asp-for="DefaultValue">@T["Default Value"]</label>
         <input asp-for="DefaultValue" class="form-control" />
         <span class="hint">@T["Default value when no colour has been defined."]</span>
     </div>
 </div>
 
-<div class="form-group">
-    <div class="row col-sm-6">
+<div class="mb-3">
+    <div class="w-md-50 pe-md-3">
         <label asp-for="Hint">@T["Hint"]</label>
         <textarea asp-for="Hint" rows="2" class="form-control"></textarea>
         <span class="hint">@T["The hint text to display for this field on the editor."]</span>

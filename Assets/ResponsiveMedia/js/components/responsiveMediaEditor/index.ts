@@ -1,4 +1,4 @@
-import 'bootstrap';
+import bootstrap from 'bootstrap';
 import $ from 'jquery';
 import Vue from 'vue';
 import MediaSource from './models/mediaSource';
@@ -82,7 +82,8 @@ export default (
 
                 $(selectors.mediaApp).show();
 
-                const modal = $(modalBodyElement).modal();
+                const modal = new bootstrap.Modal($(modalBodyElement)[0]);
+                modal.show();
 
                 $(modalBodyElement)
                     .find(selectors.mediaFieldSelectButton)
@@ -99,13 +100,16 @@ export default (
 
                         window.mediaApp.selectedMedias = [];
 
-                        modal.modal('hide');
+                        modal.hide();
                         return true;
                     });
             },
 
             cancelMediaTextModal: function (): void {
-                $(this.$refs.mediaTextModal).modal('hide');
+                const modal = new bootstrap.Modal(
+                    this.$refs.mediaTextModal as Element
+                );
+                modal.hide();
                 this.selectedMedia.mediaText = this.backupMediaText;
             },
 

@@ -1,15 +1,15 @@
 ﻿@model Etch.OrchardCore.Fields.RenderAlias.ViewModels.EditRenderAliasFieldViewModel
 
-<div class="form-group">
-    <div class="row col-sm-6">
+<div class="mb-3">
+    <div class="w-md-50 pe-md-3">
         <label asp-for="Alias">@T["Alias"]</label>
         <input type="text" asp-for="Alias" class="form-control" />
         <span class="hint">@T["Alias to find the content item that should be rendered. Set by adding the Alias part to a content type."]</span>
     </div>
 </div>
 
-<div class="form-group">
-    <div class="row col-sm-6">
+<div class="mb-3">
+    <div class="w-md-50 pe-md-3">
         <label asp-for="DisplayType">@T["Display type"]</label>
         <input type="text" asp-for="DisplayType" class="form-control" />
         <span class="hint">@T["Display type to use when rendering the item. e.g.: Detail, Summary"]</span>

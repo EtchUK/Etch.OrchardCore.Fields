@@ -21,30 +21,34 @@
         initializeDictionaryEditor(document.getElementById('@Html.IdFor(m => m)'));
 </script>
 
-<div class="form-group">
+<div class="mb-3">
     <label asp-for="Data">@Model.PartFieldDefinition.DisplayName()</label>
     @if (!String.IsNullOrEmpty(settings.Hint))
     {
         <span class="hint">@settings.Hint</span>
     }
 
-    <div id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.Data)" data-min="@Html.IdFor(m => m.MinEntries)" data-max="@Html.IdFor(m => m.MaxEntries)" asp-validation-class-for="Data">
+    <div id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.Data)" data-min="@Html.IdFor(m => m.MinEntries)" data-max="@Html.IdFor(m => m.MaxEntries)" asp-validation-class-for="Data" class="w-md-50 pe-md-3">
         <input type="hidden" asp-for="Data" :value="value" data-init="@Model.Data">
         <input type="hidden" id="@Html.IdFor(m=>m.MaxEntries)" value="@Model.MaxEntries" />
         <input type="hidden" id="@Html.IdFor(m=>m.MinEntries)" value="@Model.MinEntries" />
 
         <draggable tag="ul" class="list-group" v-model="dictionaryItems" handle=".handle" @@change="updatePreview">
-            <li v-for="(item, index) in dictionaryItems" class="row mb-3">
-                <button type="button" class="btn btn-light handle"><span class="fa fa-align-justify"></span></button>
-                <div class="col">
+            <li v-for="(item, index) in dictionaryItems" class="row no-gutters align-items-center mb-3">
+                <div class="col col-md-auto ml-2 me-2">
+                    <button type="button" class="btn btn-light handle"><span class="fa fa-align-justify"></span></button>
+                </div>
+                <div class="col ml-2 me-2">
                     <input class="form-control content-preview-text" asp-validation-class-for="Data" placeholder="Name" type="text" :ref="'name'" v-model="item.name" v-on:keydown.enter.prevent="nextField('name', index)" v-on:keydown.backspace="handleBackspace('name', index, $event)" v-on:keydown.up.prevent="handleUp('name', index)" v-on:keydown.down.prevent="handleDown('name', index)" />
                 </div>
-                <div class="col">
+                <div class="col ml-2 me-2">
                     <input class="form-control content-preview-text" asp-validation-class-for="Data" placeholder="Value" type="text" :ref="'value'" v-model="item.value" v-on:keydown.enter.prevent="nextField('value', index)" v-on:keydown.backspace="handleBackspace('value', index, $event)" v-on:keydown.up.prevent="handleUp('value', index)" v-on:keydown.down.prevent="handleDown('value', index)" />
                 </div>
-                <button v-on:click="remove(index)" class="btn btn-danger" type="button">
-                    <span class="fa fa-trash-alt">&nbsp;</span>
-                </button>
+                <div class="col col-md-auto ml-2 me-2">
+                    <button v-on:click="remove(index)" class="btn btn-danger" type="button">
+                        <span class="fa fa-trash-alt">&nbsp;</span>
+                    </button>
+                </div>
             </li>
         </draggable>
 
