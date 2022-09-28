@@ -19,7 +19,7 @@
 
 <div class="responsive-media-field-editor" id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.Data)">
     <div class="responsive-media-field">
-        <div class="form-group">
+        <div class="mb-3">
             <label asp-for="Data">@Model.PartFieldDefinition.DisplayName()</label>
             @if (!string.IsNullOrWhiteSpace(settings.Hint))
             {
@@ -47,12 +47,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">@T["Enter media text"]</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="mb-3">
                         <input class="form-control" v-if="selectedMedia" v-model="selectedMedia.mediaText" />
                     </div>
                 </div>
@@ -79,7 +79,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary mediaFieldSelectButton">@T["OK"]</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">@T["Cancel"]</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@T["Cancel"]</button>
             </div>
         </div>
     </div>

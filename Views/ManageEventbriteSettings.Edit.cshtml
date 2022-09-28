@@ -1,6 +1,6 @@
 ﻿@model Etch.OrchardCore.Fields.Eventbrite.ViewModels.EventbriteSettingsViewModel;
 
-<div class="form-group" asp-validation-class-for="PrivateToken">
+<div class="mb-3" asp-validation-class-for="PrivateToken">
     <label asp-for="PrivateToken">@T["Private Token"] <span asp-validation-for="PrivateToken"></span></label>
     <input asp-for="PrivateToken" class="form-control" />
     <span class="hint">@T["This can be generated on the <a href=\"{0}\">Eventbrite Platform</a>.", "https://www.eventbrite.co.uk/platform/api-keys/"]</span>

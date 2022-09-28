@@ -15,46 +15,40 @@ initializeMediaApplication(false, '@Url.Action("MediaApplication", "Admin", new 
 initializeResponsiveMediaEditor(document.getElementById('@Html.IdFor(m => m)'), document.getElementById('@Html.IdFor(m => m)-ModalBody'), @(Newtonsoft.Json.JsonConvert.SerializeObject(Model.GetBreakpoints())), @(Model.Multiple ? "true" : "false"));
 </script>}
 
-<div class="form-group">
-    <div class="row col-sm-6">
+<div class="mb-3">
+    <div class="w-md-50 pe-md-3">
         <label asp-for="Breakpoints">@T["Breakpoints"]</label>
         <input type="text" asp-for="Breakpoints" class="form-control" value="@string.Join(",", Model.Breakpoints)" />
         <span class="hint">@T["Comma separated list of breakpoints (e.g. \"200, 400, 600\")."]</span>
     </div>
 </div>
 
-<div class="row">
-    <div class="form-group col-md-6">
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" asp-for="Required" checked="@Model.Required">
-            <label class="custom-control-label" asp-for="Required">@T["Required"]</label>
-            <span class="hint">@T["Whether a media is required."]</span>
-        </div>
+<div class="mb-3 col-md-6">
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" asp-for="Required" checked="@Model.Required">
+        <label class="form-check-label" asp-for="Required">@T["Required"]</label>
+        <span class="hint">@T["Whether a media is required."]</span>
     </div>
 </div>
 
-<div class="row">
-    <div class="form-group col-md-6">
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" asp-for="Multiple" checked="@Model.Multiple">
-            <label class="custom-control-label" asp-for="Multiple">@T["Multiple"]</label>
-            <span class="hint">@T["Whether multiple media can be selected."]</span>
-        </div>
+<div class="mb-3 col-md-6">
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" asp-for="Multiple" checked="@Model.Multiple">
+        <label class="form-check-label" asp-for="Multiple">@T["Multiple"]</label>
+        <span class="hint">@T["Whether multiple media can be selected."]</span>
     </div>
 </div>
 
-<div class="row">
-    <div class="form-group col-md-6">
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" asp-for="AllowMediaText" checked="@Model.AllowMediaText">
-            <label class="custom-control-label" asp-for="AllowMediaText">@T["Allow Media Text"]</label>
-            <span class="hint">@T["Whether alternate text can be defined for media."]</span>
-        </div>
+<div class="mb-3 col-md-6">
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" asp-for="AllowMediaText" checked="@Model.AllowMediaText">
+        <label class="form-check-label" asp-for="AllowMediaText">@T["Allow Media Text"]</label>
+        <span class="hint">@T["Whether alternate text can be defined for media."]</span>
     </div>
 </div>
 
-<div class="form-group">
-    <div class="row col-sm-6">
+<div class="mb-3">
+    <div class="w-md-50 pe-md-3">
         <label asp-for="Hint">@T["Hint"]</label>
         <textarea asp-for="Hint" rows="2" class="form-control"></textarea>
         <span class="hint">@T["The hint text to display for this field on the editor."]</span>
@@ -65,7 +59,7 @@ initializeResponsiveMediaEditor(document.getElementById('@Html.IdFor(m => m)'), 
 {
 <div class="responsive-media-field-editor" id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.FallbackData)">
     <div class="responsive-media-field">
-        <div class="form-group">
+        <div class="mb-3">
             <label asp-for="FallbackData">Fallback Image</label>
             <span class="hint">Displayed when image hasn't been defined on content field.</span>
 

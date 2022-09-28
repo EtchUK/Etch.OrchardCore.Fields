@@ -20,7 +20,7 @@
     initializeColourEditor(document.getElementById('@placeholder'));
 </script>
 
-<div class="form-group" id="@placeholder">
+<div class="mb-3" id="@placeholder">
     <label asp-for="Value">@Model.PartFieldDefinition.DisplayName()</label>
 
     @if (!String.IsNullOrEmpty(settings.Hint))

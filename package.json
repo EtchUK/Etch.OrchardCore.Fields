@@ -18,8 +18,8 @@
     },
     "homepage": "https://github.com/etchuk/Etch.OrchardCore.Fields#readme",
     "devDependencies": {
-        "@types/bootstrap": "^4.3.2",
-        "@types/jquery": "^3.3.34",
+        "@types/bootstrap": "^5.2.4",
+        "@types/jquery": "^3.5.14",
         "copy-webpack-plugin": "^5.1.1",
         "serialize-javascript": "^5.0.1",
         "ts-loader": "^6.2.2",

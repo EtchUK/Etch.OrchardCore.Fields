@@ -1,7 +1,7 @@
 ﻿@model Etch.OrchardCore.Fields.Eventbrite.ViewModels.EditEventbriteFieldViewModel
 
-<div class="form-group">
-    <div class="row col-sm-6">
+<div class="mb-3">
+    <div class="w-md-50 pe-md-3">
         <label asp-for="Value">@T["Event Id"]</label>
         <input type="text" asp-for="Value" class="form-control" />
         <span asp-validation-for="Value"></span>
@@ -11,7 +11,7 @@
 
 @if (Model.Field.Data != null)
 {
-    <div class="form-group">
+    <div class="mb-3">
         <p><a href="@Model.Field.Data.Url">@T["View {0} on Eventbrite", Model.Field.Data.Name]</a>.</p>
     </div>
 }

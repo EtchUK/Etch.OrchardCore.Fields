@@ -24,7 +24,7 @@
         initializeValuesEditor(document.getElementById('@Html.IdFor(m => m)'));
 </script>
 
-<div class="form-group">
+<div class="mb-3">
     <label asp-for="Data">@Model.PartFieldDefinition.DisplayName()</label>
 
     @if (!String.IsNullOrWhiteSpace(settings.Hint))
@@ -36,7 +36,7 @@
         <input type="hidden" asp-for="Data" :value="value" data-init="@Model.Data">
 
         <div class="form-inline mb-3">
-            <div class="form-group mr-3 w-100" style="max-width: 300px;">
+            <div class="mb-3 me-3 w-100" style="max-width: 300px;">
                 <label for="@Html.IdFor(m => m.Data)_NewValue" class="sr-only">@T["New Value"]</label>
                 <input type="text" class="form-control w-100" id="@Html.IdFor(m => m.Data)_NewValue" placeholder="@(T[newItemPlaceholder])" v-model="newValue" v-on:keydown.enter.prevent="add">
             </div>
