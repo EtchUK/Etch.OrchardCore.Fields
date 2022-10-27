@@ -45,6 +45,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Settings
             {
                 AllowMediaText = viewModel.AllowMediaText,
                 Hint = viewModel.Hint,
+                LazyLoad = viewModel.LazyLoad,
                 Multiple = viewModel.Multiple,
                 Required = viewModel.Required,
                 FallbackData = JsonConvert.SerializeObject(ResponsiveMediaUtils.ParseMedia(_mediaFileStore, viewModel.FallbackData))
