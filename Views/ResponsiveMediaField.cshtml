@@ -1,4 +1,9 @@
-﻿@model Etch.OrchardCore.Fields.ResponsiveMedia.ViewModels.DisplayResponsiveMediaFieldViewModel
+﻿@using Etch.OrchardCore.Fields.ResponsiveMedia.Settings
+@model Etch.OrchardCore.Fields.ResponsiveMedia.ViewModels.DisplayResponsiveMediaFieldViewModel
+
+@{
+    var loadType = Model.PartFieldDefinition.GetSettings<ResponsiveMediaFieldSettings>().LazyLoad ? "lazy" : "eager";
+}
 
 @if (Model.HasMedia)
 {
@@ -9,7 +14,7 @@
                 <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
             }
 
-            <img src="@Model.Media[0].SmallestImageUrl" loading="lazy" alt="@Model.Media[0].MediaText" />
+            <img src="@Model.Media[0].SmallestImageUrl" loading=@loadType alt="@Model.Media[0].MediaText" />
         </picture>
     } else {
         <ul class="@Model.PartFieldDefinition.HtmlClassify()--list">
@@ -22,7 +27,7 @@
                             <source srcset="@sourceSet.Url" media="@($"(min-width: {sourceSet.Breakpoint}px)")" />
                         }
 
-                        <img src="@media.SmallestImageUrl" loading="lazy" alt="@media.MediaText" />
+                        <img src="@media.SmallestImageUrl" loading=@loadType alt="@media.MediaText" />
                     </picture>
                 </li>
             }

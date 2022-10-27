@@ -47,6 +47,14 @@ initializeResponsiveMediaEditor(document.getElementById('@Html.IdFor(m => m)'), 
     </div>
 </div>
 
+<div class="mb-3 col-md-6">
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" asp-for="LazyLoad" checked="@Model.LazyLoad">
+        <label class="form-check-label" asp-for="LazyLoad">@T["Lazy Load"]</label>
+        <span class="hint">@T["Whether media should be lazy loaded."]</span>
+    </div>
+</div>
+
 <div class="mb-3">
     <div class="w-md-50 pe-md-3">
         <label asp-for="Hint">@T["Hint"]</label>
