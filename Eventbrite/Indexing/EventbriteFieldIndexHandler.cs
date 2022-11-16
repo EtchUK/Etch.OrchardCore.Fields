@@ -8,10 +8,7 @@ namespace Etch.OrchardCore.Search.Indexing
     {
         public override Task BuildIndexAsync(EventbriteField field, BuildFieldIndexContext context)
         {
-            var options = context.Settings.ToOptions()
-                | DocumentIndexOptions.Store
-                | DocumentIndexOptions.Analyze
-                ;
+            var options = context.Settings.ToOptions();
 
             context.DocumentIndex.Set("EventbriteField.StartDate", field.StartDate, options);
             context.DocumentIndex.Set("EventbriteField.EndDate", field.EndDate, options);
