@@ -106,10 +106,6 @@ export default (
             },
 
             cancelMediaTextModal: function (): void {
-                const modal = new bootstrap.Modal(
-                    this.$refs.mediaTextModal as Element
-                );
-                modal.hide();
                 this.selectedMedia.mediaText = this.backupMediaText;
             },
 
@@ -119,7 +115,10 @@ export default (
 
             showMediaText: function (args: IMediaItemEventArgs): void {
                 this.selectedMedia = args.media;
-                $(this.$refs.mediaTextModal).modal();
+                const modal = new bootstrap.Modal(
+                    this.$refs.mediaTextModal as Element
+                );
+                modal.show();
                 this.backupMediaText = this.selectedMedia.mediaText;
             },
 
@@ -130,7 +129,8 @@ export default (
 
                 $(selectors.mediaApp).show();
 
-                const modal = $(modalBodyElement).modal();
+                const modal = new bootstrap.Modal($(modalBodyElement)[0]);
+                modal.show();
 
                 $(modalBodyElement)
                     .find(selectors.mediaFieldSelectButton)
@@ -145,7 +145,7 @@ export default (
 
                         window.mediaApp.selectedMedias = [];
 
-                        modal.modal('hide');
+                        modal.hide();
                         return true;
                     });
             },
