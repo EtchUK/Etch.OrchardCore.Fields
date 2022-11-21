@@ -1,4 +1,5 @@
-﻿using Etch.OrchardCore.Fields.Dictionary.Fields;
+using Etch.OrchardCore.Fields.Colour.Settings;
+using Etch.OrchardCore.Fields.Dictionary.Fields;
 using Etch.OrchardCore.Fields.Dictionary.Models;
 using Etch.OrchardCore.Fields.Dictionary.Settings;
 using Etch.OrchardCore.Fields.Dictionary.ViewModels;
@@ -60,7 +61,7 @@ namespace Etch.OrchardCore.Fields.Dictionary.Drivers
                 model.Part = context.ContentPart;
                 model.PartFieldDefinition = context.PartFieldDefinition;
 
-                model.Data = JsonConvert.SerializeObject(field.Data == null ? GetDefaults(context) : field.Data);
+                model.Data = JsonConvert.SerializeObject(field.Data ?? GetDefaults(context));
 
                 model.MaxEntries = settings?.MaxEntries;
                 model.MinEntries = settings?.MinEntries;
@@ -96,18 +97,20 @@ namespace Etch.OrchardCore.Fields.Dictionary.Drivers
 
         #region Helpers
 
-        private DictionaryFieldSettings GetSettings(BuildFieldEditorContext context)
+        private static DictionaryFieldSettings GetSettings(BuildFieldEditorContext context)
         {
-            return context?.PartFieldDefinition?.Settings?.ToObject<DictionaryFieldSettings>();
+            return context.PartFieldDefinition.GetSettings<DictionaryFieldSettings>();
         }
 
-        private IList<DictionaryItem> GetDefaults(BuildFieldEditorContext context)
+        private static IList<DictionaryItem> GetDefaults(BuildFieldEditorContext context)
         {
             var settingsValue = GetSettings(context)?.DefaultData;
+
             if (settingsValue != null)
             {
                 return JsonConvert.DeserializeObject<IList<DictionaryItem>>(settingsValue);
             }
+
             return new List<DictionaryItem>();
         }
 
