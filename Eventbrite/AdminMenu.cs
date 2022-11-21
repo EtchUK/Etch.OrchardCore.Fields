@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Localization;
 using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using System;
@@ -25,12 +25,11 @@ namespace Etch.OrchardCore.Fields.Eventbrite
 
             builder
                 .Add(T["Configuration"], configuration => configuration
-                    .Add(T["API"], settings => settings
-                        .Add(T["Eventbrite API"], T["Eventbrite API"], layers => layers
-                            .Action("Index", "Admin", new { area = "OrchardCore.Settings", groupId = Constants.SettingsGroupId })
-                            .Permission(Permissions.ManageEventbriteAPI)
-                            .LocalNav()
-                        )));
+                    .Add(T["Eventbrite"], T["Eventbrite"], layers => layers
+                        .Action("Index", "Admin", new { area = "OrchardCore.Settings", groupId = Constants.SettingsGroupId })
+                        .Permission(Permissions.ManageEventbriteAPI)
+                        .LocalNav()
+                    ));
 
             return Task.CompletedTask;
         }
