@@ -115,10 +115,10 @@ export default (
 
             showMediaText: function (args: IMediaItemEventArgs): void {
                 this.selectedMedia = args.media;
-                const modal = new bootstrap.Modal(
-                    this.$refs.mediaTextModal as Element
-                );
+
+                const modal = new bootstrap.Modal(this.$refs.mediaTextModal as Element);
                 modal.show();
+
                 this.backupMediaText = this.selectedMedia.mediaText;
             },
 
