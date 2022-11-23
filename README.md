@@ -4,11 +4,11 @@ Module for [Orchard Core](https://github.com/OrchardCMS/OrchardCore) that provid
 
 ## Build Status
 
-[![Build Status](https://secure.travis-ci.org/etchuk/Etch.OrchardCore.Fields.png?branch=master)](http://travis-ci.org/etchuk/Etch.OrchardCore.Fields) [![NuGet](https://img.shields.io/nuget/v/Etch.OrchardCore.Fields.svg)](https://www.nuget.org/packages/Etch.OrchardCore.Fields)
+[![NuGet](https://img.shields.io/nuget/v/Etch.OrchardCore.Fields.svg)](https://www.nuget.org/packages/Etch.OrchardCore.Fields)
 
 ## Orchard Core Reference
 
-This module is referencing a stable build of Orchard Core ([`1.4.0`](https://www.nuget.org/packages/OrchardCore.Module.Targets/1.4.0)).
+This module is referencing a stable build of Orchard Core ([`1.5.0`](https://www.nuget.org/packages/OrchardCore.Module.Targets/1.5.0)).
 
 ## Installing
 
