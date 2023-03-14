@@ -8,6 +8,11 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Utils
 {
     public static class ResponsiveMediaUtils
     {
+        public static string EncodeUrl(string url)
+        {
+            return url.Replace(" ", "%20");
+        }
+
         public static IList<ResponsiveMediaItem> ParseMedia(IMediaFileStore mediaFileStore, string data)
         {
             var media = new List<ResponsiveMediaItem>();
