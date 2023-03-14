@@ -22,6 +22,11 @@ stages:
         pool:
           vmImage: "windows-latest"
         steps:
+          - task: UseNode@1
+            inputs:
+              version: "16.x"
+              checkLatest: true
+              
           - task: SonarCloudPrepare@1
             displayName: "Prepare SonarCloud Analysis"
             inputs:
