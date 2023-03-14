@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Etch.OrchardCore.Fields.ResponsiveMedia.Utils;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
 {
@@ -37,7 +39,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
 
                 if (media != null)
                 {
-                    lastMedia = new ResponsiveMediaSource { Breakpoint = nextBreakpoint + 1, Url = media.Url };
+                    lastMedia = new ResponsiveMediaSource { Breakpoint = nextBreakpoint + 1, Url = ResponsiveMediaUtils.EncodeUrl(media.Url) };
                     sourceSets.Add(lastMedia);
                     continue;
                 }
@@ -47,7 +49,10 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
                     continue;
                 }
 
-                sourceSets.Add(new ResponsiveMediaSource { Breakpoint = nextBreakpoint + 1, Url = $"{lastMedia.Url}?width={orderedBreakpoints[i]}" });
+                sourceSets.Add(new ResponsiveMediaSource { 
+                    Breakpoint = nextBreakpoint + 1,
+                    Url = $"{ResponsiveMediaUtils.EncodeUrl(lastMedia.Url)}?width={orderedBreakpoints[i]}" 
+                });
             }
 
             if (!sourceSets.Any())
