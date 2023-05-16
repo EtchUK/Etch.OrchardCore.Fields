@@ -50,7 +50,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
                 }
 
                 sourceSets.Add(new ResponsiveMediaSource { 
-                    Breakpoint = nextBreakpoint + 1,
+                    Breakpoint = nextBreakpoint,
                     Url = $"{ResponsiveMediaUtils.EncodeUrl(lastMedia.Url)}?width={orderedBreakpoints[i]}" 
                 });
             }
