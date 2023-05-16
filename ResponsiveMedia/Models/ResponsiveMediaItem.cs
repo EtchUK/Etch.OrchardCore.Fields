@@ -39,7 +39,7 @@ namespace Etch.OrchardCore.Fields.ResponsiveMedia.Models
 
                 if (media != null)
                 {
-                    lastMedia = new ResponsiveMediaSource { Breakpoint = nextBreakpoint + 1, Url = ResponsiveMediaUtils.EncodeUrl(media.Url) };
+                    lastMedia = new ResponsiveMediaSource { Breakpoint = nextBreakpoint, Url = ResponsiveMediaUtils.EncodeUrl(media.Url) };
                     sourceSets.Add(lastMedia);
                     continue;
                 }
