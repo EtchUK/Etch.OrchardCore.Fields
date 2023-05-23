@@ -1,100 +1,22 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./Assets/ResponsiveMedia/js/index.ts");
-/******/ })
-/************************************************************************/
-/******/ ({
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
 
 /***/ "./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/components/responsiveMediaItem/index.ts":
 /*!************************************************************************************************************!*\
   !*** ./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/components/responsiveMediaItem/index.ts ***!
   \************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"vue\");\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _models_mediaItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../models/mediaItem */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaItem.ts\");\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (vue__WEBPACK_IMPORTED_MODULE_0___default.a.extend({\r\n    name: 'responsiveMediaItem',\r\n    props: {\r\n        allowMediaText: Boolean,\r\n        breakpoints: Array,\r\n        media: _models_mediaItem__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\r\n    },\r\n    data: function () {\r\n        return {\r\n            selectedBreakpoint: 0,\r\n        };\r\n    },\r\n    computed: {\r\n        activeBreakpoint() {\r\n            if (this.selectedBreakpoint > 0) {\r\n                return this.selectedBreakpoint;\r\n            }\r\n            return this.media.getLargestBreakpoint();\r\n        },\r\n        activeName() {\r\n            const source = this.media.getSourceAt(this.activeBreakpoint);\r\n            if (source === null) {\r\n                const alternateSource = this.media.getSourceOrAlternative(this.activeBreakpoint);\r\n                return alternateSource\r\n                    ? `Auto generated by ${alternateSource.breakpoint}`\r\n                    : 'N/A';\r\n            }\r\n            return source.name;\r\n        },\r\n        url() {\r\n            return this.media.getUrlAt(this.activeBreakpoint);\r\n        },\r\n    },\r\n    methods: {\r\n        hasNoSource(breakpoint) {\r\n            return !this.media.hasSource(breakpoint);\r\n        },\r\n        remove() {\r\n            this.$emit('remove', {\r\n                media: this.media,\r\n            });\r\n        },\r\n        removeBreakpoint() {\r\n            if (this.media.removeBreakpoint(this.activeBreakpoint)) {\r\n                this.remove();\r\n            }\r\n        },\r\n        showMediaText() {\r\n            this.$emit('showmediatext', {\r\n                media: this.media,\r\n            });\r\n        },\r\n        update() {\r\n            this.$emit('update', {\r\n                media: this.media,\r\n                breakpoint: this.activeBreakpoint,\r\n            });\r\n        },\r\n    },\r\n    template: `<div class=\"card\">\n        <img :src=\"url\" class=\"card-img-top\" alt=\"\" />\n        <div class=\"card-body flex-column\">\n            <p class=\"small mb-2\">{{ activeName }}</p>\n\n            <div class=\"d-flex flex-row flex-wrap mb-1\">\n                <button \n                    v-for=\"breakpoint in breakpoints\" \n                    type=\"button\" \n                    class=\"btn btn-secondary btn-sm mb-1 me-1\" \n                    v-on:click=\"selectedBreakpoint = breakpoint\" \n                    v-bind:class=\"{ active: activeBreakpoint == breakpoint, 'btn-warning': hasNoSource(breakpoint) }\">\n                    {{ breakpoint }}\n                </button>\n            </div>\n\n            <div class=\"d-flex flex-row flex-wrap mb-2\">\n                <a href=\"#\" class=\"me-3\" v-on:click.prevent=\"update\">Change image at {{ activeBreakpoint }}</a>\n            </div>\n\n            <div class=\"btn-toolbar\">\n                <div class=\"btn-group me-2\">\n                    <button type=\"button\" title=\"Remove Options\" class=\"btn btn-danger btn-sm dropdown-toggle\" data-bs-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                        <svg class=\"svg-inline--fa fa-trash-alt fa-w-14\" aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fa\" data-icon=\"trash-alt\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\" data-fa-i2svg=\"\"><path fill=\"currentColor\" d=\"M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z\"></path></svg>\n                    </button>\n                    <div class=\"dropdown-menu\">\n                        <a class=\"dropdown-item btn-sm\" v-on:click.prevent=\"removeBreakpoint\">Remove at {{ activeBreakpoint }}</a>\n                        <a class=\"dropdown-item btn-sm\" v-on:click.prevent=\"remove\">Remove</a>\n                    </div>\n                </div>\n                <div class=\"btn-group\">\n                    <button type=\"button\" title=\"Manage Media Text\" class=\"btn btn-sm btn-secondary\" v-show=\"allowMediaText\" v-on:click.prevent=\"showMediaText\">\n                        <svg xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"comment\" class=\"svg-inline--fa fa-comment fa-w-14\" role=\"img\" viewBox=\"0 0 512 512\"><path fill=\"currentColor\" d=\"M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7S4.8 480 8 480c66.3 0 116-31.8 140.6-51.4 32.7 12.3 69 19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32z\"/></svg>\n                    </button>\n                </div>\n            </div>\n        </div>\n    </div>`,\r\n}));\r\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/components/responsiveMediaItem/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ \"vue\");\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _models_mediaItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../models/mediaItem */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaItem.ts\");\n\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (vue__WEBPACK_IMPORTED_MODULE_0___default().extend({\n    name: 'responsiveMediaItem',\n    props: {\n        allowMediaText: Boolean,\n        breakpoints: Array,\n        media: _models_mediaItem__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n    },\n    data: function () {\n        return {\n            selectedBreakpoint: 0,\n        };\n    },\n    computed: {\n        activeBreakpoint() {\n            if (this.selectedBreakpoint > 0) {\n                return this.selectedBreakpoint;\n            }\n            return this.media.getLargestBreakpoint();\n        },\n        activeName() {\n            const source = this.media.getSourceAt(this.activeBreakpoint);\n            if (source === null) {\n                const alternateSource = this.media.getSourceOrAlternative(this.activeBreakpoint);\n                return alternateSource\n                    ? `Auto generated by ${alternateSource.breakpoint}`\n                    : 'N/A';\n            }\n            return source.name;\n        },\n        url() {\n            return this.media.getUrlAt(this.activeBreakpoint);\n        },\n    },\n    methods: {\n        hasNoSource(breakpoint) {\n            return !this.media.hasSource(breakpoint);\n        },\n        remove() {\n            this.$emit('remove', {\n                media: this.media,\n            });\n        },\n        removeBreakpoint() {\n            if (this.media.removeBreakpoint(this.activeBreakpoint)) {\n                this.remove();\n            }\n        },\n        showMediaText() {\n            this.$emit('showmediatext', {\n                media: this.media,\n            });\n        },\n        update() {\n            this.$emit('update', {\n                media: this.media,\n                breakpoint: this.activeBreakpoint,\n            });\n        },\n    },\n    template: `<div class=\"card\">\n        <img :src=\"url\" class=\"card-img-top\" alt=\"\" />\n        <div class=\"card-body flex-column\">\n            <p class=\"small mb-2\">{{ activeName }}</p>\n\n            <div class=\"d-flex flex-row flex-wrap mb-1\">\n                <button \n                    v-for=\"breakpoint in breakpoints\" \n                    type=\"button\" \n                    class=\"btn btn-secondary btn-sm mb-1 me-1\" \n                    v-on:click=\"selectedBreakpoint = breakpoint\" \n                    v-bind:class=\"{ active: activeBreakpoint == breakpoint, 'btn-warning': hasNoSource(breakpoint) }\">\n                    {{ breakpoint }}\n                </button>\n            </div>\n\n            <div class=\"d-flex flex-row flex-wrap mb-2\">\n                <a href=\"#\" class=\"me-3\" v-on:click.prevent=\"update\">Change image at {{ activeBreakpoint }}</a>\n            </div>\n\n            <div class=\"btn-toolbar\">\n                <div class=\"btn-group me-2\">\n                    <button type=\"button\" title=\"Remove Options\" class=\"btn btn-danger btn-sm dropdown-toggle\" data-bs-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                        <svg class=\"svg-inline--fa fa-trash-alt fa-w-14\" aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fa\" data-icon=\"trash-alt\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 448 512\" data-fa-i2svg=\"\"><path fill=\"currentColor\" d=\"M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z\"></path></svg>\n                    </button>\n                    <div class=\"dropdown-menu\">\n                        <a class=\"dropdown-item btn-sm\" v-on:click.prevent=\"removeBreakpoint\">Remove at {{ activeBreakpoint }}</a>\n                        <a class=\"dropdown-item btn-sm\" v-on:click.prevent=\"remove\">Remove</a>\n                    </div>\n                </div>\n                <div class=\"btn-group\">\n                    <button type=\"button\" title=\"Manage Media Text\" class=\"btn btn-sm btn-secondary\" v-show=\"allowMediaText\" v-on:click.prevent=\"showMediaText\">\n                        <svg xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"comment\" class=\"svg-inline--fa fa-comment fa-w-14\" role=\"img\" viewBox=\"0 0 512 512\"><path fill=\"currentColor\" d=\"M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95 57 130.7C44.5 421.1 2.7 466 2.2 466.5c-2.2 2.3-2.8 5.7-1.5 8.7S4.8 480 8 480c66.3 0 116-31.8 140.6-51.4 32.7 12.3 69 19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32z\"/></svg>\n                    </button>\n                </div>\n            </div>\n        </div>\n    </div>`,\n}));\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/components/responsiveMediaItem/index.ts?");
 
 /***/ }),
 
@@ -102,11 +24,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var vue_
 /*!*****************************************************************************!*\
   !*** ./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/index.ts ***!
   \*****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ \"bootstrap\");\n/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ \"jquery\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ \"vue\");\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _components_responsiveMediaItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/responsiveMediaItem */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/components/responsiveMediaItem/index.ts\");\n/* harmony import */ var _utils_createMediaItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/createMediaItem */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/createMediaItem.ts\");\n/* harmony import */ var _utils_parseFieldValue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/parseFieldValue */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/parseFieldValue.ts\");\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\r\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\r\n    return new (P || (P = Promise))(function (resolve, reject) {\r\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\r\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\r\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\r\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\r\n    });\r\n};\r\n\r\n\r\n\r\n\r\n\r\n\r\nconst selectors = {\r\n    mediaApp: '#mediaApp',\r\n    mediaFieldSelectButton: '.mediaFieldSelectButton',\r\n    modalBody: '.modal-body',\r\n};\r\n/* harmony default export */ __webpack_exports__[\"default\"] = ((el, initialData, modalBodyElement, breakpoints, isMultiple, allowMediaText) => {\r\n    return new vue__WEBPACK_IMPORTED_MODULE_2___default.a({\r\n        el,\r\n        data: {\r\n            allowMediaText,\r\n            backupMediaText: '',\r\n            breakpoints,\r\n            isMultiple,\r\n            mediaItems: [],\r\n            selectedMedia: {\r\n                mediaText: '',\r\n            },\r\n        },\r\n        components: {\r\n            ResponsiveMediaItem: _components_responsiveMediaItem__WEBPACK_IMPORTED_MODULE_3__[\"default\"],\r\n        },\r\n        computed: {\r\n            canAdd() {\r\n                return this.isMultiple || this.mediaItems.length === 0;\r\n            },\r\n            hasMedia() {\r\n                return this.mediaItems.length > 0;\r\n            },\r\n            value() {\r\n                return JSON.stringify(this.mediaItems.map((x) => {\r\n                    return {\r\n                        mediaText: x.mediaText,\r\n                        sources: x.sources.map((source) => {\r\n                            return {\r\n                                breakpoint: source.breakpoint,\r\n                                path: source.path,\r\n                            };\r\n                        }),\r\n                    };\r\n                }));\r\n            },\r\n        },\r\n        mounted: function () {\r\n            this.mediaItems = Object(_utils_parseFieldValue__WEBPACK_IMPORTED_MODULE_5__[\"default\"])(initialData);\r\n        },\r\n        methods: {\r\n            add: function () {\r\n                const self = this;\r\n                jquery__WEBPACK_IMPORTED_MODULE_1___default()(selectors.mediaApp)\r\n                    .detach()\r\n                    .appendTo(jquery__WEBPACK_IMPORTED_MODULE_1___default()(modalBodyElement).find(selectors.modalBody));\r\n                jquery__WEBPACK_IMPORTED_MODULE_1___default()(selectors.mediaApp).show();\r\n                const modal = new bootstrap__WEBPACK_IMPORTED_MODULE_0___default.a.Modal(jquery__WEBPACK_IMPORTED_MODULE_1___default()(modalBodyElement)[0]);\r\n                modal.show();\r\n                jquery__WEBPACK_IMPORTED_MODULE_1___default()(modalBodyElement)\r\n                    .find(selectors.mediaFieldSelectButton)\r\n                    .off('click')\r\n                    .on('click', function () {\r\n                    return __awaiter(this, void 0, void 0, function* () {\r\n                        if (window.mediaApp.selectedMedias.length) {\r\n                            self.mediaItems.push(yield Object(_utils_createMediaItem__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(self.breakpoints, window.mediaApp.selectedMedias));\r\n                        }\r\n                        window.mediaApp.selectedMedias = [];\r\n                        modal.hide();\r\n                        return true;\r\n                    });\r\n                });\r\n            },\r\n            cancelMediaTextModal: function () {\r\n                this.selectedMedia.mediaText = this.backupMediaText;\r\n            },\r\n            remove: function (args) {\r\n                this.mediaItems.splice(this.mediaItems.indexOf(args.media), 1);\r\n            },\r\n            showMediaText: function (args) {\r\n                this.selectedMedia = args.media;\r\n                const modal = new bootstrap__WEBPACK_IMPORTED_MODULE_0___default.a.Modal(this.$refs.mediaTextModal);\r\n                modal.show();\r\n                this.backupMediaText = this.selectedMedia.mediaText;\r\n            },\r\n            update: function (args) {\r\n                jquery__WEBPACK_IMPORTED_MODULE_1___default()(selectors.mediaApp)\r\n                    .detach()\r\n                    .appendTo(jquery__WEBPACK_IMPORTED_MODULE_1___default()(modalBodyElement).find(selectors.modalBody));\r\n                jquery__WEBPACK_IMPORTED_MODULE_1___default()(selectors.mediaApp).show();\r\n                const modal = new bootstrap__WEBPACK_IMPORTED_MODULE_0___default.a.Modal(jquery__WEBPACK_IMPORTED_MODULE_1___default()(modalBodyElement)[0]);\r\n                modal.show();\r\n                jquery__WEBPACK_IMPORTED_MODULE_1___default()(modalBodyElement)\r\n                    .find(selectors.mediaFieldSelectButton)\r\n                    .off('click')\r\n                    .on('click', function () {\r\n                    return __awaiter(this, void 0, void 0, function* () {\r\n                        if (window.mediaApp.selectedMedias.length) {\r\n                            args.media.addSource(args.breakpoint, window.mediaApp.selectedMedias[0]);\r\n                        }\r\n                        window.mediaApp.selectedMedias = [];\r\n                        modal.hide();\r\n                        return true;\r\n                    });\r\n                });\r\n            },\r\n            updatePreview: function () {\r\n                this.$nextTick(() => {\r\n                    jquery__WEBPACK_IMPORTED_MODULE_1___default()(document).trigger('contentpreview:render');\r\n                });\r\n            },\r\n        },\r\n        watch: {\r\n            mediaItems: function () {\r\n                this.updatePreview();\r\n            },\r\n        },\r\n    });\r\n});\r\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ \"bootstrap\");\n/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ \"jquery\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ \"vue\");\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _components_responsiveMediaItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/responsiveMediaItem */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/components/responsiveMediaItem/index.ts\");\n/* harmony import */ var _utils_createMediaItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/createMediaItem */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/createMediaItem.ts\");\n/* harmony import */ var _utils_parseFieldValue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/parseFieldValue */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/parseFieldValue.ts\");\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\n\n\n\n\n\nconst selectors = {\n    mediaApp: '#mediaApp',\n    mediaFieldSelectButton: '.mediaFieldSelectButton',\n    modalBody: '.modal-body',\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((el, initialData, modalBodyElement, breakpoints, isMultiple, allowMediaText) => {\n    return new (vue__WEBPACK_IMPORTED_MODULE_2___default())({\n        el,\n        data: {\n            allowMediaText,\n            backupMediaText: '',\n            breakpoints,\n            isMultiple,\n            mediaItems: [],\n            selectedMedia: {\n                mediaText: '',\n            },\n        },\n        components: {\n            ResponsiveMediaItem: _components_responsiveMediaItem__WEBPACK_IMPORTED_MODULE_3__[\"default\"],\n        },\n        computed: {\n            canAdd() {\n                return this.isMultiple || this.mediaItems.length === 0;\n            },\n            hasMedia() {\n                return this.mediaItems.length > 0;\n            },\n            value() {\n                return JSON.stringify(this.mediaItems.map((x) => {\n                    return {\n                        mediaText: x.mediaText,\n                        sources: x.sources.map((source) => {\n                            return {\n                                breakpoint: source.breakpoint,\n                                path: source.path,\n                            };\n                        }),\n                    };\n                }));\n            },\n        },\n        mounted: function () {\n            this.mediaItems = (0,_utils_parseFieldValue__WEBPACK_IMPORTED_MODULE_5__[\"default\"])(initialData);\n        },\n        methods: {\n            add: function () {\n                const self = this;\n                jquery__WEBPACK_IMPORTED_MODULE_1___default()(selectors.mediaApp)\n                    .detach()\n                    .appendTo(jquery__WEBPACK_IMPORTED_MODULE_1___default()(modalBodyElement).find(selectors.modalBody));\n                jquery__WEBPACK_IMPORTED_MODULE_1___default()(selectors.mediaApp).show();\n                const modal = new (bootstrap__WEBPACK_IMPORTED_MODULE_0___default().Modal)(jquery__WEBPACK_IMPORTED_MODULE_1___default()(modalBodyElement)[0]);\n                modal.show();\n                jquery__WEBPACK_IMPORTED_MODULE_1___default()(modalBodyElement)\n                    .find(selectors.mediaFieldSelectButton)\n                    .off('click')\n                    .on('click', function () {\n                    return __awaiter(this, void 0, void 0, function* () {\n                        if (window.mediaApp.selectedMedias.length) {\n                            self.mediaItems.push(yield (0,_utils_createMediaItem__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(self.breakpoints, window.mediaApp.selectedMedias));\n                        }\n                        window.mediaApp.selectedMedias = [];\n                        modal.hide();\n                        return true;\n                    });\n                });\n            },\n            cancelMediaTextModal: function () {\n                this.selectedMedia.mediaText = this.backupMediaText;\n            },\n            remove: function (args) {\n                this.mediaItems.splice(this.mediaItems.indexOf(args.media), 1);\n            },\n            showMediaText: function (args) {\n                this.selectedMedia = args.media;\n                const modal = new (bootstrap__WEBPACK_IMPORTED_MODULE_0___default().Modal)(this.$refs.mediaTextModal);\n                modal.show();\n                this.backupMediaText = this.selectedMedia.mediaText;\n            },\n            update: function (args) {\n                jquery__WEBPACK_IMPORTED_MODULE_1___default()(selectors.mediaApp)\n                    .detach()\n                    .appendTo(jquery__WEBPACK_IMPORTED_MODULE_1___default()(modalBodyElement).find(selectors.modalBody));\n                jquery__WEBPACK_IMPORTED_MODULE_1___default()(selectors.mediaApp).show();\n                const modal = new (bootstrap__WEBPACK_IMPORTED_MODULE_0___default().Modal)(jquery__WEBPACK_IMPORTED_MODULE_1___default()(modalBodyElement)[0]);\n                modal.show();\n                jquery__WEBPACK_IMPORTED_MODULE_1___default()(modalBodyElement)\n                    .find(selectors.mediaFieldSelectButton)\n                    .off('click')\n                    .on('click', function () {\n                    return __awaiter(this, void 0, void 0, function* () {\n                        if (window.mediaApp.selectedMedias.length) {\n                            args.media.addSource(args.breakpoint, window.mediaApp.selectedMedias[0]);\n                        }\n                        window.mediaApp.selectedMedias = [];\n                        modal.hide();\n                        return true;\n                    });\n                });\n            },\n            updatePreview: function () {\n                this.$nextTick(() => {\n                    jquery__WEBPACK_IMPORTED_MODULE_1___default()(document).trigger('contentpreview:render');\n                });\n            },\n        },\n        watch: {\n            mediaItems: function () {\n                this.updatePreview();\n            },\n        },\n    });\n});\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/index.ts?");
 
 /***/ }),
 
@@ -114,11 +34,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var boot
 /*!****************************************************************************************!*\
   !*** ./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaItem.ts ***!
   \****************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return MediaItem; });\n/* harmony import */ var _mediaSource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mediaSource */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaSource.ts\");\n/* harmony import */ var _utils_sortUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/sortUtils */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/sortUtils.ts\");\n\r\n\r\nclass MediaItem {\r\n    constructor(mediaText, source) {\r\n        this.mediaText = mediaText;\r\n        this.sources = source || new Array();\r\n    }\r\n    /**\r\n     * Adds a new image source for a breakpoint.\r\n     */\r\n    addSource(breakpoint, media) {\r\n        let existingSource = null;\r\n        for (let i = 0; i < this.sources.length; i++) {\r\n            if (this.sources[i].breakpoint === breakpoint) {\r\n                existingSource = this.sources[i];\r\n                break;\r\n            }\r\n        }\r\n        if (existingSource !== null) {\r\n            existingSource.name = media.name;\r\n            existingSource.path = media.mediaPath;\r\n            existingSource.url = media.url;\r\n            return;\r\n        }\r\n        this.sources.push(new _mediaSource__WEBPACK_IMPORTED_MODULE_0__[\"default\"](breakpoint, media.name, media.mediaPath, media.url));\r\n    }\r\n    /**\r\n     * Returns list of breakpoints associated to sources.\r\n     */\r\n    getBreakpoints() {\r\n        return this.sources.map((x) => x.breakpoint);\r\n    }\r\n    /**\r\n     * Gets the largest breakpoint associated to sources.\r\n     */\r\n    getLargestBreakpoint() {\r\n        let largestBreakpoint = 0;\r\n        for (let i = 0; i < this.sources.length; i++) {\r\n            if (this.sources[i].breakpoint > largestBreakpoint) {\r\n                largestBreakpoint = this.sources[i].breakpoint;\r\n            }\r\n        }\r\n        return largestBreakpoint;\r\n    }\r\n    /**\r\n     * Returns the source associated to the provided breakpoint. If\r\n     * one isn't found then `null` is returned.\r\n     */\r\n    getSourceAt(breakpoint) {\r\n        if (!this.sources || !this.sources.length) {\r\n            return null;\r\n        }\r\n        let matchingSource = this.sources.find((value) => {\r\n            return value.breakpoint === breakpoint;\r\n        });\r\n        return matchingSource || null;\r\n    }\r\n    /**\r\n     * Returns the source associated to the provided breakpoint. If\r\n     * one isn't defined, the source associated to the next largest\r\n     * breakpoint will be returned. If there isn't a source defined\r\n     * for a larger breakpoint, then `null` is returned.\r\n     */\r\n    getSourceOrAlternative(breakpoint) {\r\n        const matchingSource = this.getSourceAt(breakpoint);\r\n        if (matchingSource) {\r\n            return matchingSource;\r\n        }\r\n        const breakpoints = Object(_utils_sortUtils__WEBPACK_IMPORTED_MODULE_1__[\"sortNumbers\"])(this.getBreakpoints());\r\n        for (var i = 0; i < breakpoints.length; i++) {\r\n            if (breakpoints[i] < breakpoint) {\r\n                continue;\r\n            }\r\n            return this.getSourceAt(breakpoints[i]);\r\n        }\r\n        return null;\r\n    }\r\n    /**\r\n     * Returns URL for source associated to provided breakpoint. If no source\r\n     * matches the breakpoint then the resized URL for the next largest breakpoint\r\n     * will be returned. When there isn't a larger breakpoint, an empty string\r\n     * is returned.\r\n     */\r\n    getUrlAt(breakpoint) {\r\n        const matchingSource = this.getSourceAt(breakpoint);\r\n        if (!matchingSource) {\r\n            const alternateSource = this.getSourceOrAlternative(breakpoint);\r\n            return alternateSource\r\n                ? `${alternateSource.url}?width=${breakpoint}`\r\n                : '';\r\n        }\r\n        return matchingSource.url;\r\n    }\r\n    /**\r\n     * Returns whether there is a source for the provided breakpoint.\r\n     */\r\n    hasSource(breakpoint) {\r\n        return this.getSourceAt(breakpoint) !== null;\r\n    }\r\n    removeBreakpoint(breakpoint) {\r\n        let matchingSource = this.getSourceAt(breakpoint);\r\n        if (matchingSource) {\r\n            this.sources.splice(this.sources.indexOf(matchingSource), 1);\r\n        }\r\n        return this.sources.length === 0;\r\n    }\r\n}\r\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaItem.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ MediaItem)\n/* harmony export */ });\n/* harmony import */ var _mediaSource__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mediaSource */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaSource.ts\");\n/* harmony import */ var _utils_sortUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/sortUtils */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/sortUtils.ts\");\n\n\nclass MediaItem {\n    constructor(mediaText, source) {\n        this.mediaText = mediaText;\n        this.sources = source || new Array();\n    }\n    /**\n     * Adds a new image source for a breakpoint.\n     */\n    addSource(breakpoint, media) {\n        let existingSource = null;\n        for (let i = 0; i < this.sources.length; i++) {\n            if (this.sources[i].breakpoint === breakpoint) {\n                existingSource = this.sources[i];\n                break;\n            }\n        }\n        if (existingSource !== null) {\n            existingSource.name = media.name;\n            existingSource.path = media.mediaPath;\n            existingSource.url = media.url;\n            return;\n        }\n        this.sources.push(new _mediaSource__WEBPACK_IMPORTED_MODULE_0__[\"default\"](breakpoint, media.name, media.mediaPath, media.url));\n    }\n    /**\n     * Returns list of breakpoints associated to sources.\n     */\n    getBreakpoints() {\n        return this.sources.map((x) => x.breakpoint);\n    }\n    /**\n     * Gets the largest breakpoint associated to sources.\n     */\n    getLargestBreakpoint() {\n        let largestBreakpoint = 0;\n        for (let i = 0; i < this.sources.length; i++) {\n            if (this.sources[i].breakpoint > largestBreakpoint) {\n                largestBreakpoint = this.sources[i].breakpoint;\n            }\n        }\n        return largestBreakpoint;\n    }\n    /**\n     * Returns the source associated to the provided breakpoint. If\n     * one isn't found then `null` is returned.\n     */\n    getSourceAt(breakpoint) {\n        if (!this.sources || !this.sources.length) {\n            return null;\n        }\n        let matchingSource = this.sources.find((value) => {\n            return value.breakpoint === breakpoint;\n        });\n        return matchingSource || null;\n    }\n    /**\n     * Returns the source associated to the provided breakpoint. If\n     * one isn't defined, the source associated to the next largest\n     * breakpoint will be returned. If there isn't a source defined\n     * for a larger breakpoint, then `null` is returned.\n     */\n    getSourceOrAlternative(breakpoint) {\n        const matchingSource = this.getSourceAt(breakpoint);\n        if (matchingSource) {\n            return matchingSource;\n        }\n        const breakpoints = (0,_utils_sortUtils__WEBPACK_IMPORTED_MODULE_1__.sortNumbers)(this.getBreakpoints());\n        for (var i = 0; i < breakpoints.length; i++) {\n            if (breakpoints[i] < breakpoint) {\n                continue;\n            }\n            return this.getSourceAt(breakpoints[i]);\n        }\n        return null;\n    }\n    /**\n     * Returns URL for source associated to provided breakpoint. If no source\n     * matches the breakpoint then the resized URL for the next largest breakpoint\n     * will be returned. When there isn't a larger breakpoint, an empty string\n     * is returned.\n     */\n    getUrlAt(breakpoint) {\n        const matchingSource = this.getSourceAt(breakpoint);\n        if (!matchingSource) {\n            const alternateSource = this.getSourceOrAlternative(breakpoint);\n            return alternateSource\n                ? `${alternateSource.url}?width=${breakpoint}`\n                : '';\n        }\n        return matchingSource.url;\n    }\n    /**\n     * Returns whether there is a source for the provided breakpoint.\n     */\n    hasSource(breakpoint) {\n        return this.getSourceAt(breakpoint) !== null;\n    }\n    removeBreakpoint(breakpoint) {\n        let matchingSource = this.getSourceAt(breakpoint);\n        if (matchingSource) {\n            this.sources.splice(this.sources.indexOf(matchingSource), 1);\n        }\n        return this.sources.length === 0;\n    }\n}\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaItem.ts?");
 
 /***/ }),
 
@@ -126,11 +44,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!******************************************************************************************!*\
   !*** ./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaSource.ts ***!
   \******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return MediaSource; });\nclass MediaSource {\r\n    constructor(breakpoint, name, path, url) {\r\n        this.breakpoint = breakpoint;\r\n        this.name = name;\r\n        this.path = path;\r\n        this.url = url;\r\n    }\r\n}\r\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaSource.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ MediaSource)\n/* harmony export */ });\nclass MediaSource {\n    constructor(breakpoint, name, path, url) {\n        this.breakpoint = breakpoint;\n        this.name = name;\n        this.path = path;\n        this.url = url;\n    }\n}\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaSource.ts?");
 
 /***/ }),
 
@@ -138,11 +54,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!*********************************************************************************************!*\
   !*** ./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/createMediaItem.ts ***!
   \*********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return createMediaItem; });\n/* harmony import */ var _models_mediaItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../models/mediaItem */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaItem.ts\");\n/* harmony import */ var _sortUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sortUtils */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/sortUtils.ts\");\n/* harmony import */ var _getUrlFromSelectedMedia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getUrlFromSelectedMedia */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/getUrlFromSelectedMedia.ts\");\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\r\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\r\n    return new (P || (P = Promise))(function (resolve, reject) {\r\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\r\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\r\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\r\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\r\n    });\r\n};\r\n\r\n\r\n\r\nfunction createMediaItem(breakpoints, selectedMedia) {\r\n    return __awaiter(this, void 0, void 0, function* () {\r\n        const orderedBreakpoints = Object(_sortUtils__WEBPACK_IMPORTED_MODULE_1__[\"sortNumbers\"])(breakpoints).reverse();\r\n        let mediaItem = new _models_mediaItem__WEBPACK_IMPORTED_MODULE_0__[\"default\"]('', []);\r\n        return new Promise((resolve) => {\r\n            let processedCount = 0;\r\n            const processNextImage = () => {\r\n                const selectedMediaItem = selectedMedia[processedCount];\r\n                const imageUrl = Object(_getUrlFromSelectedMedia__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(selectedMediaItem);\r\n                if (imageUrl == null) {\r\n                    processNextImage();\r\n                    return;\r\n                }\r\n                var img = new Image();\r\n                img.onload = function () {\r\n                    const imageWidth = this.naturalWidth;\r\n                    let possibleBreakpoints = [];\r\n                    for (var i = 0; i < orderedBreakpoints.length; i++) {\r\n                        if (orderedBreakpoints[i] <= imageWidth &&\r\n                            !mediaItem.hasSource(orderedBreakpoints[i])) {\r\n                            possibleBreakpoints.push(orderedBreakpoints[i]);\r\n                        }\r\n                    }\r\n                    if (possibleBreakpoints.length > 0) {\r\n                        mediaItem.addSource(Math.max(...possibleBreakpoints), selectedMediaItem);\r\n                    }\r\n                    processedCount++;\r\n                    if (processedCount === selectedMedia.length) {\r\n                        resolve(mediaItem);\r\n                        return;\r\n                    }\r\n                    processNextImage();\r\n                };\r\n                img.src = imageUrl;\r\n            };\r\n            processNextImage();\r\n        });\r\n    });\r\n}\r\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/createMediaItem.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ createMediaItem)\n/* harmony export */ });\n/* harmony import */ var _models_mediaItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../models/mediaItem */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaItem.ts\");\n/* harmony import */ var _sortUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sortUtils */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/sortUtils.ts\");\n/* harmony import */ var _getUrlFromSelectedMedia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getUrlFromSelectedMedia */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/getUrlFromSelectedMedia.ts\");\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\n\n\nfunction createMediaItem(breakpoints, selectedMedia) {\n    return __awaiter(this, void 0, void 0, function* () {\n        const orderedBreakpoints = (0,_sortUtils__WEBPACK_IMPORTED_MODULE_1__.sortNumbers)(breakpoints).reverse();\n        let mediaItem = new _models_mediaItem__WEBPACK_IMPORTED_MODULE_0__[\"default\"]('', []);\n        return new Promise((resolve) => {\n            let processedCount = 0;\n            const processNextImage = () => {\n                const selectedMediaItem = selectedMedia[processedCount];\n                const imageUrl = (0,_getUrlFromSelectedMedia__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(selectedMediaItem);\n                if (imageUrl == null) {\n                    processNextImage();\n                    return;\n                }\n                var img = new Image();\n                img.onload = function () {\n                    const imageWidth = this.naturalWidth;\n                    let possibleBreakpoints = [];\n                    for (var i = 0; i < orderedBreakpoints.length; i++) {\n                        if (orderedBreakpoints[i] <= imageWidth &&\n                            !mediaItem.hasSource(orderedBreakpoints[i])) {\n                            possibleBreakpoints.push(orderedBreakpoints[i]);\n                        }\n                    }\n                    if (possibleBreakpoints.length > 0) {\n                        mediaItem.addSource(Math.max(...possibleBreakpoints), selectedMediaItem);\n                    }\n                    processedCount++;\n                    if (processedCount === selectedMedia.length) {\n                        resolve(mediaItem);\n                        return;\n                    }\n                    processNextImage();\n                };\n                img.src = imageUrl;\n            };\n            processNextImage();\n        });\n    });\n}\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/createMediaItem.ts?");
 
 /***/ }),
 
@@ -150,11 +64,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!*****************************************************************************************************!*\
   !*** ./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/getUrlFromSelectedMedia.ts ***!
   \*****************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return getUrlFromSelectedMedia; });\nfunction isRelative(url) {\r\n    return url.indexOf('http') === -1;\r\n}\r\nfunction getUrlFromSelectedMedia(selectedMediaItem) {\r\n    if (selectedMediaItem == null || selectedMediaItem.url == null) {\r\n        return undefined;\r\n    }\r\n    if (isRelative(selectedMediaItem.url)) {\r\n        return `${window.location.origin}${selectedMediaItem.url}`;\r\n    }\r\n    return selectedMediaItem.url;\r\n}\r\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/getUrlFromSelectedMedia.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ getUrlFromSelectedMedia)\n/* harmony export */ });\nfunction isRelative(url) {\n    return url.indexOf('http') === -1;\n}\nfunction getUrlFromSelectedMedia(selectedMediaItem) {\n    if (selectedMediaItem == null || selectedMediaItem.url == null) {\n        return undefined;\n    }\n    if (isRelative(selectedMediaItem.url)) {\n        return `${window.location.origin}${selectedMediaItem.url}`;\n    }\n    return selectedMediaItem.url;\n}\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/getUrlFromSelectedMedia.ts?");
 
 /***/ }),
 
@@ -162,11 +74,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!*********************************************************************************************!*\
   !*** ./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/parseFieldValue.ts ***!
   \*********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return parseFieldValue; });\n/* harmony import */ var _models_mediaItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../models/mediaItem */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaItem.ts\");\n/* harmony import */ var _models_mediaSource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../models/mediaSource */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaSource.ts\");\n\r\n\r\nfunction parseFieldValue(initialData) {\r\n    if (!initialData) {\r\n        return [];\r\n    }\r\n    return initialData.map((i) => new _models_mediaItem__WEBPACK_IMPORTED_MODULE_0__[\"default\"](i.mediaText, i.sources.map((x) => new _models_mediaSource__WEBPACK_IMPORTED_MODULE_1__[\"default\"](x.breakpoint, x.name, x.path, x.url))));\r\n}\r\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/parseFieldValue.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ parseFieldValue)\n/* harmony export */ });\n/* harmony import */ var _models_mediaItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../models/mediaItem */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaItem.ts\");\n/* harmony import */ var _models_mediaSource__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../models/mediaSource */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/models/mediaSource.ts\");\n\n\nfunction parseFieldValue(initialData) {\n    if (!initialData) {\n        return [];\n    }\n    return initialData.map((i) => new _models_mediaItem__WEBPACK_IMPORTED_MODULE_0__[\"default\"](i.mediaText, i.sources.map((x) => new _models_mediaSource__WEBPACK_IMPORTED_MODULE_1__[\"default\"](x.breakpoint, x.name, x.path, x.url))));\n}\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/parseFieldValue.ts?");
 
 /***/ }),
 
@@ -174,11 +84,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!***************************************************************************************!*\
   !*** ./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/sortUtils.ts ***!
   \***************************************************************************************/
-/*! exports provided: sortNumbers */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"sortNumbers\", function() { return sortNumbers; });\nconst sortNumbers = (values) => {\r\n    return values.sort((a, b) => {\r\n        return a - b;\r\n    });\r\n};\r\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/sortUtils.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   sortNumbers: () => (/* binding */ sortNumbers)\n/* harmony export */ });\nconst sortNumbers = (values) => {\n    return values.sort((a, b) => {\n        return a - b;\n    });\n};\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/utils/sortUtils.ts?");
 
 /***/ }),
 
@@ -186,33 +94,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!********************************************!*\
   !*** ./Assets/ResponsiveMedia/js/index.ts ***!
   \********************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _components_responsiveMediaEditor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/responsiveMediaEditor */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/index.ts\");\n\r\nwindow.mediaApp = window.mediaApp || {};\r\nwindow.initializeResponsiveMediaEditor = (el, modalBodyElement, breakpoints, isMultiple, allowMediaText) => {\r\n    const rawDataInputElement = document.getElementById($(el).data('for'));\r\n    if (!rawDataInputElement) {\r\n        return;\r\n    }\r\n    breakpoints.sort((a, b) => {\r\n        return a - b;\r\n    });\r\n    Object(_components_responsiveMediaEditor__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(el, $(rawDataInputElement).data('init'), modalBodyElement, breakpoints, isMultiple, allowMediaText);\r\n};\r\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/index.ts?");
-
-/***/ }),
-
-/***/ "bootstrap":
-/*!****************************!*\
-  !*** external "bootstrap" ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = bootstrap;\n\n//# sourceURL=webpack:///external_%22bootstrap%22?");
-
-/***/ }),
-
-/***/ "jquery":
-/*!*************************!*\
-  !*** external "jQuery" ***!
-  \*************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = jQuery;\n\n//# sourceURL=webpack:///external_%22jQuery%22?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _components_responsiveMediaEditor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/responsiveMediaEditor */ \"./Assets/ResponsiveMedia/js/components/responsiveMediaEditor/index.ts\");\n\nwindow.mediaApp = window.mediaApp || {};\nwindow.initializeResponsiveMediaEditor = (el, modalBodyElement, breakpoints, isMultiple, allowMediaText) => {\n    const rawDataInputElement = document.getElementById($(el).data('for'));\n    if (!rawDataInputElement) {\n        return;\n    }\n    breakpoints.sort((a, b) => {\n        return a - b;\n    });\n    (0,_components_responsiveMediaEditor__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(el, $(rawDataInputElement).data('init'), modalBodyElement, breakpoints, isMultiple, allowMediaText);\n};\n\n\n//# sourceURL=webpack:///./Assets/ResponsiveMedia/js/index.ts?");
 
 /***/ }),
 
@@ -220,11 +104,105 @@ eval("module.exports = jQuery;\n\n//# sourceURL=webpack:///external_%22jQuery%22
 /*!**********************!*\
   !*** external "Vue" ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ ((module) => {
 
-eval("module.exports = Vue;\n\n//# sourceURL=webpack:///external_%22Vue%22?");
+module.exports = Vue;
+
+/***/ }),
+
+/***/ "bootstrap":
+/*!****************************!*\
+  !*** external "bootstrap" ***!
+  \****************************/
+/***/ ((module) => {
+
+module.exports = bootstrap;
+
+/***/ }),
+
+/***/ "jquery":
+/*!*************************!*\
+  !*** external "jQuery" ***!
+  \*************************/
+/***/ ((module) => {
+
+module.exports = jQuery;
 
 /***/ })
 
-/******/ });
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./Assets/ResponsiveMedia/js/index.ts");
+/******/ 	
+/******/ })()
+;

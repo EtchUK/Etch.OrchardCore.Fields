@@ -34,38 +34,37 @@ module.exports = {
         path: path.resolve(__dirname, './wwwroot/Scripts/'),
     },
     plugins: [
-        new CopyPlugin([
-            {
-                from: './node_modules/ace-builds/src-noconflict/ace.js',
-                to: path.resolve(
-                    __dirname,
-                    './wwwroot/Scripts/code/ace/ace.js'
-                ),
-            },
-            {
-                from:
-                    './node_modules/ace-builds/src-noconflict/mode-javascript.js',
-                to: path.resolve(
-                    __dirname,
-                    './wwwroot/Scripts/code/ace/mode-javascript.js'
-                ),
-            },
-            {
-                from:
-                    './node_modules/ace-builds/src-noconflict/theme-crimson_editor.js',
-                to: path.resolve(
-                    __dirname,
-                    './wwwroot/Scripts/code/ace/theme-crimson_editor.js'
-                ),
-            },
-            {
-                from:
-                    './node_modules/ace-builds/src-noconflict/worker-javascript.js',
-                to: path.resolve(
-                    __dirname,
-                    './wwwroot/Scripts/code/ace/worker-javascript.js'
-                ),
-            },
-        ]),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: './node_modules/ace-builds/src-noconflict/ace.js',
+                    to: path.resolve(
+                        __dirname,
+                        './wwwroot/Scripts/code/ace/ace.js'
+                    ),
+                },
+                {
+                    from: './node_modules/ace-builds/src-noconflict/mode-javascript.js',
+                    to: path.resolve(
+                        __dirname,
+                        './wwwroot/Scripts/code/ace/mode-javascript.js'
+                    ),
+                },
+                {
+                    from: './node_modules/ace-builds/src-noconflict/theme-crimson_editor.js',
+                    to: path.resolve(
+                        __dirname,
+                        './wwwroot/Scripts/code/ace/theme-crimson_editor.js'
+                    ),
+                },
+                {
+                    from: './node_modules/ace-builds/src-noconflict/worker-javascript.js',
+                    to: path.resolve(
+                        __dirname,
+                        './wwwroot/Scripts/code/ace/worker-javascript.js'
+                    ),
+                },
+            ],
+        }),
     ],
 };
