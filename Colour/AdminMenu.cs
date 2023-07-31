@@ -27,6 +27,7 @@ namespace Etch.OrchardCore.Fields.Colour
                         .Add(S["Colours"], S["Colours"].PrefixPosition(), layers => layers
                         .AddClass("colours").Id("colours")
                             .Action("Index", "Admin", new { area = "OrchardCore.Settings", groupId = Constants.GroupId })
+                            .Permission(Permissions.ManageColourSettings)
                             .LocalNav()
                         )));
 
