@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 
 namespace Etch.OrchardCore.Fields.Eventbrite.Models.Dto
@@ -39,10 +39,10 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Models.Dto
         public DateTime Published { get; set; }
 
         [JsonProperty(PropertyName = "capacity")]
-        public int Capacity { get; set; }
+        public int? Capacity { get; set; }
 
         [JsonProperty(PropertyName = "capacity_is_custom")]
-        public bool CapacityIsCustom { get; set; }
+        public bool? CapacityIsCustom { get; set; }
 
         [JsonProperty(PropertyName = "status")]
         public string Status { get; set; }
