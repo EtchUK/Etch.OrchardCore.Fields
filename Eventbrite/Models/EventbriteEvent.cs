@@ -1,4 +1,4 @@
-﻿using Etch.OrchardCore.Fields.Eventbrite.Models.Dto;
+using Etch.OrchardCore.Fields.Eventbrite.Models.Dto;
 using System;
 
 namespace Etch.OrchardCore.Fields.Eventbrite.Models
@@ -29,7 +29,7 @@ namespace Etch.OrchardCore.Fields.Eventbrite.Models
 
         #region Event Fields
 
-        public int Capacity { get; set; }
+        public int? Capacity { get; set; }
         public Description Description { get; set; }
         public DateTime EndUtc { get; set; }
         public bool HideEndDate { get; set; }
