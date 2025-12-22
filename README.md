@@ -1,3 +1,7 @@
+> ⚠️ **Archived – No Longer Maintained**
+>
+> This repository is no longer maintained due to a change in the technologies used by our organisation. No further updates, fixes, or security patches will be provided. The project is archived to prevent the expectation of ongoing support. The code remains available as-is for reference or forking.
+
 # Etch.OrchardCore.Fields
 
 Module for [Orchard Core](https://github.com/OrchardCMS/OrchardCore) that provides useful content fields.
